@@ -1,0 +1,14 @@
+{
+  "checked_at_utc": "2026-10-30T12:15:32.333937+00:00",
+  "remote_commit": "2dfff316a8a52f048afa78f79f7302d9995bfc4d",
+  "archive_sha256": "9b42bda543547e7628d6aa66914de021c9f457dad69ac6f541a1b5f84d0b37ed",
+  "remote_git_zip_matches_tested_backup": true,
+  "zip_crc_verified": true,
+  "exact_zip_inventory_verified": true,
+  "manifest_entries_verified": 92,
+  "published_source_tree_matches_backup": true,
+  "native_fresh_discovery": "PASS",
+  "full_fresh_model_session": "BLOCKED by proxy HTTP CONNECT 403; not claimed",
+  "cross_machine_or_cold_cloud_restore_verified": false,
+  "note": "Separate post-upload receipt preserves immutable backup bytes."
+}
