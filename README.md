@@ -25,14 +25,14 @@ The included demonstration processes three synthetic transactions:
 | Incoming event | What the validator finds | Result |
 | --- | --- | --- |
 | Order created for **$25.00** | Required fields are present; the record follows the configured schema. | **ACCEPTED** |
-| Order created **without an amount** | Required \`gross_amount\` field is missing. | **REJECTED** — \`missing_field\` |
+| Order created **without an amount** | Required `gross_amount` field is missing. | **REJECTED** — `missing_field` |
 | Payment authorized for **$25.00** | Required payment fields and types are valid. | **ACCEPTED** |
 
 An accepted payment **does not** mean that a bank actually transferred money. The validator checks event data against its rules; it is not connected to a payment network.
 
 ### What happens inside?
 
-\`\`\`text
+```text
 Incoming event text
         |
         v
@@ -50,7 +50,7 @@ Strict Pydantic v2 validation
                                    |
                                    v
                    Optional SQLite / PostgreSQL audit storage
-\`\`\`
+```
 
 The demonstration recognizes five types of event: **ORDER_CREATED**, **PAYMENT_AUTHORIZED**, **INVENTORY_RESERVED**, **SHIPMENT_DISPATCHED**, and **ORDER_CANCELLED**. These are **synthetic examples**, not live customer or enterprise integrations.
 
@@ -101,26 +101,26 @@ See the [verification report](https://github.com/jpet121/Structured_Event_Schema
 
 **Download:** [Complete v1.0.2 application and evidence ZIP](https://github.com/jpet121/Structured_Event_Schema_Validator/blob/verified-v1.0.2-delivery/delivery/Structured_Event_Schema_Validator_v1_0_2_RELEASE_AND_EVIDENCE.zip?raw=true). If GitHub displays a file page, select **Download raw file**.
 
-1. Extract \`Structured_Event_Schema_Validator_v1_0_2_RELEASE_AND_EVIDENCE.zip\`.
-2. Inside the extracted contents, find and extract \`Structured_Event_Schema_Validator_v1_0_2_VERIFIED_CANDIDATE.zip\` to a **fresh folder**.
-3. Open the folder containing \`main.py\`, \`src/\`, and \`examples/\`. In File Explorer, type \`powershell\` in the address bar to open PowerShell there.
+1. Extract `Structured_Event_Schema_Validator_v1_0_2_RELEASE_AND_EVIDENCE.zip`.
+2. Inside the extracted contents, find and extract `Structured_Event_Schema_Validator_v1_0_2_VERIFIED_CANDIDATE.zip` to a **fresh folder**.
+3. Open the folder containing `main.py`, `src/`, and `examples/`. In File Explorer, type `powershell` in the address bar to open PowerShell there.
 4. Install Python **3.12** if it is not installed, then run:
 
-\`\`\`powershell
+```powershell
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install "pydantic>=2.10,<3"
 .\.venv\Scripts\python.exe main.py --matrix .\examples\matrix_v1.json --input .\examples\replay.jsonl | ForEach-Object { ($_ | ConvertFrom-Json).status }
-\`\`\`
+```
 
 **Expected output:**
 
-\`\`\`text
+```text
 ACCEPTED
 REJECTED
 ACCEPTED
-\`\`\`
+```
 
-That is a **functional smoke test**, not the complete verification campaign. To view the full structured JSON output, rerun the last command without the PowerShell \`| ForEach-Object { ... }\` filter.
+That is a **functional smoke test**, not the complete verification campaign. To view the full structured JSON output, rerun the last command without the PowerShell `| ForEach-Object { ... }` filter.
 
 The complete technical suite uses additional declared dependencies and supporting tools, including PostgreSQL and Lean 4. Its existing execution logs and evidence are available below.
 
@@ -135,7 +135,7 @@ The complete technical suite uses additional declared dependencies and supportin
 | [Engineering retrospective](https://github.com/jpet121/Structured_Event_Schema_Validator/blob/verified-v1.0.2-delivery/engineering-knowledge/project/CASE_STUDY.md) | How the engineering decisions, defect corrections, and verification evolved. |
 | [Release readiness decision](https://github.com/jpet121/Structured_Event_Schema_Validator/blob/verified-v1.0.2-delivery/delivery/RELEASE_READINESS.json) | Technical readiness and outstanding human-release approval. |
 
-**Repository note:** The default \`main\` branch is the portfolio landing page. The verified application and evidence are preserved on \`verified-v1.0.2-delivery\`; the full application source is included inside its downloadable ZIP.
+**Repository note:** The default `main` branch is the portfolio landing page. The verified application and evidence are preserved on `verified-v1.0.2-delivery`; the full application source is included inside its downloadable ZIP.
 
 ## Limitations and release status
 
