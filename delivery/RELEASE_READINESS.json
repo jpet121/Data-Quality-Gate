@@ -1,0 +1,22 @@
+{
+  "assessed_at": "2026-10-30T00:17:10.367572+00:00",
+  "release_decision": "NOT APPROVED",
+  "phase": "AWAITING FINAL HUMAN RELEASE APPROVAL",
+  "technical_status": "TECHNICALLY VERIFIED",
+  "artifact_sha256": "f06ab83d0c56872460b30a402ce48662a06bb7cfdd3d73c10aebcc4919c02243",
+  "exact_zip_replay": {
+    "total": 410,
+    "passed": 410,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "mutants_generated_executed_killed": 16,
+  "mandatory_development_rows_verified": 51,
+  "mandatory_functional_rows_verified": 167,
+  "mandatory_verification_technical_rows_satisfied": 504,
+  "confirmed_unresolved_defects_in_verified_scope": 0,
+  "remaining_blocker": "Final human release approval reserved by Verification XML P_SEC17_018, P_SEC17_023 and UD_RELEASE",
+  "scope": "Owner-designated local synthetic five-event validator; not live business-system deployment",
+  "universal_zero_defect_claim": false
+}
