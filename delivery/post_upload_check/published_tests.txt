@@ -1,0 +1,128 @@
+........................................................................ [ 17%]
+........................................................................ [ 35%]
+........................................................................ [ 52%]
+........................................................................ [ 70%]
+........................................................................ [ 87%]
+..................................................                       [100%]
+============================ Hypothesis Statistics =============================
+test_suite.py::test_hypothesis_unicode_never_crashes:
+
+  - during generate phase (0.09 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 200 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=200
+
+
+test_suite.py::test_hypothesis_differential_lexing_in_valid_domain:
+
+  - during generate phase (0.12 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 200 passing, 0 failing, and 11 invalid test cases
+    - Events:
+      * 43.13%, Retried draw from TupleStrategy((sampled_from(('a', 'b', 'c', 'z')), text(characters(categories=(), include_characters='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), min_size=1, max_size=12))).filter(not_yet_in_unique_list) to satisfy filter
+
+  - Stopped because settings.max_examples=200
+
+
+test_suite.py::test_hypothesis_duplicate_keys_never_accepted:
+
+  - during generate phase (0.09 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 150 passing, 0 failing, and 26 invalid test cases
+
+  - Stopped because settings.max_examples=150
+
+
+test_suite.py::test_hypothesis_valid_inventory_quantity:
+
+  - during generate phase (0.06 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 150 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=150
+
+
+test_suite.py::TestLexerStateMachine::runTest:
+
+  - during generate phase (0.10 seconds):
+    - Typical runtimes: ~ 1-3 ms, of which ~ 1ms in data generation
+    - 35 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=35
+
+
+test_suite.py::TestRepositoryStateMachine::runTest:
+
+  - during generate phase (0.16 seconds):
+    - Typical runtimes: ~ 4-7 ms, of which ~ 1ms in data generation
+    - 20 passing, 0 failing, and 1 invalid test cases
+
+  - Stopped because settings.max_examples=20
+
+
+tests/assurance/test_gate_properties.py::test_gate_matches_declared_all_obligations_reference:
+
+  - during generate phase (0.15 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 150 passing, 0 failing, and 17 invalid test cases
+
+  - Highest target score: 20  (label='obligation_count')
+  - Stopped because settings.max_examples=150
+
+
+tests/assurance/test_reference_model.py::test_reference_quoted_grammar_has_independent_roundtrip:
+
+  - during generate phase (0.20 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 200 passing, 0 failing, and 95 invalid test cases
+
+  - Stopped because settings.max_examples=200
+
+
+tests/assurance/test_reference_model.py::test_all_event_models_agree_with_independent_reference:
+
+  - during generate phase (0.21 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 300 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=300
+
+
+tests/property/test_properties.py::test_duplicate_keys_never_accepted:
+
+  - during generate phase (0.10 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 150 passing, 0 failing, and 19 invalid test cases
+
+  - Stopped because settings.max_examples=150
+
+
+tests/property/test_properties.py::test_random_unicode_cannot_raise:
+
+  - during generate phase (0.08 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 250 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=250
+
+
+tests/property/test_properties.py::test_lexer_stable_order:
+
+  - during generate phase (0.01 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 15 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because nothing left to do
+
+
+tests/property/test_properties.py::TestLexerMachine::runTest:
+
+  - during generate phase (0.71 seconds):
+    - Typical runtimes: ~ 4-6 ms, of which ~ 2-3 ms in data generation
+    - 100 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=100
+
+
+410 passed in 11.84s
