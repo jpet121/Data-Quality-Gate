@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "assessment": "NOT ASSESSED",
+  "scope": null,
+  "source_identity": null,
+  "implementation_complete": null,
+  "applicable_tests_passing": null,
+  "requirements_verified": null,
+  "runtime_integration_verified": null,
+  "artifact_installation_verified": null,
+  "independent_verification_required": null,
+  "independent_verification_complete": null,
+  "release_approval_required": null,
+  "release_approval_record": null,
+  "test_outcomes": null,
+  "evidence": [],
+  "unresolved_confirmed_defects": [],
+  "skipped_or_unexecuted_requirements": [],
+  "limitations": [],
+  "blockers": []
+}

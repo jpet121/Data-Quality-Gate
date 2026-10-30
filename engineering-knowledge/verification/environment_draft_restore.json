@@ -1,0 +1,15 @@
+{
+  "status": "saved",
+  "draft_id": "332d8387-ab37-4448-aeee-382ff5d065ec~cecfgdraft_7e448591b8a4819881d0c67a325b9263",
+  "revision": 3,
+  "requires_publish": true,
+  "existing_install_script_preserved": true,
+  "existing_start_skill_preserved": true,
+  "repository_membership_unchanged": true,
+  "network_policy_unchanged": true,
+  "secrets_requirements_unchanged": true,
+  "restoration_instructions_added": true,
+  "publication_performed": false,
+  "cold_restoration_verified": false,
+  "appended_commands_executed": "verification/restore_install_command.json and restore_validation_command.json"
+}

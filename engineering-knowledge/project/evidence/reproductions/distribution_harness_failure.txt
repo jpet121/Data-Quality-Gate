@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/verification/source/Structured_Event_Schema_Validator_v1_0_2/verification/distribution_check.py", line 14, in <module>
+    loc=run('wheel import location',[WHEEL_PY,'-I','-c','import event_validator; print(event_validator.__file__)'])
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/verification/source/Structured_Event_Schema_Validator_v1_0_2/verification/distribution_check.py", line 12, in run
+    assert p.returncode==expected,(label,p.stdout,p.stderr)
+           ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('wheel import location', '', 'Traceback (most recent call last):\n  File "<string>", line 1, in <module>\nModuleNotFoundError: No module named \'event_validator\'\n')

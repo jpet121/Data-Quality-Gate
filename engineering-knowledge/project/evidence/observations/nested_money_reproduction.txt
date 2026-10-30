@@ -1,0 +1,172 @@
+FFFFFFF...                                                               [100%]
+=================================== FAILURES ===================================
+______ test_nested_json_money_cannot_bypass_lexical_contract[1e2-100.00] _______
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = '1e2', gross = '100.00'
+
+    @pytest.mark.parametrize(('price','gross'),[
+        ('1e2','100.00'),('1E2','100.00'),('1e+2','100.00'),
+        ('1e-2','0.01'),('100.000','100.00'),('1.000','1.00'),('0.010','0.01'),
+    ])
+    def test_nested_json_money_cannot_bypass_lexical_contract(cfg,valid,price,gross):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+gross)
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+price+'}]'
+        escaped=payload.replace('\\','\\\\').replace('"','\\"')
+        outcome=validate(prefix+' | lines_json="'+escaped+'"','nested-price',cfg)
+>       assert outcome.status=='REJECTED',outcome.canonical()
+E       AssertionError: {"input_ref":"nested-price","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"ACCEPTED","record":{"event_type":"ORDER_CREATED","event_id":"EVT-001","tenant_id":"TEN-ACME","order_id":"ORD-1001","source":"ERP","occurred_at":"2026-10-29T14:49:00-05:00","customer_ref":"CUST-FAKE-11","gross_amount":"100.00","currency":"USD","lines_json":[{"sku_code":"SKU-A","quantity":1,"unit_price":"1E+2"}]},"errors":[],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","typed_lexical_decode","strict_pydantic_accept"],"input_sha256":"cc3b5d89cc8be7d260d4e986e6c7cc8c2c6da056146f63e1edfb9ace892e674a"}
+E       assert 'ACCEPTED' == 'REJECTED'
+E         
+E         - REJECTED
+E         + ACCEPTED
+
+tests/regression/test_nested_money_lexemes.py:14: AssertionError
+______ test_nested_json_money_cannot_bypass_lexical_contract[1E2-100.00] _______
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = '1E2', gross = '100.00'
+
+    @pytest.mark.parametrize(('price','gross'),[
+        ('1e2','100.00'),('1E2','100.00'),('1e+2','100.00'),
+        ('1e-2','0.01'),('100.000','100.00'),('1.000','1.00'),('0.010','0.01'),
+    ])
+    def test_nested_json_money_cannot_bypass_lexical_contract(cfg,valid,price,gross):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+gross)
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+price+'}]'
+        escaped=payload.replace('\\','\\\\').replace('"','\\"')
+        outcome=validate(prefix+' | lines_json="'+escaped+'"','nested-price',cfg)
+>       assert outcome.status=='REJECTED',outcome.canonical()
+E       AssertionError: {"input_ref":"nested-price","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"ACCEPTED","record":{"event_type":"ORDER_CREATED","event_id":"EVT-001","tenant_id":"TEN-ACME","order_id":"ORD-1001","source":"ERP","occurred_at":"2026-10-29T14:49:00-05:00","customer_ref":"CUST-FAKE-11","gross_amount":"100.00","currency":"USD","lines_json":[{"sku_code":"SKU-A","quantity":1,"unit_price":"1E+2"}]},"errors":[],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","typed_lexical_decode","strict_pydantic_accept"],"input_sha256":"194371489c42c9f674b07dfb8bd8fe62c05f7d5c73ee93690fb6e4a286f46b87"}
+E       assert 'ACCEPTED' == 'REJECTED'
+E         
+E         - REJECTED
+E         + ACCEPTED
+
+tests/regression/test_nested_money_lexemes.py:14: AssertionError
+______ test_nested_json_money_cannot_bypass_lexical_contract[1e+2-100.00] ______
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = '1e+2', gross = '100.00'
+
+    @pytest.mark.parametrize(('price','gross'),[
+        ('1e2','100.00'),('1E2','100.00'),('1e+2','100.00'),
+        ('1e-2','0.01'),('100.000','100.00'),('1.000','1.00'),('0.010','0.01'),
+    ])
+    def test_nested_json_money_cannot_bypass_lexical_contract(cfg,valid,price,gross):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+gross)
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+price+'}]'
+        escaped=payload.replace('\\','\\\\').replace('"','\\"')
+        outcome=validate(prefix+' | lines_json="'+escaped+'"','nested-price',cfg)
+>       assert outcome.status=='REJECTED',outcome.canonical()
+E       AssertionError: {"input_ref":"nested-price","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"ACCEPTED","record":{"event_type":"ORDER_CREATED","event_id":"EVT-001","tenant_id":"TEN-ACME","order_id":"ORD-1001","source":"ERP","occurred_at":"2026-10-29T14:49:00-05:00","customer_ref":"CUST-FAKE-11","gross_amount":"100.00","currency":"USD","lines_json":[{"sku_code":"SKU-A","quantity":1,"unit_price":"1E+2"}]},"errors":[],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","typed_lexical_decode","strict_pydantic_accept"],"input_sha256":"beb7ad46b7e6bcca80097d71831c2de4042a1a0e99ad0bba01f7573f6f55fd08"}
+E       assert 'ACCEPTED' == 'REJECTED'
+E         
+E         - REJECTED
+E         + ACCEPTED
+
+tests/regression/test_nested_money_lexemes.py:14: AssertionError
+_______ test_nested_json_money_cannot_bypass_lexical_contract[1e-2-0.01] _______
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = '1e-2', gross = '0.01'
+
+    @pytest.mark.parametrize(('price','gross'),[
+        ('1e2','100.00'),('1E2','100.00'),('1e+2','100.00'),
+        ('1e-2','0.01'),('100.000','100.00'),('1.000','1.00'),('0.010','0.01'),
+    ])
+    def test_nested_json_money_cannot_bypass_lexical_contract(cfg,valid,price,gross):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+gross)
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+price+'}]'
+        escaped=payload.replace('\\','\\\\').replace('"','\\"')
+        outcome=validate(prefix+' | lines_json="'+escaped+'"','nested-price',cfg)
+>       assert outcome.status=='REJECTED',outcome.canonical()
+E       AssertionError: {"input_ref":"nested-price","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"ACCEPTED","record":{"event_type":"ORDER_CREATED","event_id":"EVT-001","tenant_id":"TEN-ACME","order_id":"ORD-1001","source":"ERP","occurred_at":"2026-10-29T14:49:00-05:00","customer_ref":"CUST-FAKE-11","gross_amount":"0.01","currency":"USD","lines_json":[{"sku_code":"SKU-A","quantity":1,"unit_price":"0.01"}]},"errors":[],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","typed_lexical_decode","strict_pydantic_accept"],"input_sha256":"11cf76b7cea6a3dbc6c8590a453fda6f7b3a95ea94ef25ffb71faf0f82549fc2"}
+E       assert 'ACCEPTED' == 'REJECTED'
+E         
+E         - REJECTED
+E         + ACCEPTED
+
+tests/regression/test_nested_money_lexemes.py:14: AssertionError
+____ test_nested_json_money_cannot_bypass_lexical_contract[100.000-100.00] _____
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = '100.000', gross = '100.00'
+
+    @pytest.mark.parametrize(('price','gross'),[
+        ('1e2','100.00'),('1E2','100.00'),('1e+2','100.00'),
+        ('1e-2','0.01'),('100.000','100.00'),('1.000','1.00'),('0.010','0.01'),
+    ])
+    def test_nested_json_money_cannot_bypass_lexical_contract(cfg,valid,price,gross):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+gross)
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+price+'}]'
+        escaped=payload.replace('\\','\\\\').replace('"','\\"')
+        outcome=validate(prefix+' | lines_json="'+escaped+'"','nested-price',cfg)
+>       assert outcome.status=='REJECTED',outcome.canonical()
+E       AssertionError: {"input_ref":"nested-price","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"ACCEPTED","record":{"event_type":"ORDER_CREATED","event_id":"EVT-001","tenant_id":"TEN-ACME","order_id":"ORD-1001","source":"ERP","occurred_at":"2026-10-29T14:49:00-05:00","customer_ref":"CUST-FAKE-11","gross_amount":"100.00","currency":"USD","lines_json":[{"sku_code":"SKU-A","quantity":1,"unit_price":"100.000"}]},"errors":[],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","typed_lexical_decode","strict_pydantic_accept"],"input_sha256":"90e1ab67d23e36498daa6c4ae9b3d6392c1c825de2bde849f32e47273f50b164"}
+E       assert 'ACCEPTED' == 'REJECTED'
+E         
+E         - REJECTED
+E         + ACCEPTED
+
+tests/regression/test_nested_money_lexemes.py:14: AssertionError
+______ test_nested_json_money_cannot_bypass_lexical_contract[1.000-1.00] _______
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = '1.000', gross = '1.00'
+
+    @pytest.mark.parametrize(('price','gross'),[
+        ('1e2','100.00'),('1E2','100.00'),('1e+2','100.00'),
+        ('1e-2','0.01'),('100.000','100.00'),('1.000','1.00'),('0.010','0.01'),
+    ])
+    def test_nested_json_money_cannot_bypass_lexical_contract(cfg,valid,price,gross):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+gross)
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+price+'}]'
+        escaped=payload.replace('\\','\\\\').replace('"','\\"')
+        outcome=validate(prefix+' | lines_json="'+escaped+'"','nested-price',cfg)
+>       assert outcome.status=='REJECTED',outcome.canonical()
+E       AssertionError: {"input_ref":"nested-price","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"ACCEPTED","record":{"event_type":"ORDER_CREATED","event_id":"EVT-001","tenant_id":"TEN-ACME","order_id":"ORD-1001","source":"ERP","occurred_at":"2026-10-29T14:49:00-05:00","customer_ref":"CUST-FAKE-11","gross_amount":"1.00","currency":"USD","lines_json":[{"sku_code":"SKU-A","quantity":1,"unit_price":"1.000"}]},"errors":[],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","typed_lexical_decode","strict_pydantic_accept"],"input_sha256":"7547ef0e75f32866ef49e6423db563574d1e4171df573b01a509964037179144"}
+E       assert 'ACCEPTED' == 'REJECTED'
+E         
+E         - REJECTED
+E         + ACCEPTED
+
+tests/regression/test_nested_money_lexemes.py:14: AssertionError
+______ test_nested_json_money_cannot_bypass_lexical_contract[0.010-0.01] _______
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = '0.010', gross = '0.01'
+
+    @pytest.mark.parametrize(('price','gross'),[
+        ('1e2','100.00'),('1E2','100.00'),('1e+2','100.00'),
+        ('1e-2','0.01'),('100.000','100.00'),('1.000','1.00'),('0.010','0.01'),
+    ])
+    def test_nested_json_money_cannot_bypass_lexical_contract(cfg,valid,price,gross):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+gross)
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+price+'}]'
+        escaped=payload.replace('\\','\\\\').replace('"','\\"')
+        outcome=validate(prefix+' | lines_json="'+escaped+'"','nested-price',cfg)
+>       assert outcome.status=='REJECTED',outcome.canonical()
+E       AssertionError: {"input_ref":"nested-price","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"ACCEPTED","record":{"event_type":"ORDER_CREATED","event_id":"EVT-001","tenant_id":"TEN-ACME","order_id":"ORD-1001","source":"ERP","occurred_at":"2026-10-29T14:49:00-05:00","customer_ref":"CUST-FAKE-11","gross_amount":"0.01","currency":"USD","lines_json":[{"sku_code":"SKU-A","quantity":1,"unit_price":"0.010"}]},"errors":[],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","typed_lexical_decode","strict_pydantic_accept"],"input_sha256":"eb196567c2142c5bec298c8f8e3debb8b6e2b470a3afd9cb07c6a203e6b42954"}
+E       assert 'ACCEPTED' == 'REJECTED'
+E         
+E         - REJECTED
+E         + ACCEPTED
+
+tests/regression/test_nested_money_lexemes.py:14: AssertionError
+=========================== short test summary info ============================
+FAILED tests/regression/test_nested_money_lexemes.py::test_nested_json_money_cannot_bypass_lexical_contract[1e2-100.00]
+FAILED tests/regression/test_nested_money_lexemes.py::test_nested_json_money_cannot_bypass_lexical_contract[1E2-100.00]
+FAILED tests/regression/test_nested_money_lexemes.py::test_nested_json_money_cannot_bypass_lexical_contract[1e+2-100.00]
+FAILED tests/regression/test_nested_money_lexemes.py::test_nested_json_money_cannot_bypass_lexical_contract[1e-2-0.01]
+FAILED tests/regression/test_nested_money_lexemes.py::test_nested_json_money_cannot_bypass_lexical_contract[100.000-100.00]
+FAILED tests/regression/test_nested_money_lexemes.py::test_nested_json_money_cannot_bypass_lexical_contract[1.000-1.00]
+FAILED tests/regression/test_nested_money_lexemes.py::test_nested_json_money_cannot_bypass_lexical_contract[0.010-0.01]
+7 failed, 3 passed in 0.14s

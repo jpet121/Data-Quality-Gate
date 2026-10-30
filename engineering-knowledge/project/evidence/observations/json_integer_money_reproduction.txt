@@ -1,0 +1,88 @@
+FFFF....                                                                 [100%]
+=================================== FAILURES ===================================
+__________________ test_json_integer_price_is_exact_money[1] ___________________
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = 1
+
+    @pytest.mark.parametrize('price',[1,2,100,9999999999999])
+    def test_json_integer_price_is_exact_money(cfg,valid,price):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+str(price))
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+str(price)+'}]'
+        raw=prefix+' | lines_json="'+payload.replace('"','\\"')+'"'
+        result=validate(raw,'json-integer-money',cfg)
+>       assert result.status=='ACCEPTED',result.canonical()
+E       AssertionError: {"input_ref":"json-integer-money","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"REJECTED","failure_category":"SCHEMA_VIOLATION","errors":[{"path":"lines_json","rule_id":"declared_type","code":"lexical_type_error","message":"Input rejected by declared_type rule lexical_type_error"}],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","rejected:SCHEMA_VIOLATION"],"input_sha256":"d2b47063dfe2f3af5b48d6f2e8dd831d59e448dba71334b813564021e474c638"}
+E       assert 'REJECTED' == 'ACCEPTED'
+E         
+E         - ACCEPTED
+E         + REJECTED
+
+tests/regression/test_json_integer_money.py:11: AssertionError
+__________________ test_json_integer_price_is_exact_money[2] ___________________
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = 2
+
+    @pytest.mark.parametrize('price',[1,2,100,9999999999999])
+    def test_json_integer_price_is_exact_money(cfg,valid,price):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+str(price))
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+str(price)+'}]'
+        raw=prefix+' | lines_json="'+payload.replace('"','\\"')+'"'
+        result=validate(raw,'json-integer-money',cfg)
+>       assert result.status=='ACCEPTED',result.canonical()
+E       AssertionError: {"input_ref":"json-integer-money","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"REJECTED","failure_category":"SCHEMA_VIOLATION","errors":[{"path":"lines_json","rule_id":"declared_type","code":"lexical_type_error","message":"Input rejected by declared_type rule lexical_type_error"}],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","rejected:SCHEMA_VIOLATION"],"input_sha256":"0227a83187c937473ce20ab943c8e0316b83bdbc0fe9c7534ecb48903b13af09"}
+E       assert 'REJECTED' == 'ACCEPTED'
+E         
+E         - ACCEPTED
+E         + REJECTED
+
+tests/regression/test_json_integer_money.py:11: AssertionError
+_________________ test_json_integer_price_is_exact_money[100] __________________
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = 100
+
+    @pytest.mark.parametrize('price',[1,2,100,9999999999999])
+    def test_json_integer_price_is_exact_money(cfg,valid,price):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+str(price))
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+str(price)+'}]'
+        raw=prefix+' | lines_json="'+payload.replace('"','\\"')+'"'
+        result=validate(raw,'json-integer-money',cfg)
+>       assert result.status=='ACCEPTED',result.canonical()
+E       AssertionError: {"input_ref":"json-integer-money","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"REJECTED","failure_category":"SCHEMA_VIOLATION","errors":[{"path":"lines_json","rule_id":"declared_type","code":"lexical_type_error","message":"Input rejected by declared_type rule lexical_type_error"}],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","rejected:SCHEMA_VIOLATION"],"input_sha256":"4ddadb8de203f70a62052d0ae0d91b3d6496f4fa8cfed5f6c69a426885b1b3ea"}
+E       assert 'REJECTED' == 'ACCEPTED'
+E         
+E         - ACCEPTED
+E         + REJECTED
+
+tests/regression/test_json_integer_money.py:11: AssertionError
+____________ test_json_integer_price_is_exact_money[9999999999999] _____________
+
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+price = 9999999999999
+
+    @pytest.mark.parametrize('price',[1,2,100,9999999999999])
+    def test_json_integer_price_is_exact_money(cfg,valid,price):
+        prefix=valid[0].split(' | lines_json=')[0].replace('gross_amount=25.00','gross_amount='+str(price))
+        payload='[{"sku_code":"SKU-A","quantity":1,"unit_price":'+str(price)+'}]'
+        raw=prefix+' | lines_json="'+payload.replace('"','\\"')+'"'
+        result=validate(raw,'json-integer-money',cfg)
+>       assert result.status=='ACCEPTED',result.canonical()
+E       AssertionError: {"input_ref":"json-integer-money","index":0,"config_fingerprint":"9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da","event_type":"ORDER_CREATED","schema_id":"ORDER_CREATED","schema_version":"1","status":"REJECTED","failure_category":"SCHEMA_VIOLATION","errors":[{"path":"lines_json","rule_id":"declared_type","code":"lexical_type_error","message":"Input rejected by declared_type rule lexical_type_error"}],"transforms":[{"path":"event_type","rule_id":"alias:demo-v1","before_digest":"b8e1f80bd70ae0784c7855a451731b745fddb67749d23f637be9082b75e9575b","after_digest":"a9fa98d13f1cef785e5a9aec76c57e739cb5d9695f0ad42170667c356610ec84"},{"path":"tenant_id","rule_id":"alias:demo-v1","before_digest":"e9da86d351cf9a7642d8c50195c3f466220911a15c177809bd1161a51e8c5f24","after_digest":"759b6ffea819a48a54ce7629b1ea21b328898ac2c1b460a10f268153d0b362c5"},{"path":"order_id","rule_id":"alias:demo-v1","before_digest":"3eeb7e96e59ce40f9cb1a089daba079fd699f6867a30f6634af8570967b2375a","after_digest":"ca13a6b2c9651b3841fc9ffe25a7a4fccea30a22caf1e8812a10631b958506a7"}],"trace":["input_hash","config:9f7a3547fcc7aa3d","token_keys:currency,customer_ref,event,event_id,gross_amount,lines_json,occurred_at,order,source,tenant","aliases_resolved","schema:ORDER_CREATED:1","rejected:SCHEMA_VIOLATION"],"input_sha256":"9eafaad91461e88bd746738bebe8bc9118cbfb691b1da9d7edc054e6b60f442a"}
+E       assert 'REJECTED' == 'ACCEPTED'
+E         
+E         - ACCEPTED
+E         + REJECTED
+
+tests/regression/test_json_integer_money.py:11: AssertionError
+=========================== short test summary info ============================
+FAILED tests/regression/test_json_integer_money.py::test_json_integer_price_is_exact_money[1]
+FAILED tests/regression/test_json_integer_money.py::test_json_integer_price_is_exact_money[2]
+FAILED tests/regression/test_json_integer_money.py::test_json_integer_price_is_exact_money[100]
+FAILED tests/regression/test_json_integer_money.py::test_json_integer_price_is_exact_money[9999999999999]
+4 failed, 4 passed in 0.12s

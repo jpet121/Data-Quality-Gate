@@ -1,0 +1,36 @@
+{
+  "negative_failed_count": {
+    "status": "NOT APPROVED",
+    "human_approval_granted_by_evaluator": false,
+    "blocking_obligations": [
+      {
+        "id": "required_tests",
+        "state": "FAIL",
+        "reason": "zero tests, failures, errors or unauthorized skips"
+      }
+    ]
+  },
+  "inconsistent_total": {
+    "status": "AUTOMATED_CRITERIA_MET",
+    "human_approval_granted_by_evaluator": false,
+    "blocking_obligations": []
+  },
+  "truthy_calibration_string": {
+    "status": "AUTOMATED_CRITERIA_MET",
+    "human_approval_granted_by_evaluator": false,
+    "blocking_obligations": []
+  },
+  "mandatory_string_false": {
+    "status": "NOT APPROVED",
+    "human_approval_granted_by_evaluator": false,
+    "blocking_obligations": [
+      {
+        "id": "known",
+        "state": "FAIL",
+        "reason": "unverified obligation"
+      }
+    ]
+  },
+  "crash_without_oracle": "ORACLE_UNCERTAINTY",
+  "timeout_without_oracle": "ORACLE_UNCERTAINTY"
+}

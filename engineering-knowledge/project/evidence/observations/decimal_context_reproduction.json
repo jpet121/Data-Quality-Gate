@@ -1,0 +1,21 @@
+[
+  {
+    "precision": 28,
+    "status": "ACCEPTED",
+    "errors": []
+  },
+  {
+    "precision": 3,
+    "status": "REJECTED",
+    "errors": [
+      "value_error"
+    ]
+  },
+  {
+    "precision": 2,
+    "status": "REJECTED",
+    "errors": [
+      "value_error"
+    ]
+  }
+]

@@ -1,0 +1,456 @@
+{
+  "schema_version": "1.0",
+  "note": "New verification repairs, historical repairs, environment failures and documentation errata have separate classifications. Reproduction evidence may be prior preserved execution, never a newly invented run.",
+  "records": [
+    {
+      "id": "D01",
+      "classification": "application",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "PostgreSQL jobs retried instead of delivering decoded JSONB records.",
+      "reproduction_evidence": "project/evidence/reproductions/pg_live.txt",
+      "root_cause": "Dispatcher unconditionally called json.loads although psycopg returns a dict for JSONB.",
+      "repair": "Accept decoded dict or serialized JSON at the adapter boundary.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.integration.test_postgres_independent.test_pg_dispatch",
+          "tests.regression.test_workflow_backend_payload.test_dispatch_database_payload_representations[payload0]",
+          "tests.regression.test_workflow_backend_payload.test_dispatch_database_payload_representations[{\"result_id\":\"safe\"}]"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Test real backend data representations; normalize at the correct boundary."
+    },
+    {
+      "id": "D02",
+      "classification": "application/concurrency",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Concurrent PostgreSQL matrix registration could raise a hash unique-constraint violation.",
+      "reproduction_evidence": "project/evidence/reproductions/release_after_fix.txt",
+      "root_cause": "ON CONFLICT(id) omitted the separate unique hash constraint reached by racing clients.",
+      "repair": "Use untargeted ON CONFLICT DO NOTHING for the two fingerprint-derived unique constraints; retain ingestion content/identity conflict checks.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.integration.test_postgres_independent.test_pg_concurrent_insert[False-0]",
+          "tests.integration.test_postgres_independent.test_pg_concurrent_insert[False-1]",
+          "tests.integration.test_postgres_independent.test_pg_concurrent_insert[False-2]",
+          "tests.integration.test_postgres_independent.test_pg_concurrent_insert[False-3]",
+          "tests.integration.test_postgres_independent.test_pg_concurrent_insert[False-4]",
+          "tests.integration.test_postgres_independent.test_pg_concurrent_insert[True-0]",
+          "tests.integration.test_postgres_independent.test_pg_concurrent_insert[True-1]",
+          "tests.integration.test_postgres_independent.test_pg_concurrent_insert[True-2]",
+          "tests.integration.test_postgres_independent.test_pg_concurrent_insert[True-3]",
+          "tests.integration.test_postgres_independent.test_pg_concurrent_insert[True-4]"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Test all relevant uniqueness constraints with genuinely competing independent connections."
+    },
+    {
+      "id": "D03",
+      "classification": "architecture/type contract",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Callable annotations and dependency boundaries did not fully meet Development requirements.",
+      "reproduction_evidence": "project/evidence/observations/APPLICATION_REMEDIATION.diff; immutable delivery final_evidence/mypy_initial.txt",
+      "root_cause": "Untyped callables and policy dependencies on concrete repository/configuration I/O modules.",
+      "repair": "Annotate nine modules; use structural repository/sink protocols; move immutable ConfigSnapshot into the domain model and preserve re-exports.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.assurance.test_architecture_invariants.test_domain_and_validation_do_not_depend_on_storage_or_configuration_io",
+          "tests.assurance.test_architecture_invariants.test_config_snapshot_import_compatibility",
+          "tests.assurance.test_development_contract.test_application_has_python_312_syntax_and_explicit_callable_annotations"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Use justified interfaces and inward dependencies; static types supplement runtime validation."
+    },
+    {
+      "id": "D04",
+      "classification": "application/input grammar",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Nested numeric money accepted exponent or excessive scale lexemes rejected by the top-level contract.",
+      "reproduction_evidence": "project/evidence/observations/nested_money_reproduction.txt",
+      "root_cause": "JSON parse_float converted spelling to Decimal before applying the shared lexical contract.",
+      "repair": "Route decimal JSON tokens through the same money decoder.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.regression.test_nested_money_lexemes.test_nested_json_money_cannot_bypass_lexical_contract[1e2-100.00]",
+          "tests.regression.test_nested_money_lexemes.test_nested_json_money_cannot_bypass_lexical_contract[1E2-100.00]",
+          "tests.regression.test_nested_money_lexemes.test_nested_json_money_cannot_bypass_lexical_contract[1e+2-100.00]",
+          "tests.regression.test_nested_money_lexemes.test_nested_json_money_cannot_bypass_lexical_contract[1e-2-0.01]",
+          "tests.regression.test_nested_money_lexemes.test_nested_json_money_cannot_bypass_lexical_contract[100.000-100.00]",
+          "tests.regression.test_nested_money_lexemes.test_nested_json_money_cannot_bypass_lexical_contract[1.000-1.00]",
+          "tests.regression.test_nested_money_lexemes.test_nested_json_money_cannot_bypass_lexical_contract[0.010-0.01]",
+          "tests.regression.test_nested_money_lexemes.test_allowed_nested_json_decimal_money_remains_valid[0.01]",
+          "tests.regression.test_nested_money_lexemes.test_allowed_nested_json_decimal_money_remains_valid[1.00]",
+          "tests.regression.test_nested_money_lexemes.test_allowed_nested_json_decimal_money_remains_valid[100.00]"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "A shared requirement must be enforced through every representation and nesting path."
+    },
+    {
+      "id": "D05",
+      "classification": "application/input grammar",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Valid integer-notation JSON money was rejected.",
+      "reproduction_evidence": "project/evidence/observations/json_integer_money_reproduction.txt",
+      "root_cause": "Default JSON integer values were not converted to exact money; bool needs separate exclusion because it is an int subclass.",
+      "repair": "Convert values whose exact type is int to Decimal, preserving strict bool/zero/negative rejection.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.regression.test_json_integer_money.test_json_integer_price_is_exact_money[1]",
+          "tests.regression.test_json_integer_money.test_json_integer_price_is_exact_money[2]",
+          "tests.regression.test_json_integer_money.test_json_integer_price_is_exact_money[100]",
+          "tests.regression.test_json_integer_money.test_json_integer_price_is_exact_money[9999999999999]",
+          "tests.regression.test_json_integer_money.test_json_bool_zero_or_negative_is_not_positive_money[true]",
+          "tests.regression.test_json_integer_money.test_json_bool_zero_or_negative_is_not_positive_money[false]",
+          "tests.regression.test_json_integer_money.test_json_bool_zero_or_negative_is_not_positive_money[0]",
+          "tests.regression.test_json_integer_money.test_json_bool_zero_or_negative_is_not_positive_money[-1]"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Pair negative tests with valid neighboring representations; avoid bool/int type confusion."
+    },
+    {
+      "id": "D06",
+      "classification": "application/arithmetic",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Valid exact line totals were rejected under low ambient Decimal precision.",
+      "reproduction_evidence": "project/evidence/observations/decimal_context_reproduction.json",
+      "root_cause": "Decimal multiplication/summation inherited mutable rounding context.",
+      "repair": "Use integer-cent arithmetic based on exact ratios; independent reference uses Fraction.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_DOWN-1]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_DOWN-2]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_DOWN-3]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_DOWN-28]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_UP-1]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_UP-2]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_UP-3]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_UP-28]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_HALF_EVEN-1]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_HALF_EVEN-2]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_HALF_EVEN-3]",
+          "tests.regression.test_decimal_context.test_exact_line_totals_are_independent_of_decimal_context[ROUND_HALF_EVEN-28]"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Exact invariants must not accidentally depend on ambient numerical context."
+    },
+    {
+      "id": "D07",
+      "classification": "application/resource control",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Oversized config could exhaust memory before its size-limit rejection.",
+      "reproduction_evidence": "project/evidence/observations/config_resource_reproduction.txt",
+      "root_cause": "The entire file was allocated before its byte limit was checked.",
+      "repair": "Read at most limit plus one byte before validation; bounded-memory regression uses a sparse oversize file.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.regression.test_config_resource_limit.test_oversized_configuration_is_rejected_under_memory_budget"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Enforce allocation/read bounds before doing the expensive operation."
+    },
+    {
+      "id": "D08",
+      "classification": "application/error boundary",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Deep malformed JSON could leak RecursionError instead of a typed failure.",
+      "reproduction_evidence": "project/evidence/observations/config_resource_reproduction.txt; immutable delivery nested-event regression evidence",
+      "root_cause": "Nested JSON recursion failure was outside controlled exception conversion.",
+      "repair": "Translate decoder recursion failures into ConfigError or declared schema rejection.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.regression.test_config_resource_limit.test_deep_invalid_configuration_is_a_typed_error",
+          "tests.regression.test_config_resource_limit.test_deep_nested_event_is_a_controlled_schema_rejection"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Exercise deep invalid structures and preserve the specified failure interface."
+    },
+    {
+      "id": "D09",
+      "classification": "verification gate",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Truthy calibration strings or inconsistent count totals could produce false gate eligibility.",
+      "reproduction_evidence": "project/evidence/observations/verifier_reproduction.json",
+      "root_cause": "Gate trusted truthiness and insufficiently validated outcome schemas.",
+      "repair": "Require explicit Boolean success, valid rows/evidence, nonnegative integer counts and consistent totals.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.assurance.test_evidence_validation.test_malformed_or_inconsistent_counts_never_clear_gate[counts0]",
+          "tests.assurance.test_evidence_validation.test_malformed_or_inconsistent_counts_never_clear_gate[counts1]",
+          "tests.assurance.test_evidence_validation.test_malformed_or_inconsistent_counts_never_clear_gate[counts2]",
+          "tests.assurance.test_evidence_validation.test_malformed_or_inconsistent_counts_never_clear_gate[counts3]",
+          "tests.assurance.test_evidence_validation.test_malformed_or_inconsistent_counts_never_clear_gate[counts4]",
+          "tests.assurance.test_evidence_validation.test_malformed_or_inconsistent_counts_never_clear_gate[counts5]",
+          "tests.assurance.test_evidence_validation.test_malformed_or_inconsistent_counts_never_clear_gate[counts6]",
+          "tests.assurance.test_evidence_validation.test_malformed_or_inconsistent_counts_never_clear_gate[counts7]",
+          "tests.assurance.test_evidence_validation.test_malformed_or_inconsistent_counts_never_clear_gate[counts8]",
+          "tests.assurance.test_evidence_validation.test_malformed_or_inconsistent_counts_never_clear_gate[counts9]",
+          "tests.assurance.test_evidence_validation.test_only_explicit_boolean_calibration_pass_is_accepted[PASS]",
+          "tests.assurance.test_evidence_validation.test_only_explicit_boolean_calibration_pass_is_accepted[failed]",
+          "tests.assurance.test_evidence_validation.test_only_explicit_boolean_calibration_pass_is_accepted[1]",
+          "tests.assurance.test_evidence_validation.test_only_explicit_boolean_calibration_pass_is_accepted[calibration3]",
+          "tests.assurance.test_evidence_validation.test_only_explicit_boolean_calibration_pass_is_accepted[calibration4]",
+          "tests.assurance.test_evidence_validation.test_only_explicit_boolean_calibration_pass_is_accepted[None]",
+          "tests.assurance.test_evidence_validation.test_bad_requirement_rows_never_clear_gate[row0]",
+          "tests.assurance.test_evidence_validation.test_bad_requirement_rows_never_clear_gate[row1]",
+          "tests.assurance.test_evidence_validation.test_bad_requirement_rows_never_clear_gate[row2]",
+          "tests.assurance.test_evidence_validation.test_bad_requirement_rows_never_clear_gate[row3]",
+          "tests.assurance.test_evidence_validation.test_bad_requirement_rows_never_clear_gate[row4]",
+          "tests.assurance.test_evidence_validation.test_bad_requirement_rows_never_clear_gate[row5]",
+          "tests.assurance.test_evidence_validation.test_bad_requirement_rows_never_clear_gate[row6]",
+          "tests.assurance.test_evidence_validation.test_bad_requirement_rows_never_clear_gate[row7]"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Treat evidence as validated data; malformed success inputs must fail closed."
+    },
+    {
+      "id": "D10",
+      "classification": "verification comparator",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Observable crash/timeout could be hidden by missing-oracle classification.",
+      "reproduction_evidence": "project/evidence/observations/verifier_reproduction.json",
+      "root_cause": "Uncertainty was classified before observable execution failure.",
+      "repair": "Classify crash, timeout, resource and harness errors before oracle uncertainty.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.assurance.test_evidence_validation.test_observable_failures_not_hidden_by_missing_oracle[EXCEPTION-UNEXPECTED_CRASH]",
+          "tests.assurance.test_evidence_validation.test_observable_failures_not_hidden_by_missing_oracle[TIMEOUT-TIMEOUT]",
+          "tests.assurance.test_evidence_validation.test_observable_failures_not_hidden_by_missing_oracle[RESOURCE-RESOURCE_LIMIT]",
+          "tests.assurance.test_evidence_validation.test_observable_failures_not_hidden_by_missing_oracle[HARNESS_ERROR-HARNESS_FAILURE]",
+          "tests.assurance.test_evidence_validation.test_observable_failures_not_hidden_by_missing_oracle[unsupported-HARNESS_FAILURE]"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Separate observed execution failure from uncertainty about semantic correctness."
+    },
+    {
+      "id": "D11",
+      "classification": "verification/integrity",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Weak manifest validation permitted malformed or unsafe evidence inputs.",
+      "reproduction_evidence": "Immutable delivery tests/assurance/test_manifest_validation.py and verifier_security.xml",
+      "root_cause": "Manifest schema, duplicate keys, path traversal, symlinks and resource bounds were not fully validated.",
+      "repair": "Reject malformed/empty/oversized manifests, unsupported hashes, unsafe/escaping/symlink paths and duplicate keys; stream file hashing.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[None]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest1]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest2]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest3]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest4]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest5]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest6]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest7]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest8]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest9]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest10]",
+          "tests.assurance.test_manifest_validation.test_invalid_manifests_fail_closed[manifest11]",
+          "tests.assurance.test_manifest_validation.test_valid_file_and_tamper_detection",
+          "tests.assurance.test_manifest_validation.test_symlink_cannot_redirect_manifest_read",
+          "tests.assurance.test_manifest_validation.test_duplicate_manifest_keys_rejected"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Integrity machinery needs negative controls and safe path/data handling, not only a happy-path checksum."
+    },
+    {
+      "id": "D12",
+      "classification": "verification/source correspondence",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Historical passing evidence could outlive source changes or incomplete collection.",
+      "reproduction_evidence": "Immutable delivery assurance/release_evidence.py; discarded campaign and evidence-binding tests",
+      "root_cause": "Reports were not all bound to exact current source, collection, proofs and reference identities.",
+      "repair": "Bind fresh source snapshot, exact collected/JUnit identities and run/report hashes; validate proof/mutation/reference source identity.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.assurance.test_evidence_binding.test_missing_release_evidence_never_clears_gate",
+          "tests.assurance.test_evidence_binding.test_source_tampering_is_reported_even_if_a_run_record_claims_success"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Make evidence freshness and completeness explicit; a passing old report cannot certify current bytes."
+    },
+    {
+      "id": "H01",
+      "classification": "harness/install",
+      "status": "Repaired in prior verification; distribution replay passes in POST_UPLOAD_ZIP_CHECK.json",
+      "defect": "Distribution harness invoked the base interpreter instead of its venv.",
+      "reproduction_evidence": "project/evidence/reproductions/distribution_harness_failure.txt",
+      "root_cause": "Resolving the venv executable symlink changed interpreter context.",
+      "repair": "Preserve the venv path using absolute(), and assert installed import location from a clean directory.",
+      "regression_verification": {
+        "actual_passing_test_ids": [],
+        "evidence": "project/evidence/reproductions/distribution_harness_failure.txt",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Preserve environment identity and test installation without accidental local imports."
+    },
+    {
+      "id": "H02",
+      "classification": "harness/mutation",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "An exploratory mutation campaign had a changed test collection.",
+      "reproduction_evidence": "project/evidence/reproductions/discarded_campaign_disposition.json",
+      "root_cause": "Tests/source advanced while the experiment was being prepared; detection and setup failures were not cleanly separated.",
+      "repair": "Quarantine that run; freeze a master copy, run a passing baseline, require exact JUnit accounting and distinguish error categories.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.assurance.test_mutation_accounting.test_mutant_accounting_distinguishes_detection_from_harness_failure[1-counts0-False-killed]",
+          "tests.assurance.test_mutation_accounting.test_mutant_accounting_distinguishes_detection_from_harness_failure[1-counts1-False-harness_error]",
+          "tests.assurance.test_mutation_accounting.test_mutant_accounting_distinguishes_detection_from_harness_failure[0-counts2-False-survived]",
+          "tests.assurance.test_mutation_accounting.test_mutant_accounting_distinguishes_detection_from_harness_failure[0-counts3-False-harness_error]",
+          "tests.assurance.test_mutation_accounting.test_mutant_accounting_distinguishes_detection_from_harness_failure[2-None-False-harness_error]",
+          "tests.assurance.test_mutation_accounting.test_mutant_accounting_distinguishes_detection_from_harness_failure[124-None-True-timed_out]",
+          "tests.assurance.test_mutation_accounting.test_mutant_accounting_distinguishes_detection_from_harness_failure[0-counts6-False-harness_error]"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Freeze experiments and never count harness errors or timeouts as mutant detection."
+    },
+    {
+      "id": "H03",
+      "classification": "harness/resources",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Two Lean model runs failed to create their default thread pool under the memory cap.",
+      "reproduction_evidence": "project/evidence/reproductions/lean_thread_limit_failure.xml",
+      "root_cause": "Default toolchain parallelism was incompatible with the bounded process address space.",
+      "repair": "Set an explicit single thread for checking/model execution; retain proofs, assertions and resource policy.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.assurance.test_formal_gate.test_lean_gate_proofs_and_python_correspondence",
+          "tests.assurance.test_idempotency_proof.test_checked_idempotency_model_matches_sqlite_and_atomic_state"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Budget orchestration and toolchains together; diagnose apparatus failure without weakening the target invariant."
+    },
+    {
+      "id": "H04",
+      "classification": "harness/resources",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Profile preexec setup originally applied process limits to the orchestrator itself.",
+      "reproduction_evidence": "Immutable delivery assurance/run.py; project/evidence/VERIFIED_RELEASE_REPORT.md",
+      "root_cause": "preexec_fn received process_limits() instead of the callable process_limits.",
+      "repair": "Pass the callable, then rerun bounded profiles; code inspection and final A/B/C logs establish correction.",
+      "regression_verification": {
+        "actual_passing_test_ids": [],
+        "evidence": "Immutable delivery assurance/run.py; project/evidence/VERIFIED_RELEASE_REPORT.md",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "When passing lifecycle callbacks, distinguish the function from its return value; keep the controller capable of collecting failures."
+    },
+    {
+      "id": "H05",
+      "classification": "environment/database setup",
+      "status": "Repaired and regression verified in completed project",
+      "defect": "Early disposable PostgreSQL initialization failed.",
+      "reproduction_evidence": "Immutable delivery evidence/pg_baseline.* and pg_reproduction.*; INDEPENDENT_VERIFICATION_REPORT.md",
+      "root_cause": "Custom socket location conflicted with image initialization expectations.",
+      "repair": "Mount the image-default /var/run/postgresql Unix socket, disable network, and verify readiness before fixtures run.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.integration.test_postgres_independent.test_pg_persistence_reopen"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Use the real service lifecycle/readiness contract before interpreting integration failures."
+    },
+    {
+      "id": "H06",
+      "classification": "delivery",
+      "status": "Resolved delivery failure; native chat file-export capability still unavailable",
+      "defect": "Repeated chat download links did not deliver the files to the user.",
+      "reproduction_evidence": "Visible user reports cannot download/not working; GitHub delivery commit 66213a8a7175d99ce14aed5e07799225dc0b4c8c and project/evidence/post_upload/POST_UPLOAD_ZIP_CHECK.json",
+      "root_cause": "Cloud filesystem/sandbox links were presented as attachment exports without an available export tool.",
+      "repair": "Acknowledge limitation; obtain explicit YES for private-repository upload; push verified bytes, give real GitHub link, fetch them back and run the full gate.",
+      "regression_verification": {
+        "actual_passing_test_ids": [],
+        "evidence": "Visible user reports cannot download/not working; GitHub delivery commit 66213a8a7175d99ce14aed5e07799225dc0b4c8c and project/evidence/post_upload/POST_UPLOAD_ZIP_CHECK.json",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Verify delivery capability early and verify remotely delivered bytes. Upload authorization is separate from release approval."
+    },
+    {
+      "id": "P01",
+      "classification": "historical pre-baseline application",
+      "status": "Historical repair reported; current regressions executed and passing",
+      "defect": "Rejected inputs could collide across batches; malformed Unicode metadata could crash; standalone generators diverged.",
+      "reproduction_evidence": "Immutable delivery docs/REMEDIATION_AUDIT_2026_10_29.md and audit/ logs",
+      "root_cause": "These root causes/repairs are historical records, not newly reproduced during this capture: rejected identity omitted content; unpaired surrogates survived loading; generator implementations diverged.",
+      "repair": "Already in uploaded source: rejected-content hashing, typed Unicode checks and one canonical generator with delegating wrapper.",
+      "regression_verification": {
+        "actual_passing_test_ids": [
+          "tests.regression.test_rejected_identity.test_rejected_unchanged_duplicate_and_changed_input_do_not_collide",
+          "tests.regression.test_unicode_config_and_ref.test_metadata_with_invalid_unicode_is_rejected_as_config_error[\\ud800-version]",
+          "tests.regression.test_unicode_config_and_ref.test_metadata_with_invalid_unicode_is_rejected_as_config_error[\\ud800-schema_id]",
+          "tests.regression.test_unicode_config_and_ref.test_metadata_with_invalid_unicode_is_rejected_as_config_error[\\ud800-schema_version]",
+          "tests.regression.test_unicode_config_and_ref.test_metadata_with_invalid_unicode_is_rejected_as_config_error[\\udfff-version]",
+          "tests.regression.test_unicode_config_and_ref.test_metadata_with_invalid_unicode_is_rejected_as_config_error[\\udfff-schema_id]",
+          "tests.regression.test_unicode_config_and_ref.test_metadata_with_invalid_unicode_is_rejected_as_config_error[\\udfff-schema_version]",
+          "tests.regression.test_unicode_config_and_ref.test_metadata_with_invalid_unicode_is_rejected_as_config_error[prefix\\ud800suffix-version]",
+          "tests.regression.test_unicode_config_and_ref.test_metadata_with_invalid_unicode_is_rejected_as_config_error[prefix\\ud800suffix-schema_id]",
+          "tests.regression.test_unicode_config_and_ref.test_metadata_with_invalid_unicode_is_rejected_as_config_error[prefix\\ud800suffix-schema_version]",
+          "tests.regression.test_unicode_config_and_ref.test_invalid_input_ref_is_controlled_api_error[\\ud800]",
+          "tests.regression.test_unicode_config_and_ref.test_invalid_input_ref_is_controlled_api_error[batch\\udfff]",
+          "tests.regression.test_unicode_config_and_ref.test_invalid_input_ref_is_controlled_api_error[None]",
+          "tests.regression.test_unicode_config_and_ref.test_invalid_input_ref_is_controlled_api_error[42]"
+        ],
+        "evidence": "project/evidence/post_upload/published_tests.xml",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Keep historical fixes and current regression evidence separate from new discovery claims."
+    },
+    {
+      "id": "P02",
+      "classification": "historical pre-baseline harness",
+      "status": "Historical justified harness correction; not an edit performed in the later independent audit or this capture",
+      "defect": "Two original-verifier setup paths used arbitrary accepted storage identities.",
+      "reproduction_evidence": "Immutable delivery audit/TEST_SUITE_RECONCILIATION.diff and audit/upstream_test_suite.original.py",
+      "root_cause": "Fixtures conflicted with the separately enforced validated event/tenant identity requirement.",
+      "repair": "Earlier documented correction set fixture event IDs to the validated identity and retained conflict assertions; uploaded baseline tests preserved thereafter.",
+      "regression_verification": {
+        "actual_passing_test_ids": [],
+        "evidence": "Immutable delivery audit/TEST_SUITE_RECONCILIATION.diff and audit/upstream_test_suite.original.py",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Correct a demonstrated fixture error transparently while retaining original evidence and requirements; do not weaken the identity guard."
+    },
+    {
+      "id": "N01",
+      "classification": "documentation",
+      "status": "Documented erratum in this capture; original immutable artifact intentionally unchanged",
+      "defect": "Architecture report retained an obsolete statement that LocalStubSink remains a D:p_20 discrepancy.",
+      "reproduction_evidence": "project/evidence/ARCHITECTURE_COMPLIANCE.md versus project/evidence/SPECIFICATION_RECONCILIATION.md and VERIFIED_RELEASE_REPORT.md",
+      "root_cause": "Status narrative was not fully reconciled when the owner designated the existing local synthetic functional scope.",
+      "repair": "Record this erratum here, cite the later explicit scoped reconciliation, and preserve immutable release bytes. No application behavior or user requirement is changed.",
+      "regression_verification": {
+        "actual_passing_test_ids": [],
+        "evidence": "project/evidence/ARCHITECTURE_COMPLIANCE.md versus project/evidence/SPECIFICATION_RECONCILIATION.md and VERIFIED_RELEASE_REPORT.md",
+        "scope": "Final 410-case replay verifies current behavior; historical-only items do not claim a new pre-repair execution."
+      },
+      "reusable_lesson": "Reconcile current narrative status against authority decisions; preserve immutable evidence with explicit errata rather than silently rewriting a tested archive."
+    }
+  ]
+}

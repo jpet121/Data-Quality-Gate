@@ -1,0 +1,39 @@
+{
+  "scope": "authorized local validator, fixed clarified matrix; no external systems",
+  "seed": 20261029,
+  "requested": 100000,
+  "attempted": 100000,
+  "executed": 100000,
+  "compared": 100000,
+  "accepted_as_valid_by_oracle": 25000,
+  "replayed": 1031,
+  "outcomes": {
+    "VALID_AGREEMENT": 25000,
+    "PERMITTED_REJECTION_AGREEMENT": 75000
+  },
+  "input_stream_sha256": "1f0ff248b67d08ad6fb1ef6cfdce7be5d061af7c401fac4bfebc573507028812",
+  "anomalies": [],
+  "completed": true,
+  "wall_seconds": 8.658407705999707,
+  "cpu_seconds": 8.646071939,
+  "peak_rss_kib": 25184,
+  "budgets": {
+    "cases": 100000,
+    "wall_seconds": 120.0,
+    "workers": 1,
+    "max_generated_input_bytes": 8192
+  },
+  "production_source_hashes": {
+    "src/event_validator/cli.py": "aa51d0726d3d9c3280c59550e8fa5abe40fbc2570cfc082f2ebb5fe14ff57a00",
+    "src/event_validator/workflow.py": "d214187755c8e071189f3f04bc2560fe26d4d0589ecadfc58c2ea8ca320be613",
+    "src/event_validator/postgres.py": "8d092b5233c58873f5b197d55f0163fb5b9699110e31a0e885f1c041e26472db",
+    "src/event_validator/__init__.py": "ca649d20e75c98089584bee8c0906f7a8ee648a6012ce1706a5a1659bd20b954",
+    "src/event_validator/parser.py": "6f9ea689254db392a2d1798509131f0988edced163152a5fef246cfb9ee91f68",
+    "src/event_validator/models.py": "2502c01293f8631f9093c89bebece8b5a64b21055a3bcae08a51d501409593ed",
+    "src/event_validator/matrix.py": "459af5f598c9a081773e115e4776faedbe7569e55cb63558551e6e0c412ed1e8",
+    "src/event_validator/storage.py": "4090b4d46bbe8fb80bc8e7a493da5d8ba4998354ad8890c162943e95bfd828f2",
+    "src/event_validator/core.py": "47054c33aaee5cba23406c1ccae4fa8d4a75e438c595a8428cc06fdb828af256"
+  },
+  "reference_source_sha256": "ddd0d9845bbde9b22f3d44d483e68745a551f37fdb2784861ff2769d0aafe2fa",
+  "passed": true
+}

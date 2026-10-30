@@ -1,0 +1,82 @@
+{
+  "bundle_sha256": "2239c2a0844e09fefebcf44814b136f7c324022a533c8ada9f85bd66e45eec2b",
+  "checked_files": [
+    {
+      "file": "compiler_release/clarifications.json",
+      "expected_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "actual_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "file": "compiler_release/compiler_receipt.json",
+      "expected_sha256": "9ddbcd4baa97d7794d8970fc858dfd6dadd8d34cfc94bb40e9cf2fa5efbd0fdd",
+      "actual_sha256": "9ddbcd4baa97d7794d8970fc858dfd6dadd8d34cfc94bb40e9cf2fa5efbd0fdd"
+    },
+    {
+      "file": "compiler_release/contract.xml",
+      "expected_sha256": "776c7cbf49b5ff8f7546f4fedc99d544e1aabe9e70a4e2a435758d725fe39878",
+      "actual_sha256": "776c7cbf49b5ff8f7546f4fedc99d544e1aabe9e70a4e2a435758d725fe39878"
+    },
+    {
+      "file": "compiler_release/diagnostics.json",
+      "expected_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "actual_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "file": "compiler_release/portable_brief.txt",
+      "expected_sha256": "e028274011e97166915c1a5e99ebe4fe80d1a65944c1cc95c626e1b983d8c9ac",
+      "actual_sha256": "e028274011e97166915c1a5e99ebe4fe80d1a65944c1cc95c626e1b983d8c9ac"
+    },
+    {
+      "file": "compiler_release/request_state.json",
+      "expected_sha256": "f5daa7aa9be9e1e25d218f8032907635b57ed1e8b98839401593d8d1743d5a5a",
+      "actual_sha256": "f5daa7aa9be9e1e25d218f8032907635b57ed1e8b98839401593d8d1743d5a5a"
+    },
+    {
+      "file": "compiler_release/semantic_audit.json",
+      "expected_sha256": "a818d45f565c56add7cbba724951372dbc435bc69101c365a6564eea9a9fe86f",
+      "actual_sha256": "a818d45f565c56add7cbba724951372dbc435bc69101c365a6564eea9a9fe86f"
+    },
+    {
+      "file": "compiler_release/semantic_ir.json",
+      "expected_sha256": "9876e2e088c6e383061dc980582bda43b176505f6a214a4ef7e62a550ecd6b4a",
+      "actual_sha256": "9876e2e088c6e383061dc980582bda43b176505f6a214a4ef7e62a550ecd6b4a"
+    },
+    {
+      "file": "reference_sources/A_Verification, Physics, & Formal Mathematics_Hypothesis_Differential_Fuzzing_Publication.pdf",
+      "expected_sha256": "bb4c306607221dee412ef3805b66b919ddf68f9de39f637dd0100ad7773b5641",
+      "actual_sha256": "bb4c306607221dee412ef3805b66b919ddf68f9de39f637dd0100ad7773b5641"
+    },
+    {
+      "file": "reference_sources/A_Verification, Physics, & Formal Mathematics_LIGO_Verification_Reference.pdf",
+      "expected_sha256": "32146b2744fa9fa3d1dc5cec115ff00a73c591b2ba5cc959722e780b9a2f39b7",
+      "actual_sha256": "32146b2744fa9fa3d1dc5cec115ff00a73c591b2ba5cc959722e780b9a2f39b7"
+    },
+    {
+      "file": "reference_sources/A_Verification, Physics, & Formal Mathematics_Test-Driven_Development_with_Python_3rd_Edition_Harry_JW_Percival.pdf",
+      "expected_sha256": "d752e8167f1f0a6ffc23a90cace5443662af407bfe3db60e30cff3589d8f2ab3",
+      "actual_sha256": "d752e8167f1f0a6ffc23a90cace5443662af407bfe3db60e30cff3589d8f2ab3"
+    },
+    {
+      "file": "reference_sources/A_Verification, Physics, & Formal Mathematics_The Lean 4 Theorem Prover Reference Manual.pdf",
+      "expected_sha256": "2b907e98552f5ff4fe77be717f9423311a4d6bf4ac866b143d99f34e83f39c4d",
+      "actual_sha256": "2b907e98552f5ff4fe77be717f9423311a4d6bf4ac866b143d99f34e83f39c4d"
+    },
+    {
+      "file": "reference_sources/A_Verification, Physics, & Formal Mathematics_The_Feynman_Lectures_on_Physics_Richard_P_Feynman.pdf",
+      "expected_sha256": "d019368d33b5718f81d42189ef3e697aeebc1a426617a2a9f1c73096691c4d6d",
+      "actual_sha256": "d019368d33b5718f81d42189ef3e697aeebc1a426617a2a9f1c73096691c4d6d"
+    },
+    {
+      "file": "reference_sources/COMPILE_Independent High-Assurance Software Verification Platform.txt",
+      "expected_sha256": "7a5941b535f18fc74580fc2cbdab8c853d86a76549c93892667afdf770ee93c2",
+      "actual_sha256": "7a5941b535f18fc74580fc2cbdab8c853d86a76549c93892667afdf770ee93c2"
+    },
+    {
+      "file": "reference_sources/Lean Differential Fuzzing.pptx",
+      "expected_sha256": "1a8dd345c2751c6d05e8cf5f141a67b573f53c8698839084e36ce966dd9086e5",
+      "actual_sha256": "1a8dd345c2751c6d05e8cf5f141a67b573f53c8698839084e36ce966dd9086e5"
+    }
+  ],
+  "full_original_architecture_books_present": false,
+  "application_specific_source_xml_present": false
+}

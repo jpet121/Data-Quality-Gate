@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.0",
+  "records": [
+    {
+      "id": "I01",
+      "supporting_defect_records": [
+        "D04",
+        "D05"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Different representations bypassed one semantic contract",
+      "introduced_guidance": "Enforce shared requirements at every representation boundary",
+      "stored_in": "skills/evidence-driven-python-build/references/workflow.md",
+      "validation_performed": "Project negative/positive regressions; installed link validation",
+      "scope_and_limits": "Inputs with multiple representations; not a mandate for one parser library",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I02",
+      "supporting_defect_records": [
+        "D06"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Ambient Decimal context changed an exact invariant",
+      "introduced_guidance": "Choose context-independent exact arithmetic when the contract requires exactness",
+      "stored_in": "skills/evidence-driven-python-build/references/verification-selection.md",
+      "validation_performed": "Twelve project precision/rounding cases; reference uses Fraction",
+      "scope_and_limits": "Exact arithmetic domains; not a global integer-cent model",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I03",
+      "supporting_defect_records": [
+        "D01",
+        "D02"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Backend values and competing unique constraints differed from assumptions",
+      "introduced_guidance": "Exercise actual adapters and relevant concurrent constraints",
+      "stored_in": "skills/evidence-driven-python-build/references/verification-selection.md",
+      "validation_performed": "Real PostgreSQL replay and current preserved source; artifact replay passed",
+      "scope_and_limits": "When integration/concurrency matters, using disposable services",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I04",
+      "supporting_defect_records": [
+        "D07",
+        "D08"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Limits were applied after allocation or left recursion outside failure contract",
+      "introduced_guidance": "Bound expensive input handling early and verify controlled failures",
+      "stored_in": "skills/evidence-driven-python-build/references/workflow.md",
+      "validation_performed": "Oversize/deep input project regressions",
+      "scope_and_limits": "Externally supplied or resource-sensitive inputs",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I05",
+      "supporting_defect_records": [
+        "D03"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Concrete I/O dependencies leaked into policy",
+      "introduced_guidance": "Use minimal interfaces and justified data ownership",
+      "stored_in": "skills/evidence-driven-python-build/SKILL.md",
+      "validation_performed": "Project AST/mypy/dependency/immutability checks; native skill parsing",
+      "scope_and_limits": "Architecture according to the target requirements; no universal framework",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I06",
+      "supporting_defect_records": [
+        "D09",
+        "D10",
+        "D11"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Verification machinery could hide or misclassify failure",
+      "introduced_guidance": "Validate evidence schemas and calibrate failure-visible machinery",
+      "stored_in": "skills/evidence-driven-python-build/references/evidence-and-release.md",
+      "validation_performed": "Project negative gate/comparator/manifest controls; installed content hashes",
+      "scope_and_limits": "Consequential verification machinery",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I07",
+      "supporting_defect_records": [
+        "D12",
+        "H02"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Old or contaminated evidence could appear to apply to new bytes",
+      "introduced_guidance": "Bind source/collection/results and isolate experiments",
+      "stored_in": "skills/evidence-driven-python-build/references/evidence-and-release.md",
+      "validation_performed": "Project tamper/accounting regressions and 16-mutant campaign",
+      "scope_and_limits": "Required evidence completeness; no global test quota",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I08",
+      "supporting_defect_records": [
+        "H01"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Symlink resolution changed interpreter environment",
+      "introduced_guidance": "Validate installation under the intended executable/import context",
+      "stored_in": "skills/evidence-driven-python-build/references/evidence-and-release.md",
+      "validation_performed": "Project clean distribution checks and post-upload replay",
+      "scope_and_limits": "When packaging or environment identity matters",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I09",
+      "supporting_defect_records": [
+        "H03",
+        "H04",
+        "H05"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Apparatus failures confused interpretation",
+      "introduced_guidance": "Diagnose readiness, process lifecycle and toolchain budgets separately",
+      "stored_in": "skills/evidence-driven-python-build/references/verification-selection.md",
+      "validation_performed": "Preserved setup/failure logs and succeeding bounded profiles",
+      "scope_and_limits": "Local testing tools, not a hostile-code sandbox claim",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I10",
+      "supporting_defect_records": [
+        "H06"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Files existed but requested transfer failed",
+      "introduced_guidance": "Verify delivery support; use an authorized route and fetch bytes back",
+      "stored_in": "skills/evidence-driven-python-build/references/evidence-and-release.md",
+      "validation_performed": "GitHub remote hash and 410-test post-upload replay",
+      "scope_and_limits": "Artifact delivery; no automatic external publication authority",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I11",
+      "supporting_defect_records": [
+        "P01",
+        "P02"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Historical fixes and newly performed work could be conflated",
+      "introduced_guidance": "Separate original requirements, old observations and new regressions",
+      "stored_in": "skills/evidence-driven-python-build/references/retrospective.md",
+      "validation_performed": "Historical original/diff retained, later original test preservation hashes",
+      "scope_and_limits": "Retrospectives with partial history",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I12",
+      "supporting_defect_records": [
+        "N01"
+      ],
+      "supporting_evidence": "project/DEFECT_LEDGER.json and SOURCE_INVENTORY.json",
+      "generalizable_mechanism": "Stale status text survived a later authority decision",
+      "introduced_guidance": "Track errata explicitly and preserve immutable archive identity",
+      "stored_in": "skills/evidence-driven-python-build/references/retrospective.md",
+      "validation_performed": "Conflicting retained passages inspected; no application mutation",
+      "scope_and_limits": "Documentation/evidence lifecycle; original artifact not silently rewritten",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I13",
+      "supporting_defect_records": [],
+      "supporting_evidence": "verification/ installation/discovery records",
+      "generalizable_mechanism": "Project-specific methods can become unnecessary global restrictions",
+      "introduced_guidance": "Use short principles, risk-selected skill workflow and separate case evidence",
+      "stored_in": "skills/evidence-driven-python-build/SKILL.md",
+      "validation_performed": "Nine payload files parsed/installed; ten installer safety tests; scope review",
+      "scope_and_limits": "Future builds use their own runtime/contracts/test criteria",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I14",
+      "supporting_defect_records": [],
+      "supporting_evidence": "verification/ installation/discovery records",
+      "generalizable_mechanism": "A file installation can be confused with actual future discovery",
+      "introduced_guidance": "Test native discovery and separately disclose blocked model application",
+      "stored_in": "skills/evidence-driven-python-build/references/retrospective.md",
+      "validation_performed": "Fresh native skills/list PASS; full session BLOCKED by proxy 403",
+      "scope_and_limits": "This CLI/user home; other machines/cloud snapshots unverified",
+      "future_project_effectiveness_universally_verified": false
+    },
+    {
+      "id": "I15",
+      "supporting_defect_records": [],
+      "supporting_evidence": "verification/ installation/discovery records",
+      "generalizable_mechanism": "Knowledge installation can overwrite or duplicate existing guidance",
+      "introduced_guidance": "Plan before mutation, preserve bytes, back up changes and refuse conflicts",
+      "stored_in": "skills/evidence-driven-python-build/references/retrospective.md",
+      "validation_performed": "Ten isolated installer tests; actual repeated installation changes zero files",
+      "scope_and_limits": "Installer-managed global block and user skill; existing unrelated instructions preserved",
+      "future_project_effectiveness_universally_verified": false
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "scanner": "Bandit 1.9.4",
+  "scan_exit_code": 1,
+  "findings": 26,
+  "severity_counts": {
+    "LOW": 21,
+    "MEDIUM": 5
+  },
+  "confirmed_unresolved_security_defects": 0,
+  "scope": "Source analysis of src and assurance for this local synthetic validator; not a penetration test or deployment certification",
+  "dispositions": [
+    {
+      "id": "B404",
+      "file": "assurance/calibration.py",
+      "line": 6,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Subprocess imports are used by explicitly invoked local verification commands. No untrusted event value selects an executable."
+    },
+    {
+      "id": "B603",
+      "file": "assurance/calibration.py",
+      "line": 20,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Argument-vector invocation of known local pytest, Lean, or calibration programs; no shell interpolation. Target authorization, bounded known inputs and process limits apply. SESV_LEAN is a trusted operator setting."
+    },
+    {
+      "id": "B311",
+      "file": "assurance/campaign.py",
+      "line": 74,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Fixed-seed pseudorandom generator produces reproducible test inputs; it is not used for secrets, tokens or security randomness."
+    },
+    {
+      "id": "B404",
+      "file": "assurance/final_run.py",
+      "line": 6,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Subprocess imports are used by explicitly invoked local verification commands. No untrusted event value selects an executable."
+    },
+    {
+      "id": "B603",
+      "file": "assurance/final_run.py",
+      "line": 41,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Argument-vector invocation of known local pytest, Lean, or calibration programs; no shell interpolation. Target authorization, bounded known inputs and process limits apply. SESV_LEAN is a trusted operator setting."
+    },
+    {
+      "id": "B603",
+      "file": "assurance/final_run.py",
+      "line": 67,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Argument-vector invocation of known local pytest, Lean, or calibration programs; no shell interpolation. Target authorization, bounded known inputs and process limits apply. SESV_LEAN is a trusted operator setting."
+    },
+    {
+      "id": "B603",
+      "file": "assurance/final_run.py",
+      "line": 80,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Argument-vector invocation of known local pytest, Lean, or calibration programs; no shell interpolation. Target authorization, bounded known inputs and process limits apply. SESV_LEAN is a trusted operator setting."
+    },
+    {
+      "id": "B404",
+      "file": "assurance/formal.py",
+      "line": 9,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Subprocess imports are used by explicitly invoked local verification commands. No untrusted event value selects an executable."
+    },
+    {
+      "id": "B603",
+      "file": "assurance/formal.py",
+      "line": 21,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Argument-vector invocation of known local pytest, Lean, or calibration programs; no shell interpolation. Target authorization, bounded known inputs and process limits apply. SESV_LEAN is a trusted operator setting."
+    },
+    {
+      "id": "B603",
+      "file": "assurance/formal.py",
+      "line": 23,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Argument-vector invocation of known local pytest, Lean, or calibration programs; no shell interpolation. Target authorization, bounded known inputs and process limits apply. SESV_LEAN is a trusted operator setting."
+    },
+    {
+      "id": "B603",
+      "file": "assurance/formal.py",
+      "line": 36,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Argument-vector invocation of known local pytest, Lean, or calibration programs; no shell interpolation. Target authorization, bounded known inputs and process limits apply. SESV_LEAN is a trusted operator setting."
+    },
+    {
+      "id": "B405",
+      "file": "assurance/functional_trace.py",
+      "line": 5,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "XML parsing is confined to frozen user-authorized contracts and locally generated JUnit evidence; arbitrary event/config payloads do not enter these parsers."
+    },
+    {
+      "id": "B314",
+      "file": "assurance/functional_trace.py",
+      "line": 14,
+      "severity": "MEDIUM",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "The parsed XML is frozen contract bytes or locally generated bounded-run JUnit. This local evidence tool is not an untrusted XML upload service. Full source/integrity checks remain necessary."
+    },
+    {
+      "id": "B404",
+      "file": "assurance/idempotency.py",
+      "line": 8,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Subprocess imports are used by explicitly invoked local verification commands. No untrusted event value selects an executable."
+    },
+    {
+      "id": "B603",
+      "file": "assurance/idempotency.py",
+      "line": 20,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Argument-vector invocation of known local pytest, Lean, or calibration programs; no shell interpolation. Target authorization, bounded known inputs and process limits apply. SESV_LEAN is a trusted operator setting."
+    },
+    {
+      "id": "B311",
+      "file": "assurance/idempotency.py",
+      "line": 23,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Fixed-seed pseudorandom generator produces reproducible test inputs; it is not used for secrets, tokens or security randomness."
+    },
+    {
+      "id": "B603",
+      "file": "assurance/idempotency.py",
+      "line": 27,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Argument-vector invocation of known local pytest, Lean, or calibration programs; no shell interpolation. Target authorization, bounded known inputs and process limits apply. SESV_LEAN is a trusted operator setting."
+    },
+    {
+      "id": "B405",
+      "file": "assurance/release_evidence.py",
+      "line": 6,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "XML parsing is confined to frozen user-authorized contracts and locally generated JUnit evidence; arbitrary event/config payloads do not enter these parsers."
+    },
+    {
+      "id": "B314",
+      "file": "assurance/release_evidence.py",
+      "line": 34,
+      "severity": "MEDIUM",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "The parsed XML is frozen contract bytes or locally generated bounded-run JUnit. This local evidence tool is not an untrusted XML upload service. Full source/integrity checks remain necessary."
+    },
+    {
+      "id": "B404",
+      "file": "assurance/run.py",
+      "line": 9,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Subprocess imports are used by explicitly invoked local verification commands. No untrusted event value selects an executable."
+    },
+    {
+      "id": "B603",
+      "file": "assurance/run.py",
+      "line": 26,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "Argument-vector invocation of known local pytest, Lean, or calibration programs; no shell interpolation. Target authorization, bounded known inputs and process limits apply. SESV_LEAN is a trusted operator setting."
+    },
+    {
+      "id": "B310",
+      "file": "assurance/security_advisories.py",
+      "line": 16,
+      "severity": "MEDIUM",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "The URL is constructed from the fixed HTTPS PyPI origin and parsed pinned dependency name/version; no event or caller-supplied URI scheme is accepted. TLS validation remains enabled."
+    },
+    {
+      "id": "B405",
+      "file": "assurance/trace.py",
+      "line": 7,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "XML parsing is confined to frozen user-authorized contracts and locally generated JUnit evidence; arbitrary event/config payloads do not enter these parsers."
+    },
+    {
+      "id": "B314",
+      "file": "assurance/trace.py",
+      "line": 117,
+      "severity": "MEDIUM",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "The parsed XML is frozen contract bytes or locally generated bounded-run JUnit. This local evidence tool is not an untrusted XML upload service. Full source/integrity checks remain necessary."
+    },
+    {
+      "id": "B101",
+      "file": "assurance/trace.py",
+      "line": 134,
+      "severity": "LOW",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "The assertion checks trace inventory completeness in a development audit tool; normal documented execution does not use optimization. It is not an application authentication/validation boundary."
+    },
+    {
+      "id": "B608",
+      "file": "src/event_validator/storage.py",
+      "line": 61,
+      "severity": "MEDIUM",
+      "classification": "reviewed context; no confirmed exploitable defect in authorized scope",
+      "reason": "The interpolated table name is selected exclusively from a fixed tuple of five literal schema names in counts(); external values cannot select it. Persisted values use bound parameters."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "authority": "explicit user responses",
+  "functional_source_authorization": "Use the application\u2019s README.md, docs/ACCEPTANCE.md and examples/matrix_v1.json as the authoritative functional requirements, alongside the two XML contracts.",
+  "limit_decision_delegation": "You decide the best path",
+  "selected_path": "Retain existing money cap and strict calendar timestamp profile; document explicitly; do not change preserved boundary test expectations",
+  "mutation_criteria_decision": "Accept this mutation criterion.",
+  "mutation_policy": {
+    "selected_mutants": 16,
+    "every_applicable_class": true,
+    "baseline_must_pass": true,
+    "required_killed": 16,
+    "permitted_unexplained_survivors": 0,
+    "permitted_setup_errors": 0,
+    "permitted_timeouts": 0
+  },
+  "human_release_approval": false,
+  "notes": "Source and threshold decisions do not constitute external production release authorization."
+}

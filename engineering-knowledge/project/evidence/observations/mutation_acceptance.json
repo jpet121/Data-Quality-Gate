@@ -1,0 +1,11 @@
+{
+  "policy_file": "specifications/OWNER_ACCEPTANCE_DECISIONS.json",
+  "policy_sha256": "eb3c241b131c81d1bf1fac7fc717ea7fa2574f9728e00e5707668d9b6a249457",
+  "raw_report_sha256": "d5841e14989651dddb5ac5a0b557201a654a5144cd2048c2f973377b33e75888",
+  "decision": "FINITE MUTATION CRITERION MET",
+  "selected_mutants": 16,
+  "killed": 16,
+  "baseline_passed": true,
+  "human_release_approval": false,
+  "note": "Raw harness measurement deliberately carries no policy acceptance. The explicit owner-approved criterion is evaluated separately; release risk approval remains reserved."
+}

@@ -1,0 +1,114 @@
+{
+  "scope": "synthetic harness calibration only",
+  "controls": [
+    {
+      "name": "positive_control",
+      "injected": false,
+      "expected": "VALID_AGREEMENT",
+      "actual": "VALID_AGREEMENT",
+      "passed": true
+    },
+    {
+      "name": "incorrect_output",
+      "injected": true,
+      "expected": "VALID_INPUT_DIVERGENCE",
+      "actual": "VALID_INPUT_DIVERGENCE",
+      "passed": true
+    },
+    {
+      "name": "invalid_input",
+      "injected": true,
+      "expected": "PERMITTED_REJECTION_AGREEMENT",
+      "actual": "PERMITTED_REJECTION_AGREEMENT",
+      "passed": true
+    },
+    {
+      "name": "unexpected_exception",
+      "injected": true,
+      "expected": "UNEXPECTED_CRASH",
+      "actual": "UNEXPECTED_CRASH",
+      "passed": true
+    },
+    {
+      "name": "timeout",
+      "injected": true,
+      "expected": "TIMEOUT",
+      "actual": "TIMEOUT",
+      "passed": true
+    },
+    {
+      "name": "resource_limit",
+      "injected": true,
+      "expected": "RESOURCE_LIMIT",
+      "actual": "RESOURCE_LIMIT",
+      "passed": true
+    },
+    {
+      "name": "state_isolation_positive",
+      "injected": true,
+      "expected": "VALID_AGREEMENT",
+      "actual": "VALID_AGREEMENT",
+      "passed": true
+    },
+    {
+      "name": "injected_state_leak",
+      "injected": true,
+      "expected": "NONDETERMINISM",
+      "actual": "NONDETERMINISM",
+      "passed": true
+    },
+    {
+      "name": "nondeterministic_result",
+      "injected": true,
+      "expected": "NONDETERMINISM",
+      "actual": "NONDETERMINISM",
+      "passed": true
+    },
+    {
+      "name": "corrupted_fixture",
+      "injected": true,
+      "expected": "HARNESS_FAILURE",
+      "actual": "HARNESS_FAILURE",
+      "passed": true
+    },
+    {
+      "name": "broken_invariant",
+      "injected": true,
+      "expected": "VALID_INPUT_DIVERGENCE",
+      "actual": "VALID_INPUT_DIVERGENCE",
+      "passed": true
+    },
+    {
+      "name": "reference_disagreement",
+      "injected": true,
+      "expected": "ORACLE_UNCERTAINTY",
+      "actual": "ORACLE_UNCERTAINTY",
+      "passed": true
+    },
+    {
+      "name": "missing_oracle",
+      "injected": true,
+      "expected": "ORACLE_UNCERTAINTY",
+      "actual": "ORACLE_UNCERTAINTY",
+      "passed": true
+    },
+    {
+      "name": "incorrect_comparator_detected",
+      "injected": true,
+      "expected": "REJECTED",
+      "actual": "REJECTED",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "false_positives": 0,
+  "negative_control_denominator": 20,
+  "budgets": {
+    "memory_bytes_per_worker": 268435456,
+    "cpu_seconds_per_worker": 2,
+    "wall_seconds_per_worker": 2,
+    "timeout_control_seconds": 0.15,
+    "workers": 1
+  },
+  "comparator_source_sha256": "e6b1f82340d29224c560cedb4d27853c75e883f73f113af909f2d99e84dd3bc8"
+}

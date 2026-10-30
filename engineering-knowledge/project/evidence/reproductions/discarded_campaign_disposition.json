@@ -1,0 +1,4 @@
+{
+  "accepted_as_release_evidence": false,
+  "reason": "Implementation and tests advanced during the exploratory campaign; baseline collection/source no longer matched. All affected results are discarded and the complete campaign is rerun from an immutable snapshot."
+}

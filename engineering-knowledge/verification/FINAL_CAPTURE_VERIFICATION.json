@@ -1,0 +1,53 @@
+{
+  "assessed_at_utc": "2026-10-30T12:12:28.313746+00:00",
+  "status": "INSTALLED_WITH_DISCLOSED_VERIFICATION_LIMITATION",
+  "global_instructions_installed": "/home/agent/.codex/AGENTS.md",
+  "skill_installed": "/home/agent/.agents/skills/evidence-driven-python-build",
+  "installed_scope": "Current managed Linux user home; user skill discovery outside the project verified",
+  "global_instruction_words": 179,
+  "skill_body_words": 666,
+  "installer_safety_tests": {
+    "run": 10,
+    "passed": 10,
+    "failed": 0
+  },
+  "idempotent_reinstall_changes": 0,
+  "installed_content_permissions_and_links": "PASS",
+  "fresh_native_skill_discovery": "PASS: enabled user scope, no errors",
+  "fresh_model_session_instruction_application": "BLOCKED: proxy HTTP CONNECT 403 before execution",
+  "automatic_global_instruction_application_verified": false,
+  "existing_guidance_config_and_application_preserved": {
+    "passed": true,
+    "config_unchanged": true,
+    "existing_builtin_skill_files_verified": 136,
+    "existing_builtin_skills_preserved": true,
+    "completed_application_frozen_files_verified": 96,
+    "completed_application_frozen_source_unchanged": true,
+    "completed_release_and_delivery_zip_unchanged": true,
+    "installed_payload_hashes_verified": 9,
+    "installed_file_modes": "0644",
+    "idempotent_reinstall_changed_files": 0,
+    "tested_restore_changed_files": 0,
+    "global_marker_occurrences": 1,
+    "conflicts": "None in inspected active paths; project-specific overrides remain unchanged and must be reviewed per future project.",
+    "new_application_code_or_rebuilds": false
+  },
+  "project_defect_and_failure_records": 21,
+  "provenance_linked_improvements": 15,
+  "retained_evidence_sources": 49,
+  "full_reference_files_inventoried_but_not_redistributed": 11,
+  "environment_restore_draft_saved": true,
+  "environment_published": false,
+  "cold_environment_restoration_verified": false,
+  "windows_or_other_device_installation_verified": false,
+  "skill_creator": "Unavailable; manual valid SKILL.md accepted by native parser",
+  "new_application_changes_or_rebuilds": false,
+  "application_release_approval_granted": false,
+  "portable_zip_verification": "Completed archive/remote verification is reported separately to preserve the immutable ZIP",
+  "manual_actions": [
+    "Review/save/publish the environment draft if a new snapshot is desired.",
+    "Restore/install the backup separately for another device/home; verify discovery there.",
+    "Repeat full fresh-model-session instruction loading in a context allowed to contact its inference endpoint.",
+    "Application human release approval remains separate."
+  ]
+}

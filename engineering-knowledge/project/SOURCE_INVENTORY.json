@@ -1,0 +1,480 @@
+{
+  "schema_version": "1.0",
+  "classification": "Source inventories distinguish requirements, decisions, executed observations and manual reviews. Nested completed delivery retains its own hashes and history.",
+  "sources": [
+    {
+      "source_path": "/workspace/final_verification/release/VERIFIED_RELEASE_REPORT.md",
+      "retained_path": "project/evidence/VERIFIED_RELEASE_REPORT.md",
+      "role": "current project assessment; clause review is evidence, not independent proof",
+      "sha256": "4ac9f8d40b34b65febe7830ea43a5c9cc7f2bc3c63631df82ecffb23676de837",
+      "bytes": 16849,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/SPECIFICATION_RECONCILIATION.md",
+      "retained_path": "project/evidence/SPECIFICATION_RECONCILIATION.md",
+      "role": "current project assessment; clause review is evidence, not independent proof",
+      "sha256": "0e379142229cc456a334e35e5550a30ee583f6f05ac340dafecaaa18c39d65b1",
+      "bytes": 3463,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/ARCHITECTURE_COMPLIANCE.md",
+      "retained_path": "project/evidence/ARCHITECTURE_COMPLIANCE.md",
+      "role": "current project assessment; clause review is evidence, not independent proof",
+      "sha256": "889c3b8d7da576abc80758a87318084084001ea2415db03f0456f247b934e690",
+      "bytes": 3657,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/ORACLE_AND_SOURCE_ASSESSMENT.md",
+      "retained_path": "project/evidence/ORACLE_AND_SOURCE_ASSESSMENT.md",
+      "role": "current project assessment; clause review is evidence, not independent proof",
+      "sha256": "dde33351a092e427012068cba75b057ea4d056ea4c79914b188e77a034d7812a",
+      "bytes": 6359,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/specifications/OWNER_ACCEPTANCE_DECISIONS.json",
+      "retained_path": "project/evidence/decisions/OWNER_ACCEPTANCE_DECISIONS.json",
+      "role": "explicit user decisions/versioned functional baseline",
+      "sha256": "eb3c241b131c81d1bf1fac7fc717ea7fa2574f9728e00e5707668d9b6a249457",
+      "bytes": 928,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/specifications/FUNCTIONAL_AUTHORITY_DECISION.json",
+      "retained_path": "project/evidence/decisions/FUNCTIONAL_AUTHORITY_DECISION.json",
+      "role": "explicit user decisions/versioned functional baseline",
+      "sha256": "4073b3bc14d6f3758d90847a9354105714dd667a69bf2c7642909bf91ebc61b7",
+      "bytes": 1353,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/specifications/FUNCTIONAL_BASELINE_V2.json",
+      "retained_path": "project/evidence/decisions/FUNCTIONAL_BASELINE_V2.json",
+      "role": "explicit user decisions/versioned functional baseline",
+      "sha256": "bc16f835d81119f1dd8d151b3fc39044082fcce5a290ed89ed1787204085ee20",
+      "bytes": 778,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/specifications/Development & Software Architecture.xml",
+      "retained_path": "project/evidence/specifications/Development & Software Architecture.xml",
+      "role": "authoritative contract in its user-designated role",
+      "sha256": "b9b3f8c3220c8ef2ea11914854e2cd2bce9fbc941867ca69cb9747053acbfa17",
+      "bytes": 36855,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/specifications/COMPILE_V4_Independent_Verification_Contract.xml",
+      "retained_path": "project/evidence/specifications/COMPILE_V4_Independent_Verification_Contract.xml",
+      "role": "authoritative contract in its user-designated role",
+      "sha256": "776c7cbf49b5ff8f7546f4fedc99d544e1aabe9e70a4e2a435758d725fe39878",
+      "bytes": 327612,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/specifications/authorized_functional_baseline_v2/README.md",
+      "retained_path": "project/evidence/functional_baseline_v2/README.md",
+      "role": "owner-designated functional requirements with delegated input profile clarified",
+      "sha256": "26e11fc2605a3702f27bacb1a4522d38161a0df6498491372cd12b12979fa8e6",
+      "bytes": 11818,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/specifications/authorized_functional_baseline_v2/docs/ACCEPTANCE.md",
+      "retained_path": "project/evidence/functional_baseline_v2/docs/ACCEPTANCE.md",
+      "role": "owner-designated functional requirements with delegated input profile clarified",
+      "sha256": "c4756a8f781a09aff191aa11664c8dc13b2ba0fafddceedd83411c8082e78ec3",
+      "bytes": 3491,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/specifications/authorized_functional_baseline_v2/examples/matrix_v1.json",
+      "retained_path": "project/evidence/functional_baseline_v2/examples/matrix_v1.json",
+      "role": "owner-designated functional requirements with delegated input profile clarified",
+      "sha256": "efb3dfb293b2e4e8f5675bcfff5aa12f9c39656d386f8e3c06ade29514d52f22",
+      "bytes": 4337,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/environment.json",
+      "retained_path": "project/evidence/observations/environment.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "87f94ef9a7bcee01b7e6a42a6d4d5a208e3a268c1313c1b992f881f92db18091",
+      "bytes": 376,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/original_test_preservation.json",
+      "retained_path": "project/evidence/observations/original_test_preservation.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "fcfedd5bc6005d5c8a41501c39626262c7ccf956811562a8c2951a9c06d36bc2",
+      "bytes": 2143,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/architecture_source_integrity.json",
+      "retained_path": "project/evidence/observations/architecture_source_integrity.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "4804a8141477b96be18324f1ec03aaa2de3a22ede62171d8fc06b7ac83e95707",
+      "bytes": 1307,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/architecture_passage_index.json",
+      "retained_path": "project/evidence/observations/architecture_passage_index.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "c57b23c2495e08765bdddf88161f1b6e5c68499ff74fc90d8ff9ec8153255a6c",
+      "bytes": 22591,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/APPLICATION_REMEDIATION.diff",
+      "retained_path": "project/evidence/observations/APPLICATION_REMEDIATION.diff",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "664095d8e6d4f0d11ed2d8c7850f3381985ecfdf88d425b484d43766dc29201a",
+      "bytes": 19660,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/nested_money_reproduction.txt",
+      "retained_path": "project/evidence/observations/nested_money_reproduction.txt",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "e9202436e872441616bd77cd45173bf44675bf13d7e8f56731accdf1eae15127",
+      "bytes": 22012,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/json_integer_money_reproduction.txt",
+      "retained_path": "project/evidence/observations/json_integer_money_reproduction.txt",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "08fd367b40b238f10bd27876bc8bafce595c5209459c9d51a6119e7975e67688",
+      "bytes": 11286,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/decimal_context_reproduction.json",
+      "retained_path": "project/evidence/observations/decimal_context_reproduction.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "972955654437e4b8aa2705d7debebe67d75705aa4496b7354e2c073ab7550d4e",
+      "bytes": 269,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/config_resource_reproduction.txt",
+      "retained_path": "project/evidence/observations/config_resource_reproduction.txt",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "d67ccca3df3765facf345d8be54ed27c937c475312c4665ca44b707914332c47",
+      "bytes": 4376,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/verifier_reproduction.json",
+      "retained_path": "project/evidence/observations/verifier_reproduction.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "af399af1f78dfa306424f87cc521ec1913ab232120b86700e1b3e614d915520a",
+      "bytes": 962,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/mutation_report.json",
+      "retained_path": "project/evidence/observations/mutation_report.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "d5841e14989651dddb5ac5a0b557201a654a5144cd2048c2f973377b33e75888",
+      "bytes": 15370,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/mutation_acceptance.json",
+      "retained_path": "project/evidence/observations/mutation_acceptance.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "20bd27a6f73f23a767a9e4fee7b21d65ffda556394fd483f3e765560cab600fa",
+      "bytes": 582,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/calibration.json",
+      "retained_path": "project/evidence/observations/calibration.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "d1d03d06ab675ee801afb795de071f35dff7a31eacc7cd8d26033f55c46e8079",
+      "bytes": 2789,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/formal_gate.json",
+      "retained_path": "project/evidence/observations/formal_gate.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "4051652416516abaeee0ac76a130416311e3e2287cc1a6174582e0cdbd11483d",
+      "bytes": 855,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/idempotency_proof.json",
+      "retained_path": "project/evidence/observations/idempotency_proof.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "f64a21c28a10b755ba5a774a909270d80fec45e6a88ed424064ebb73afeaef33",
+      "bytes": 721,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/differential_campaign.json",
+      "retained_path": "project/evidence/observations/differential_campaign.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "51f6de83334aca70c795db4dffb10f36d45a6c06116e3de7ff1a0d62a1ff29b2",
+      "bytes": 1799,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/final_test_run.json",
+      "retained_path": "project/evidence/observations/final_test_run.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "de7556650c54c52a926cacd7f34d3aba062167aec6ab1c3c762f5a34a283442b",
+      "bytes": 845,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/final_collection.json",
+      "retained_path": "project/evidence/observations/final_collection.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "f615736cb15b9f4ae055f686c6afa3d473a9dda518b57991bf695478f5dd66f7",
+      "bytes": 88046,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/application_coverage_summary.json",
+      "retained_path": "project/evidence/observations/application_coverage_summary.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "de7d3dd8ed92c04f0f295ae152d1840fc2080f7b4f1d4b0910fc9f796e640a68",
+      "bytes": 247,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/hypothesis_execution_summary.json",
+      "retained_path": "project/evidence/observations/hypothesis_execution_summary.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "ec1b78c51cad26574ae2a2ac999c3e4677b118a98c0c240343846fd21739da46",
+      "bytes": 3553,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/security_disposition.json",
+      "retained_path": "project/evidence/observations/security_disposition.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "ec93d09c2a70b94b3742e9a97a1c33d4e26bed2ff3d8cfd345d7ff1a98aa769e",
+      "bytes": 11031,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/dependency_advisories.json",
+      "retained_path": "project/evidence/observations/dependency_advisories.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "850b438d1d9118fc40bd645f2786a240f87d503c82730f216a4c9478a89d7562",
+      "bytes": 9452,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/release_gate.json",
+      "retained_path": "project/evidence/observations/release_gate.json",
+      "role": "executed evidence or explicitly scoped source-review disposition",
+      "sha256": "7b0302df6835ccd9fc22320af3d6fa127df5dfe816fa74f836600bed1593fd29",
+      "bytes": 967,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/published_zip_check_20261030T003230/POST_UPLOAD_ZIP_CHECK.json",
+      "retained_path": "project/evidence/post_upload/POST_UPLOAD_ZIP_CHECK.json",
+      "role": "actual check of bytes fetched back from GitHub",
+      "sha256": "8a12c30c6554abc2cfd6fd4448c8374f4585667f9a52aa460c3c29db364d2d2a",
+      "bytes": 2952,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/published_zip_check_20261030T003230/published_tests.xml",
+      "retained_path": "project/evidence/post_upload/published_tests.xml",
+      "role": "actual check of bytes fetched back from GitHub",
+      "sha256": "5c5041359607437aeb511f42925bd0eb20665c40b898fe1808e7821496748e3c",
+      "bytes": 60631,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/published_zip_check_20261030T003230/published_tests.txt",
+      "retained_path": "project/evidence/post_upload/published_tests.txt",
+      "role": "actual check of bytes fetched back from GitHub",
+      "sha256": "7a6b934c3ec8ed38ae73d059ddc0f0365052205cbfcdfefda4598f952a293030",
+      "bytes": 4558,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/published_zip_check_20261030T003230/published_distribution.txt",
+      "retained_path": "project/evidence/post_upload/published_distribution.txt",
+      "role": "actual check of bytes fetched back from GitHub",
+      "sha256": "77a075bcdab63d6dbfb30a155eee5a9cddd297b511db104f1224d64a4e90c108",
+      "bytes": 95,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/published_zip_check_20261030T003230/published_gate.txt",
+      "retained_path": "project/evidence/post_upload/published_gate.txt",
+      "role": "actual check of bytes fetched back from GitHub",
+      "sha256": "97b0c812c75e92e601098312b5c70b888e142561f141eacbe58a7ffc0ec05dad",
+      "bytes": 40,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/final_deliverables_2026_10_30/Structured_Event_Schema_Validator_v1_0_2_RELEASE_AND_EVIDENCE.zip",
+      "retained_path": "project/evidence/original_release_and_evidence.zip",
+      "role": "immutable completed delivery, including full original/added tests, raw historical observations and final evidence; do not modify",
+      "sha256": "bf5984b925bc55378c0c0037e575953e37abf7ac571dfb7cd41f6a9f5deaabd6",
+      "bytes": 2356351,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/evidence/pg_live.txt",
+      "retained_path": "project/evidence/reproductions/pg_live.txt",
+      "role": "historical observed failing run preserved as evidence, not a current failure",
+      "sha256": "9ea12c3d0722ca5239bcc6c45848def368fae4f1fd5e68db55c311a1021442a7",
+      "bytes": 1424,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/evidence/release_after_fix.txt",
+      "retained_path": "project/evidence/reproductions/release_after_fix.txt",
+      "role": "historical observed failing run preserved as evidence, not a current failure",
+      "sha256": "e0b9f7b4499a5cca124de82cf5a47f14a96d954b3780f0a35c3ab668b2e1ca0a",
+      "bytes": 4710,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/evidence/distribution_harness_failure.txt",
+      "retained_path": "project/evidence/reproductions/distribution_harness_failure.txt",
+      "role": "historical observed failing run preserved as evidence, not a current failure",
+      "sha256": "795bc680f31d32317085d08318f969bd6989e7746185db29403f22a4c28ec1de",
+      "bytes": 816,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/pre_single_thread_harness_run/final_suite.xml",
+      "retained_path": "project/evidence/reproductions/lean_thread_limit_failure.xml",
+      "role": "408 passed and two failed model executions before single-thread harness correction",
+      "sha256": "13ec77ad61bb7ce796cf8783501f1a4ddb683d3d9f599e2a675425e40ed3bd0a",
+      "bytes": 65020,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/continuation_evidence/discarded_pre_freeze_campaign/DISPOSITION.json",
+      "retained_path": "project/evidence/reproductions/discarded_campaign_disposition.json",
+      "role": "contaminated experiment explicitly quarantined, not accepted mutation evidence",
+      "sha256": "fb9fe1c60c312a4b0d790b14f274dde6ba5fe52feedd0d7a75a249ff7f93f8fa",
+      "bytes": 269,
+      "availability": "read and copied byte-for-byte during capture"
+    },
+    {
+      "source_path": "/workspace/attachments/4dcc2dd4-28ac-4e2c-9614-2d964336f4d2/Structured_Event_Schema_Validator_v1_0_2_ASSURANCE_CANDIDATE.zip",
+      "retained_path": "project/evidence/uploaded_source_baseline.zip",
+      "role": "original uploaded implementation baseline",
+      "sha256": "30bc9d50aec1d39e6eecdd2f0913566fc1149f310ed79d77b5d6d9b14500e772",
+      "bytes": 108555,
+      "availability": "rehash matches original recorded input identity; copied during capture"
+    },
+    {
+      "source_path": "/workspace/attachments/61ecf5bf-045e-4006-9afa-a6c1a805c4b1/Structured_Event_Schema_Validator_v1_0_2_VERIFICATION_REPORT.md",
+      "retained_path": "project/evidence/uploaded_historical_verification_report.md",
+      "role": "uploaded report is historical evidence, never correctness authority",
+      "sha256": "5ff9bb3a648dac4c166aed4ec284c911a12c857bc362ddf29653c2bcb55d1298",
+      "bytes": 5531,
+      "availability": "rehash matches original recorded input identity; copied during capture"
+    },
+    {
+      "source_path": "/workspace/final_verification/release/final_evidence/reference_integrity.json",
+      "retained_path": "project/evidence/observations/verification_reference_integrity.json",
+      "role": "historical bundle manifest and source-anchor verification",
+      "sha256": "2c4c795947d768210d67ac0a4261bd02e6c3280c47b95b0f98bfd93c44d9bb92",
+      "bytes": 4405,
+      "availability": "copied from completed audit"
+    }
+  ],
+  "not_copied": [
+    "Full copyrighted architecture/methodology books, extracted full-book text and toolchain/dependency binaries are not redistributed. Their provenance and applicable passage indices are retained.",
+    "Credentials, auth.json, private Codex session stores and unrelated configuration are excluded."
+  ],
+  "unavailable_or_unverified": [
+    "No complete raw conversation export or pre-upload implementation commit history is available in this capture. Visible context, explicit decision records and preserved reports/logs establish the recovered history.",
+    "No independently observed human production-release approval; upload authorization is not that approval.",
+    "No verification that this user-home installation survives cloud publication, a machine replacement or restoration on the user Windows computer.",
+    "Full substantive reading of every page in each supplied source was never claimed.",
+    "Formal equivalence of all Python execution, universal defect/security absence, live business connectors and governed production deployment were not established.",
+    "The supplied source named Lean reference manual is an 11-page paper; a complete contemporary reference manual was not supplied under that file identity.",
+    "A built-in skill-creator was unavailable in inspected skill catalogs/local roots; the manual skill structure was validated by the native Codex parser.",
+    "The end-to-end fresh inference-driven session test was blocked before execution by proxy HTTP CONNECT 403; native fresh skill discovery is separately verified."
+  ],
+  "available_reference_files_not_redistributed": [
+    {
+      "source_path": "/workspace/attachments/0ef54ac1-37b6-448a-bac7-48ad7cc14df1/A_Development & Software Architecture_Robust Python_Patrick Viafore .epub",
+      "sha256": "d8dae13980d14c0049511114d6fa52fa5309a5cf7db812b6fb94815513c49627",
+      "bytes": 9350584,
+      "capture_use": "Current file availability/integrity inventory; applicable passage review is evidenced by prior source assessments, not a claim to read every page during capture."
+    },
+    {
+      "source_path": "/workspace/attachments/432bd964-2df0-47f5-a114-7ee82e3d3e04/A_Development & Software Architecture_Fluent_Python_Luciano_Ramalho.pdf",
+      "sha256": "be24d1cf55a76c81e2d36f4dde0cf2c25b5e42b9c45ab1bc64d9179764a66edb",
+      "bytes": 7798830,
+      "capture_use": "Current file availability/integrity inventory; applicable passage review is evidenced by prior source assessments, not a claim to read every page during capture."
+    },
+    {
+      "source_path": "/workspace/attachments/49b0aae9-3a81-4ef8-9bc6-2ec6480a0def/A_Development & Software Architecture_Clean Architecture_ A Craftsman's Guide to Software_Martin, Robert.epub",
+      "sha256": "c1566fba199b98a4ae5093f497b321a868590aea9a23e4a7074330e6424da3c4",
+      "bytes": 9843017,
+      "capture_use": "Current file availability/integrity inventory; applicable passage review is evidenced by prior source assessments, not a claim to read every page during capture."
+    },
+    {
+      "source_path": "/workspace/attachments/509266c1-b6e9-40bf-9ac9-c296a7579c89/A_Development & Software Architecture_Architecture_Patterns_with_Python_-_Bob_Gregory.pdf",
+      "sha256": "2297f29f483d8b392f81153df7e8cc8309fac286ebc3da7f16fdf28317057a61",
+      "bytes": 10413445,
+      "capture_use": "Current file availability/integrity inventory; applicable passage review is evidenced by prior source assessments, not a claim to read every page during capture."
+    },
+    {
+      "source_path": "/workspace/attachments/60883516-33fa-4e65-a568-8e6cffec8a16/A_Development & Software Architecture_Design_Patterns___Erich_Gamma.pdf",
+      "sha256": "384304994251d868e1f94b30baf6fec10769996199fd5bf28659a46432547602",
+      "bytes": 17150764,
+      "capture_use": "Current file availability/integrity inventory; applicable passage review is evidenced by prior source assessments, not a claim to read every page during capture."
+    },
+    {
+      "source_path": "/workspace/final_verification/supplementary/verification/reference_sources/A_Verification, Physics, & Formal Mathematics_Hypothesis_Differential_Fuzzing_Publication.pdf",
+      "sha256": "bb4c306607221dee412ef3805b66b919ddf68f9de39f637dd0100ad7773b5641",
+      "bytes": 145018,
+      "capture_use": "Availability and file identity checked; prior source assessment/passages establish the actual methodology review, not full reading or independent reproduction of cited external results."
+    },
+    {
+      "source_path": "/workspace/final_verification/supplementary/verification/reference_sources/A_Verification, Physics, & Formal Mathematics_LIGO_Verification_Reference.pdf",
+      "sha256": "32146b2744fa9fa3d1dc5cec115ff00a73c591b2ba5cc959722e780b9a2f39b7",
+      "bytes": 110376,
+      "capture_use": "Availability and file identity checked; prior source assessment/passages establish the actual methodology review, not full reading or independent reproduction of cited external results."
+    },
+    {
+      "source_path": "/workspace/final_verification/supplementary/verification/reference_sources/A_Verification, Physics, & Formal Mathematics_Test-Driven_Development_with_Python_3rd_Edition_Harry_JW_Percival.pdf",
+      "sha256": "d752e8167f1f0a6ffc23a90cace5443662af407bfe3db60e30cff3589d8f2ab3",
+      "bytes": 7436655,
+      "capture_use": "Availability and file identity checked; prior source assessment/passages establish the actual methodology review, not full reading or independent reproduction of cited external results."
+    },
+    {
+      "source_path": "/workspace/final_verification/supplementary/verification/reference_sources/A_Verification, Physics, & Formal Mathematics_The Lean 4 Theorem Prover Reference Manual.pdf",
+      "sha256": "2b907e98552f5ff4fe77be717f9423311a4d6bf4ac866b143d99f34e83f39c4d",
+      "bytes": 361568,
+      "capture_use": "Availability and file identity checked; prior source assessment/passages establish the actual methodology review, not full reading or independent reproduction of cited external results."
+    },
+    {
+      "source_path": "/workspace/final_verification/supplementary/verification/reference_sources/A_Verification, Physics, & Formal Mathematics_The_Feynman_Lectures_on_Physics_Richard_P_Feynman.pdf",
+      "sha256": "d019368d33b5718f81d42189ef3e697aeebc1a426617a2a9f1c73096691c4d6d",
+      "bytes": 10460571,
+      "capture_use": "Availability and file identity checked; prior source assessment/passages establish the actual methodology review, not full reading or independent reproduction of cited external results."
+    },
+    {
+      "source_path": "/workspace/final_verification/supplementary/verification/reference_sources/Lean Differential Fuzzing.pptx",
+      "sha256": "1a8dd345c2751c6d05e8cf5f141a67b573f53c8698839084e36ce966dd9086e5",
+      "bytes": 2233450,
+      "capture_use": "Availability and file identity checked; prior source assessment/passages establish the actual methodology review, not full reading or independent reproduction of cited external results."
+    }
+  ]
+}

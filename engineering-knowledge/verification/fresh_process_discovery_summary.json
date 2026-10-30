@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "method": "fresh codex app-server process, native skills/list forceReload",
+  "cwd": "/workspace/knowledge_capture_work/fresh-session",
+  "skill": {
+    "name": "evidence-driven-python-build",
+    "description": "Implement, repair, verify, and retrospectively improve software from authoritative requirements using reproducible defects, risk-based tests, and exact-artifact evidence. Use for substantial Python builds, remediation, specification audits, release verification, or engineering knowledge capture; adapt principles to other languages and keep routine changes proportionate.",
+    "path": "/home/agent/.agents/skills/evidence-driven-python-build/SKILL.md",
+    "scope": "user",
+    "enabled": true,
+    "pluginId": null
+  },
+  "parser_errors": [],
+  "claim": "Native user-skill discovery verified; model execution is a separate check"
+}

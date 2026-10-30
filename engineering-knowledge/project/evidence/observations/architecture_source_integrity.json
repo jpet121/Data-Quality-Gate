@@ -1,0 +1,32 @@
+[
+  {
+    "file": "A_Development & Software Architecture_Architecture_Patterns_with_Python_-_Bob_Gregory.pdf",
+    "bytes": 10413445,
+    "sha256": "2297f29f483d8b392f81153df7e8cc8309fac286ebc3da7f16fdf28317057a61",
+    "matches_declared_architecture_source": true
+  },
+  {
+    "file": "A_Development & Software Architecture_Clean Architecture_ A Craftsman's Guide to Software_Martin, Robert.epub",
+    "bytes": 9843017,
+    "sha256": "c1566fba199b98a4ae5093f497b321a868590aea9a23e4a7074330e6424da3c4",
+    "matches_declared_architecture_source": true
+  },
+  {
+    "file": "A_Development & Software Architecture_Robust Python_Patrick Viafore .epub",
+    "bytes": 9350584,
+    "sha256": "d8dae13980d14c0049511114d6fa52fa5309a5cf7db812b6fb94815513c49627",
+    "matches_declared_architecture_source": true
+  },
+  {
+    "file": "A_Development & Software Architecture_Fluent_Python_Luciano_Ramalho.pdf",
+    "bytes": 7798830,
+    "sha256": "be24d1cf55a76c81e2d36f4dde0cf2c25b5e42b9c45ab1bc64d9179764a66edb",
+    "matches_declared_architecture_source": true
+  },
+  {
+    "file": "A_Development & Software Architecture_Design_Patterns___Erich_Gamma.pdf",
+    "bytes": 17150764,
+    "sha256": "384304994251d868e1f94b30baf6fec10769996199fd5bf28659a46432547602",
+    "matches_declared_architecture_source": true
+  }
+]

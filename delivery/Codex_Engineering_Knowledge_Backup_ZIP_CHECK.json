@@ -1,0 +1,100 @@
+{
+  "checked_at_utc": "2026-10-30T12:13:59.467603+00:00",
+  "archive": "Codex_Engineering_Knowledge_Backup.zip",
+  "archive_sha256": "9b42bda543547e7628d6aa66914de021c9f457dad69ac6f541a1b5f84d0b37ed",
+  "bytes": 2729645,
+  "manifest_entries_verified": 92,
+  "zip_crc_and_exact_inventory_verified": true,
+  "portable_extract_install_tests_passed": true,
+  "portable_tests_passed": 10,
+  "idempotent_reinstall_changes": 0,
+  "extracted_package_unchanged": true,
+  "actual_live_installation": "verified separately in packaged verification/ records",
+  "fresh_native_skill_discovery": "PASS",
+  "fresh_model_application": "BLOCKED by proxy HTTP CONNECT 403 before execution",
+  "cold_cloud_or_other_device_restoration_verified": false,
+  "checks": [
+    {
+      "label": "manifest_and_skill",
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "-B",
+        "tools/validate.py",
+        "--skill",
+        "skills/evidence-driven-python-build",
+        "--manifest-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"skill\": \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/engineering-knowledge/skills/evidence-driven-python-build\",\n  \"reference_links_verified\": 7,\n  \"manifest_files_verified\": 92\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "portable_installer_tests",
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_install.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_changed_managed_block_requires_review (test_install.InstallationTests.test_changed_managed_block_requires_review) ... ok\ntest_conflicting_skill_prevents_global_write (test_install.InstallationTests.test_conflicting_skill_prevents_global_write) ... ok\ntest_dry_run_has_no_filesystem_side_effects (test_install.InstallationTests.test_dry_run_has_no_filesystem_side_effects) ... ok\ntest_existing_global_and_unrelated_skill_preserved_and_backed_up (test_install.InstallationTests.test_existing_global_and_unrelated_skill_preserved_and_backed_up) ... ok\ntest_install_and_repeat_are_idempotent (test_install.InstallationTests.test_install_and_repeat_are_idempotent) ... ok\ntest_locally_edited_installed_skill_is_not_overwritten (test_install.InstallationTests.test_locally_edited_installed_skill_is_not_overwritten) ... ok\ntest_override_and_duplicate_markers_refused (test_install.InstallationTests.test_override_and_duplicate_markers_refused) ... ok\ntest_symlink_destination_refused (test_install.InstallationTests.test_symlink_destination_refused) ... ok\ntest_symlink_metadata_is_not_read_or_overwritten (test_install.InstallationTests.test_symlink_metadata_is_not_read_or_overwritten) ... ok\ntest_unrecognized_metadata_preserved_before_any_write (test_install.InstallationTests.test_unrecognized_metadata_preserved_before_any_write) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.017s\n\nOK\n"
+    },
+    {
+      "label": "portable_first_install",
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "-B",
+        "tools/install.py",
+        "--codex-home",
+        "/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.codex",
+        "--skills-root",
+        "/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills",
+        "--report",
+        "/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/first.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"INSTALLED\",\n  \"global_path\": \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.codex/AGENTS.md\",\n  \"skill_path\": \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build\",\n  \"changed_files\": [\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.codex/AGENTS.md\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/SKILL.md\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/verification-selection.md\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/workflow.md\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/evidence-and-release.md\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/retrospective.md\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/templates/completion.json\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/templates/defect.md\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/templates/requirements.csv\"\n  ],\n  \"backups\": [],\n  \"expected_sha256\": {\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.codex/AGENTS.md\": \"3b5cd66b8fc142cd4f461f153c9000998717e7d6f0a1c37d5edd4aaeb592bc19\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/SKILL.md\": \"c2318239f22b3dccd6d52e5e1bcc9ecc201a833d8647146f87aeeb5e4653d96c\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/verification-selection.md\": \"0e2ba320abcdb9b78c1f80fee8a8f93a7af1b7962b04ccc64b3fbe16b83c05ab\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/workflow.md\": \"800b76ffca0fc58bd876b8f0ef928161b4972f06c18dbefba27bb00dbb9ae06b\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/evidence-and-release.md\": \"15243348f358c7e12d865a18757de23a08694e82f743ecb152edf00d7081153d\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/retrospective.md\": \"8b6d5d4791350123b622002cb4235868ef31de0f09009cca38bc6e9aa9b15eeb\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/templates/completion.json\": \"a0e8310c68c34a73749a689323bace6cb5271edd91a6b94cfca0dab0ef191394\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/templates/defect.md\": \"125ce7ad3f68cb5655cfffc7699f94e0ee35b797db44db396bed3395a4bdb103\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/templates/requirements.csv\": \"4af6bbb4325933d294014b3e6a75899233e661f499eb1ea79aaa4bbbd6e1d9dc\"\n  },\n  \"preserved_existing_global_prefix\": true,\n  \"scope\": \"Filesystem installation for this Codex home/user skill root; fresh discovery and cross-machine persistence require separate checks\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "portable_repeat_install",
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "-B",
+        "tools/install.py",
+        "--codex-home",
+        "/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.codex",
+        "--skills-root",
+        "/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills",
+        "--report",
+        "/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/repeat.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"INSTALLED\",\n  \"global_path\": \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.codex/AGENTS.md\",\n  \"skill_path\": \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build\",\n  \"changed_files\": [],\n  \"backups\": [],\n  \"expected_sha256\": {\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.codex/AGENTS.md\": \"3b5cd66b8fc142cd4f461f153c9000998717e7d6f0a1c37d5edd4aaeb592bc19\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/SKILL.md\": \"c2318239f22b3dccd6d52e5e1bcc9ecc201a833d8647146f87aeeb5e4653d96c\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/verification-selection.md\": \"0e2ba320abcdb9b78c1f80fee8a8f93a7af1b7962b04ccc64b3fbe16b83c05ab\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/workflow.md\": \"800b76ffca0fc58bd876b8f0ef928161b4972f06c18dbefba27bb00dbb9ae06b\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/evidence-and-release.md\": \"15243348f358c7e12d865a18757de23a08694e82f743ecb152edf00d7081153d\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/references/retrospective.md\": \"8b6d5d4791350123b622002cb4235868ef31de0f09009cca38bc6e9aa9b15eeb\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/templates/completion.json\": \"a0e8310c68c34a73749a689323bace6cb5271edd91a6b94cfca0dab0ef191394\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/templates/defect.md\": \"125ce7ad3f68cb5655cfffc7699f94e0ee35b797db44db396bed3395a4bdb103\",\n    \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build/templates/requirements.csv\": \"4af6bbb4325933d294014b3e6a75899233e661f499eb1ea79aaa4bbbd6e1d9dc\"\n  },\n  \"preserved_existing_global_prefix\": true,\n  \"scope\": \"Filesystem installation for this Codex home/user skill root; fresh discovery and cross-machine persistence require separate checks\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "portable_installed_validation",
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "-B",
+        "tools/validate.py",
+        "--skill",
+        "/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build",
+        "--global-file",
+        "/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.codex/AGENTS.md"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"skill\": \"/workspace/knowledge_capture_work/engineering-knowledge-replay-a9nrtnyg/test-home/.agents/skills/evidence-driven-python-build\",\n  \"reference_links_verified\": 7,\n  \"manifest_files_verified\": 0\n}\n",
+      "stderr": ""
+    }
+  ]
+}

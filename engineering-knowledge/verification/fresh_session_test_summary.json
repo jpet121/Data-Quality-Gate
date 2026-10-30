@@ -1,0 +1,10 @@
+{
+  "status": "BLOCKED",
+  "native_fresh_process_skill_discovery": "PASS; see fresh_process_discovery_summary.json",
+  "end_to_end_fresh_model_session_verified": false,
+  "automatic_global_instruction_application_verified": false,
+  "blocker": "Proxy denied wss://chatgpt.com/backend-api/codex/responses with HTTP CONNECT 403 before model execution. Other CLI model/MCP refresh requests also failed.",
+  "action": "Stopped the probe; did not change authentication, model provider or network policy to bypass the denial.",
+  "manual_followup": "Use the documented invocation in a permitted fresh Codex session using the installed user home, or install the portable backup on the intended device and repeat discovery/application checks.",
+  "scope": "Static contents and fresh native skills/list parsing are verified; inference-driven instruction application and cross-machine/cloud restoration are not."
+}

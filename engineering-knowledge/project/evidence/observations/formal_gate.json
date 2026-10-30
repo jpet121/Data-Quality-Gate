@@ -1,0 +1,21 @@
+{
+  "checker_version": "Lean (version 4.24.0, x86_64-unknown-linux-gnu, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b, Release)",
+  "proof_source_sha256": "959f7b01ecbf0df40a512cc2e86949d69cf6368a25215d3ebd9173a85a6102b5",
+  "python_gate_sha256": "f40d7ccd7e9461c20a4efdd5573f9d04d198792afe4ca12cba4c5837c3b2cfff",
+  "checked_theorems": 9,
+  "proof_gaps": 0,
+  "logical_axioms": [
+    "Lean built-in propositional extensionality (propext)"
+  ],
+  "empirical_cases": 1984,
+  "disagreements": [],
+  "scope": "release-gate eligibility for well-formed Boolean obligations and six gate conditions",
+  "not_covered": [
+    "malformed JSON/schema validation",
+    "filesystem evidence existence",
+    "business event semantics",
+    "external delivery"
+  ],
+  "formal_python_equivalence": "NOT ESTABLISHED; only model properties are proved",
+  "passed": true
+}

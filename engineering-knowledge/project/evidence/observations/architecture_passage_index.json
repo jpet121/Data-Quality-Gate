@@ -1,0 +1,201 @@
+[
+  {
+    "source": "A_Development & Software Architecture_Architecture_Patterns_with_Python_-_Bob_Gregory.txt",
+    "reviewed_passages": [
+      {
+        "term": "Dependency Inversion Principle",
+        "location": "extracted page 35",
+        "text_offset": 37310,
+        "excerpt": "nd retrieving data.  For the rest of this book, we\u2019re going to be systematically turning this model inside out by obeying one simple principle.   The Dependency Inversion Principle You might be familiar with the dependency inversion principle (DIP) already, because it\u2019s the D in SOLID.2  Unfortunately, we can\u2019t illustrate the DIP by using three tiny code listings as we did for encapsulation. However, the whole of Part I is essentially a worked example of implementing the DIP throughout an application, so you\u2019ll get your fill of concrete examples.  In the meantime, we can talk about DIP\u2019s forma"
+      },
+      {
+        "term": "Dependency Inversion Principle",
+        "location": "extracted page 35",
+        "text_offset": 37372,
+        "excerpt": " be systematically turning this model inside out by obeying one simple principle.   The Dependency Inversion Principle You might be familiar with the dependency inversion principle (DIP) already, because it\u2019s the D in SOLID.2  Unfortunately, we can\u2019t illustrate the DIP by using three tiny code listings as we did for encapsulation. However, the whole of Part I is essentially a worked example of implementing the DIP throughout an application, so you\u2019ll get your fill of concrete examples.  In the meantime, we can talk about DIP\u2019s formal definition:        1. High-level modules should not depend o"
+      },
+      {
+        "term": "Repository",
+        "location": "extracted page 21",
+        "text_offset": 21613,
+        "excerpt": "sts. Later we return to    DDD patterns to discuss how to choose the right aggregate,    and how this choice relates to questions of data integrity.  Repository, Service Layer, and Unit of Work patterns (Chapters 2, 4, and 5)    In these three chapters we present three closely related and    mutually reinforcing patterns that support our ambition to keep    the model free of extraneous dependencies. We build a layer of    abstraction around persistent storage, and we build a service    layer to define the entrypoints to our system and capture the    primary use cases. We show how this layer ma"
+      },
+      {
+        "term": "Repository",
+        "location": "extracted page 21",
+        "text_offset": 22266,
+        "excerpt": "m, whether it\u2019s a Flask API    or a CLI.  Some thoughts on testing and abstractions (Chapters 3 and 6)    After presenting the first abstraction (the Repository pattern),    we take the opportunity for a general discussion of how to    choose abstractions, and what their role is in choosing how our    software is coupled together. After we introduce the Service    Layer pattern, we talk a bit about achieving a test pyramid and    writing unit tests at the highest possible level of abstraction. \fPart II, Event-Driven Architecture Event-driven architecture (Chapters 8\u201311)    We introduce three m"
+      },
+      {
+        "term": "Unit of Work",
+        "location": "extracted page 21",
+        "text_offset": 21644,
+        "excerpt": "patterns to discuss how to choose the right aggregate,    and how this choice relates to questions of data integrity.  Repository, Service Layer, and Unit of Work patterns (Chapters 2, 4, and 5)    In these three chapters we present three closely related and    mutually reinforcing patterns that support our ambition to keep    the model free of extraneous dependencies. We build a layer of    abstraction around persistent storage, and we build a service    layer to define the entrypoints to our system and capture the    primary use cases. We show how this layer makes it easy to    build thin en"
+      },
+      {
+        "term": "Unit of Work",
+        "location": "extracted page 40",
+        "text_offset": 43482,
+        "excerpt": "over the idea of         persistent storage         The Service Layer pattern to clearly define where our use         cases begin and end         The Unit of Work pattern to provide atomic operations         The Aggregate pattern to enforce the integrity of our data  If you\u2019d like a picture of where we\u2019re going, take a look at Figure I-1, but don\u2019t worry if none of it makes sense yet! We introduce each box in the figure, one by one, throughout this part of the book. \f         Figure I-1. A component diagram for our app at the end of Part I  We also take a little time out to talk about coupling"
+      },
+      {
+        "term": "fake",
+        "location": "extracted page 85",
+        "text_offset": 92319,
+        "excerpt": "l. The Repository pattern would make it easy to make fundamental changes to the way we store things (see Appendix C), and as we\u2019ll see, it is easy to fake out for unit tests.  In addition, the Repository pattern is so common in the DDD world that, if you do collaborate with programmers who have come to Python from the Java and C# worlds, they\u2019re likely to recognize it. Figure 2-5 illustrates the pattern.                                 Figure 2-5. Repository pattern  As always, we start with a test. This would probably be classified as an integration test, since we\u2019re checking that our code (t"
+      },
+      {
+        "term": "fake",
+        "location": "extracted page 89",
+        "text_offset": 97728,
+        "excerpt": "ps it\u2019ll be   harder than you think; perhaps it\u2019ll be easier. But the nice thing is, the rest of your application just   doesn\u2019t care.     Building a Fake Repository for Tests Is Now Trivial! Here\u2019s one of the biggest benefits of the Repository pattern:  A simple fake repository using a set (repository.py)  class FakeRepository(AbstractRepository):      def __init__(self, batches):         self._batches = set(batches)      def add(self, batch):         self._batches.add(batch)      def get(self, reference):         return next(b for b in self._batches if b.reference == reference)      def list"
+      }
+    ]
+  },
+  {
+    "source": "A_Development & Software Architecture_Clean Architecture_ A Craftsman's Guide to Software_Martin, Robert.txt",
+    "reviewed_passages": [
+      {
+        "term": "Dependency Rule",
+        "location": "OEBPS/Text/part0024.xhtml",
+        "text_offset": 130223,
+        "excerpt": "s. The way the dependencies cross that curved line in one direction, and toward more abstract entities, will become a new rule that we will call the  Dependency Rule .   1 . In other words, the function that is invoked by the operating system when the application is first started up.        SOURCE SECTION OEBPS/Text/part0025.xhtml              part0025                     IV C OMPONENT  P RINCIPLES     If the SOLID principles tell us how to arrange the bricks into walls and rooms, then the component principles tell us how to arrange the rooms into buildings. Large software systems, like large "
+      },
+      {
+        "term": "Dependency Rule",
+        "location": "OEBPS/Text/part0037.xhtml",
+        "text_offset": 278077,
+        "excerpt": "e software becomes. The outer circles are mechanisms. The inner circles are policies.   The overriding rule that makes this architecture work is the  Dependency Rule :   Source code dependencies must point only inward, toward higher-level policies.   Nothing in an inner circle can know anything at all about something in an outer circle. In particular, the name of something declared in an outer circle must not be mentioned by the code in an inner circle. That includes functions, classes, variables, or any other named software entity .   By the same token, data formats declared in an outer circl"
+      },
+      {
+        "term": "boundaries",
+        "location": "OEBPS/Text/part0015.xhtml",
+        "text_offset": 52447,
+        "excerpt": "ON   What does this history lesson on paradigms have to do with architecture? Everything. We use polymorphism as the mechanism to cross architectural boundaries; we use functional programming to impose discipline on the location of and access to data; and we use structured programming as the algorithmic foundation of our modules.   Notice how well those three align with the three big concerns of architecture: function, separation of components, and data management.        SOURCE SECTION OEBPS/Text/part0016.xhtml              part0016                     4 S TRUCTURED  P ROGRAMMING       Edsger"
+      },
+      {
+        "term": "boundaries",
+        "location": "OEBPS/Text/part0020.xhtml",
+        "text_offset": 105656,
+        "excerpt": "nts, it becomes the Common Closure Principle. At the architectural level, it becomes the Axis of Change responsible for the creation of Architectural Boundaries. We\u2019ll be studying all of these ideas in the chapters to come.        SOURCE SECTION OEBPS/Text/part0021.xhtml              part0021                     8 OCP: T HE  O PEN -C LOSED  P RINCIPLE       The Open-Closed Principle (OCP) was coined in 1988 by Bertrand Meyer. 1  It says:   A software artifact should be open for extension but closed for modification.   In other words, the behavior of a software artifact ought to be extendible, "
+      },
+      {
+        "term": "immutability",
+        "location": "OEBPS/Text/part0015.xhtml",
+        "text_offset": 50926,
+        "excerpt": "ng at the same time. His l-calculus is the foundation of the LISP language, invented in 1958 by John McCarthy. A foundational notion of l-calculus is immutability\u2014that is, the notion that the values of symbols do not change. This effectively means that a functional language has no assignment statement. Most functional languages do, in fact, have some means to alter the value of a variable, but only under very strict discipline.   We can summarize the functional programming paradigm as follows:   Functional programming imposes discipline upon assignment.   F OOD FOR  T HOUGHT   Notice the patte"
+      },
+      {
+        "term": "immutability",
+        "location": "OEBPS/Text/part0018.xhtml",
+        "text_offset": 86905,
+        "excerpt": " the systems you design will be robust in the presence of multiple threads and processors. The question you must be asking yourself, then, is whether immutability is practicable.   The answer to that question is affirmative, if you have infinite storage and infinite processor speed. Lacking those infinite resources, the answer is a bit more nuanced. Yes, immutability can be practicable, if certain compromises are made.   Let\u2019s look at some of those compromises.   S EGREGATION OF  M UTABILITY   One of the most common compromises in regard to immutability is to segregate the application, or the "
+      }
+    ]
+  },
+  {
+    "source": "A_Development & Software Architecture_Design_Patterns___Erich_Gamma.txt",
+    "reviewed_passages": [
+      {
+        "term": "Program to an interface",
+        "location": "extracted page 43",
+        "text_offset": 62647,
+        "excerpt": " so greatly reduces implementation dependencies between subsystems that it leads to the following principle of reusable object- oriented design:      Program to an interface, not an implementation. Don\u2019t declare variables to be instances of particular concrete classes. Instead, commit only to an interface defined by an abstract class. You will find this to be a common theme of the design patterns in this book. You have to instantiate concrete classes (that is, specify a particular implementation) somewhere in your system, of course, and the creational patterns (Abstract Factory (87), Builder ("
+      },
+      {
+        "term": "composition over",
+        "location": "extracted page 45",
+        "text_offset": 66768,
+        "excerpt": "object interfaces, there are substantially fewer implementation dependencies. Object composition has another effect on system design. Favoring object composition over class inheritance helps you keep each class encapsulated and focused on one task. Your classes and class hierarchies will remain small and will be less likely to grow into unmanageable monsters. On the other hand, a design based on object composition will have more objects (if fewer classes), and the system\u2019s behavior will depend on their interrelationships instead of being defined in one class. That leads us to our second princi"
+      },
+      {
+        "term": "composition over",
+        "location": "extracted page 45",
+        "text_offset": 67266,
+        "excerpt": " on their interrelationships instead of being defined in one class. That leads us to our second principle of object-oriented design:     Favor object composition over class inheritance. Ideally, you shouldn\u2019t have to create new components to achieve reuse. You should be able to get all the functionality you need just by assembling existing components through object composition. But this is rarely the case, because the set of available components is never quite rich enough in practice. Reuse by inheritance makes it easier to make new components that can be composed with old ones. Inheritance an"
+      },
+      {
+        "term": "Adapter",
+        "location": "extracted page 21",
+        "text_offset": 22397,
+        "excerpt": " an experienced object-oriented designer, then start with the simplest and most common patterns:            \u2022 Abstract Factory (page 87)            \u2022 Adapter (139)            \u2022 Composite (163)            \u2022 Decorator (175)            \u2022 Factory Method (107)            \u2022 Observer (293)            \u2022 Strategy (315)            \u2022 Template Method (325) It\u2019s hard to find an object-oriented system that doesn\u2019t use at least a couple of these patterns, and large systems use nearly all of them. This subset will help you understand design patterns in particular and good object-oriented design in general. \f\f"
+      },
+      {
+        "term": "Adapter",
+        "location": "extracted page 32",
+        "text_offset": 41106,
+        "excerpt": "Abstract Factory (87) Provide an interface for creating families of      related or dependent objects without specifying their concrete      classes. Adapter (139) Convert the interface of a class into another interface     clients expect. Adapter lets classes work together that couldn\u2019t     otherwise because of incompatible interfaces. Bridge (151) Decouple an abstraction from its implementation so that      the two can vary independently. Builder (97) Separate the construction of a complex object from its      representation so that the same construction process can create      different rep"
+      }
+    ]
+  },
+  {
+    "source": "A_Development & Software Architecture_Fluent_Python_Luciano_Ramalho.txt",
+    "reviewed_passages": [
+      {
+        "term": "immutable",
+        "location": "extracted page 34",
+        "text_offset": 85855,
+        "excerpt": "               How About Shuffling?                      As implemented so far, a FrenchDeck cannot be shuffled, be\u2010                      cause it is immutable: the cards and their positions cannot be                      changed, except by violating encapsulation and handling the                      _cards attribute directly. In Chapter 11, that will be fixed by                      adding a one-line __setitem__ method.   How Special Methods Are Used The first thing to know about special methods is that they are meant to be called by the Python interpreter, and not by you. You don\u2019t write my"
+      },
+      {
+        "term": "immutable",
+        "location": "extracted page 46",
+        "text_offset": 108595,
+        "excerpt": "umbers. Another way of grouping sequence types is by mutability: Mutable sequences    list, bytearray, array.array, collections.deque, and memoryview Immutable sequences    tuple, str, and bytes Figure 2-1 helps visualize how mutable sequences differ from immutable ones, while also inheriting several methods from them. Note that the built-in concrete sequence types do not actually subclass the Sequence and MutableSequence abstract base classes (ABCs) depicted, but the ABCs are still useful as a formalization of what functionality to expect from a full-featured sequence type.     Figure 2-1. UM"
+      },
+      {
+        "term": "type hints",
+        "location": "extracted page 369",
+        "text_offset": 750592,
+        "excerpt": "\u201d. Baiju M wrote an entire book about it: A Comprehensive Guide to Zope Component Architecture.                                              Soapbox  Type Hints  Probably the biggest news in the Python world in 2014 was that Guido van Rossum gave  a green light to the implementation of optional static type checking using function an\u2010  notations, similar to what the Mypy checker does. This happened in the Python-ideas  mailing-list on August 15. The message is Optional static typing \u2014 the crossroads. The  next month, PEP 484 - Type Hints was published as a draft, authored by Guido.  The idea is"
+      },
+      {
+        "term": "type hints",
+        "location": "extracted page 369",
+        "text_offset": 750974,
+        "excerpt": "oes. This happened in the Python-ideas  mailing-list on August 15. The message is Optional static typing \u2014 the crossroads. The  next month, PEP 484 - Type Hints was published as a draft, authored by Guido.  The idea is to let programmers optionally use annotations to declare parameter and  return types in function definitions. The key word here is optionally. You\u2019d only add  such annotations if you want the benefits and constraints that come with them, and you  could put them in some functions but not in others.  On the surface, this may sound like what Microsoft did with with TypeScript, its "
+      }
+    ]
+  },
+  {
+    "source": "A_Development & Software Architecture_Robust Python_Patrick Viafore .txt",
+    "reviewed_passages": [
+      {
+        "term": "type annotation",
+        "location": "OEBPS/ch02.xhtml",
+        "text_offset": 65993,
+        "excerpt": "nd I don\u2019t blame you. But it\u2019s a shame that many tutorials never revisit types and give them their proper due. As users dig deeper, they may discover type annotations (which I cover in the next chapter) or start writing classes, but often miss out on the fundamental discussion about when to use types appropriately.    That\u2019s where I\u2019ll start. To write maintainable Python, you must be aware of the nature of types and be deliberate about using them.  I\u2019ll start by talking about what a type actually is and why that matters. I\u2019ll then move on to how the Python language\u2019s decisions about its type s"
+      },
+      {
+        "term": "type annotation",
+        "location": "OEBPS/ch02.xhtml",
+        "text_offset": 76458,
+        "excerpt": "parameter. So as you write code, do what you can to express your intent through types. You can do it as a comment where needed, but I recommend using type annotations (supported in Python 3.5+) to explain parts of your code.    def   close_kitchen_if_past_cutoff_time ( point_in_time :   datetime . datetime ):       if   point_in_time   >=   closing_time ():           close_kitchen ()           log_time_closed ( point_in_time )    All I need to do is put in a  : <type>  after my parameters. Most code examples in this book will utilize type annotations to make it clear what type the code expects"
+      },
+      {
+        "term": "immutability",
+        "location": "OEBPS/ch04.xhtml",
+        "text_offset": 145068,
+        "excerpt": "ode, such as a module. It is difficult for developers to keep track of all the uses of a variable in such large scopes; letting the typechecker catch immutability guarantees is a boon in these cases.   Warning   Final  will not error out when mutating an object through a function. It only prevents the variable from being rebound (set to a new value).                      Closing Thoughts    You\u2019ve learned about many different ways to constrain your types in this chapter. All of them serve a specific purpose, from handling  None  with  Optional  to restricting to specific values with  Literal  "
+      },
+      {
+        "term": "immutability",
+        "location": "OEBPS/ch08.xhtml",
+        "text_offset": 247681,
+        "excerpt": "le.       They can iterate over this collection to get all the sauces.       They can retrieve a specific element through static indexing.        The immutability and retrieval properties are important for my application.  I don\u2019t want to add or subtract any mother sauces at runtime (such would be culinary blasphemy). Using a tuple makes it clear to future developers that they should not change these values. Retrieval let\u2019s me choose just one sauce, although it is a bit clunky. Every time I need to reference an element, I can doing so through static indexing:    MOTHER_SAUCES [ 2 ]    This unf"
+      },
+      {
+        "term": "Protocols",
+        "location": "OEBPS/ch12.xhtml",
+        "text_offset": 402803,
+        "excerpt": "fits of subtyping without introducing a slew of headaches.    In the next chapter, I\u2019m going to focus on a specific application of subtyping known as protocols. These are the missing link between the type checker and duck typing. Protocols bridge the gap in an important way - they help your type checker catch some of the errors introduced in a supertype/subtype relationship. Any time you catch more errors, especially through a type checker, you are contributing to the robustness of your codebase.            1  Object Oriented Programming is a programming paradigm where you organize your code a"
+      },
+      {
+        "term": "Protocols",
+        "location": "OEBPS/ch12.xhtml",
+        "text_offset": 402883,
+        "excerpt": "r, I\u2019m going to focus on a specific application of subtyping known as protocols. These are the missing link between the type checker and duck typing. Protocols bridge the gap in an important way - they help your type checker catch some of the errors introduced in a supertype/subtype relationship. Any time you catch more errors, especially through a type checker, you are contributing to the robustness of your codebase.            1  Object Oriented Programming is a programming paradigm where you organize your code around encapsulated data and their behaviors. If you\u2019d an introduction to Object "
+      }
+    ]
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "status": "INSTALLED",
+  "global_path": "/home/agent/.codex/AGENTS.md",
+  "skill_path": "/home/agent/.agents/skills/evidence-driven-python-build",
+  "changed_files": [
+    "/home/agent/.codex/AGENTS.md",
+    "/home/agent/.agents/skills/evidence-driven-python-build/SKILL.md",
+    "/home/agent/.agents/skills/evidence-driven-python-build/references/verification-selection.md",
+    "/home/agent/.agents/skills/evidence-driven-python-build/references/workflow.md",
+    "/home/agent/.agents/skills/evidence-driven-python-build/references/evidence-and-release.md",
+    "/home/agent/.agents/skills/evidence-driven-python-build/references/retrospective.md",
+    "/home/agent/.agents/skills/evidence-driven-python-build/templates/completion.json",
+    "/home/agent/.agents/skills/evidence-driven-python-build/templates/defect.md",
+    "/home/agent/.agents/skills/evidence-driven-python-build/templates/requirements.csv"
+  ],
+  "backups": [],
+  "expected_sha256": {
+    "/home/agent/.codex/AGENTS.md": "3b5cd66b8fc142cd4f461f153c9000998717e7d6f0a1c37d5edd4aaeb592bc19",
+    "/home/agent/.agents/skills/evidence-driven-python-build/SKILL.md": "c2318239f22b3dccd6d52e5e1bcc9ecc201a833d8647146f87aeeb5e4653d96c",
+    "/home/agent/.agents/skills/evidence-driven-python-build/references/verification-selection.md": "0e2ba320abcdb9b78c1f80fee8a8f93a7af1b7962b04ccc64b3fbe16b83c05ab",
+    "/home/agent/.agents/skills/evidence-driven-python-build/references/workflow.md": "800b76ffca0fc58bd876b8f0ef928161b4972f06c18dbefba27bb00dbb9ae06b",
+    "/home/agent/.agents/skills/evidence-driven-python-build/references/evidence-and-release.md": "15243348f358c7e12d865a18757de23a08694e82f743ecb152edf00d7081153d",
+    "/home/agent/.agents/skills/evidence-driven-python-build/references/retrospective.md": "8b6d5d4791350123b622002cb4235868ef31de0f09009cca38bc6e9aa9b15eeb",
+    "/home/agent/.agents/skills/evidence-driven-python-build/templates/completion.json": "a0e8310c68c34a73749a689323bace6cb5271edd91a6b94cfca0dab0ef191394",
+    "/home/agent/.agents/skills/evidence-driven-python-build/templates/defect.md": "125ce7ad3f68cb5655cfffc7699f94e0ee35b797db44db396bed3395a4bdb103",
+    "/home/agent/.agents/skills/evidence-driven-python-build/templates/requirements.csv": "4af6bbb4325933d294014b3e6a75899233e661f499eb1ea79aaa4bbbd6e1d9dc"
+  },
+  "preserved_existing_global_prefix": true,
+  "scope": "Filesystem installation for this Codex home/user skill root; fresh discovery and cross-machine persistence require separate checks"
+}

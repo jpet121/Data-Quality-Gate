@@ -1,0 +1,80 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_________ test_oversized_configuration_is_rejected_under_memory_budget _________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-91/test_oversized_configuration_i0')
+
+    def test_oversized_configuration_is_rejected_under_memory_budget(tmp_path):
+        path=tmp_path/'oversized.json'
+        with path.open('wb') as stream:stream.truncate(128*1024**2)
+        code='''import resource,sys
+    sys.path.insert(0,sys.argv[1])
+    resource.setrlimit(resource.RLIMIT_AS,(96*1024**2,96*1024**2))
+    from event_validator import load_matrix
+    from event_validator.matrix import ConfigError
+    try:
+        load_matrix(sys.argv[2])
+    except ConfigError:
+        print('CONTROLLED_CONFIG_REJECTION')
+    else:
+        raise AssertionError('oversized configuration accepted')
+    '''
+        root=Path(__file__).resolve().parents[2]
+        p=subprocess.run([sys.executable,'-I','-c',code,str(root/'src'),str(path)],capture_output=True,text=True,timeout=10)
+>       assert p.returncode==0,(p.stdout,p.stderr)
+E       AssertionError: ('', 'Traceback (most recent call last):
+E           File "<string>", line 7, in <module>
+E           File "/workspace/final_verificatio.../python/lib/python3.12/pathlib.py", line 1020, in read_bytes
+E             return f.read()
+E                    ^^^^^^^^
+E         MemoryError
+E         ')
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/workspace/verification/venv/bin/python', '-I', '-c', "import resource,sys\nsys.path.insert(0,.../python/lib/python3.12/pathlib.py", line 1020, in read_bytes\n    return f.read()\n           ^^^^^^^^\nMemoryError\n').returncode
+
+tests/regression/test_config_resource_limit.py:27: AssertionError
+_______________ test_deep_invalid_configuration_is_a_typed_error _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-agent/pytest-91/test_deep_invalid_configuratio0')
+
+    def test_deep_invalid_configuration_is_a_typed_error(tmp_path):
+        path=tmp_path/'deep.json';path.write_text('['*10000+'0'+']'*10000)
+>       with pytest.raises(ConfigError):load_matrix(path)
+                                        ^^^^^^^^^^^^^^^^^
+
+tests/regression/test_config_resource_limit.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/event_validator/matrix.py:55: in load_matrix
+    obj=json.loads(raw,object_pairs_hook=duplicates)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py:359: in loads
+    return cls(**kw).decode(s)
+           ^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py:338: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7fa7760d2810>
+s = '[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[...]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]'
+idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+>           obj, end = self.scan_once(s, idx)
+                       ^^^^^^^^^^^^^^^^^^^^^^
+E           RecursionError: maximum recursion depth exceeded while decoding a JSON array from a unicode string
+
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py:354: RecursionError
+=========================== short test summary info ============================
+FAILED tests/regression/test_config_resource_limit.py::test_oversized_configuration_is_rejected_under_memory_budget
+FAILED tests/regression/test_config_resource_limit.py::test_deep_invalid_configuration_is_a_typed_error
+2 failed in 0.28s

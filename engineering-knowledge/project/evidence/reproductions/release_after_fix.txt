@@ -1,0 +1,78 @@
+........................................................................ [ 39%]
+...............................F........................................ [ 78%]
+........................................                                 [100%]
+=================================== FAILURES ===================================
+_______________________ test_pg_concurrent_insert[True] ________________________
+
+pg = <event_validator.postgres.PostgreSQLRepository object at 0x7f05c89916d0>
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+conflicting = True
+
+    @pytest.mark.parametrize('conflicting',[False,True])
+    def test_pg_concurrent_insert(pg,cfg,valid,conflicting):
+        barrier=Barrier(8)
+        def run(i):
+            r=PostgreSQLRepository(os.environ['SESV_TEST_DSN'])
+            try:
+                a=validate(valid[1]+(' '*i if conflicting else ''),'race',cfg)
+                barrier.wait(timeout=10)
+                try: return r.persist(a,a.record.tenant_id,a.record.event_id)
+                except IdempotencyConflict: return 'CONFLICT'
+            finally: r.close()
+>       with ThreadPoolExecutor(max_workers=8) as pool: results=list(pool.map(run,range(8)))
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/integration/test_postgres_independent.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py:619: in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py:317: in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py:401: in __get_result
+    raise self._exception
+/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/thread.py:59: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/integration/test_postgres_independent.py:72: in run
+    try: return r.persist(a,a.record.tenant_id,a.record.event_id)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/event_validator/postgres.py:36: in persist
+    c.execute('INSERT INTO matrix_version(id,hash,created_at) VALUES(%s,%s,%s) ON CONFLICT (id) DO NOTHING',(matrix_id,matrix_id,now))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <psycopg.Cursor [closed] [BAD] at 0x7f05c9bc6c90>
+query = 'INSERT INTO matrix_version(id,hash,created_at) VALUES(%s,%s,%s) ON CONFLICT (id) DO NOTHING'
+params = ('9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', '9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', datetime.datetime(2026, 10, 29, 21, 39, 1, 935668, tzinfo=datetime.timezone.utc))
+prepare = None, binary = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -> Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           psycopg.errors.UniqueViolation: duplicate key value violates unique constraint "matrix_version_hash_key"
+E           DETAIL:  Key (hash)=(9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da) already exists.
+
+../../venv/lib/python3.12/site-packages/psycopg/cursor.py:117: UniqueViolation
+=========================== short test summary info ============================
+FAILED tests/integration/test_postgres_independent.py::test_pg_concurrent_insert[True]
+1 failed, 183 passed in 5.99s

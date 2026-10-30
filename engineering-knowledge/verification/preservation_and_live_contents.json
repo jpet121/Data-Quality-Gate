@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "config_unchanged": true,
+  "existing_builtin_skill_files_verified": 136,
+  "existing_builtin_skills_preserved": true,
+  "completed_application_frozen_files_verified": 96,
+  "completed_application_frozen_source_unchanged": true,
+  "completed_release_and_delivery_zip_unchanged": true,
+  "installed_payload_hashes_verified": 9,
+  "installed_file_modes": "0644",
+  "idempotent_reinstall_changed_files": 0,
+  "tested_restore_changed_files": 0,
+  "global_marker_occurrences": 1,
+  "conflicts": "None in inspected active paths; project-specific overrides remain unchanged and must be reviewed per future project.",
+  "new_application_code_or_rebuilds": false
+}

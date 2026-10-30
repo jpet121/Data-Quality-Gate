@@ -1,0 +1,10 @@
+{
+  "covered_lines": 525,
+  "num_statements": 540,
+  "covered_branches": 192,
+  "num_branches": 212,
+  "excluded_lines": 5,
+  "statement_percent": 97.22222222222223,
+  "branch_percent": 90.56603773584905,
+  "combined_percent": 95.34574468085107
+}

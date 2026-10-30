@@ -1,0 +1,92 @@
+{
+  "checked_at": "2026-10-30T00:32:45.093630+00:00",
+  "retrieval": "git fetch origin verified-v1.0.2-delivery, then git show fetched commit:delivery/ZIP",
+  "remote_commit": "66213a8a7175d99ce14aed5e07799225dc0b4c8c",
+  "bundle_sha256": "bf5984b925bc55378c0c0037e575953e37abf7ac571dfb7cd41f6a9f5deaabd6",
+  "application_zip_sha256": "f06ab83d0c56872460b30a402ce48662a06bb7cfdd3d73c10aebcc4919c02243",
+  "bundle_checksums_verified": true,
+  "application_manifest_files_verified": 492,
+  "exact_application_file_inventory": true,
+  "test_counts": {
+    "total": 410,
+    "passed": 410,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "complete_test_inventory_matches": true,
+  "source_unchanged": true,
+  "wheel_and_sdist_match_source": true,
+  "distribution_cli_checks_passed": true,
+  "technical_status": "TECHNICALLY VERIFIED",
+  "human_release_approval": false,
+  "release_status": "APPROVAL PENDING",
+  "passed": true,
+  "executed_checks": [
+    {
+      "label": "published_manifest",
+      "command": [
+        "/workspace/final_verification/hash-clean-venv/bin/python",
+        "verify_release.py"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at": "2026-10-30T00:32:30.603525+00:00",
+      "wall_seconds": 0.11472510699968552
+    },
+    {
+      "label": "published_tests",
+      "command": [
+        "/workspace/final_verification/hash-clean-venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_suite.py",
+        "tests",
+        "--hypothesis-seed=20261029",
+        "--hypothesis-show-statistics",
+        "--junitxml=/workspace/final_verification/published_zip_check_20261030T003230/published_tests.xml"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at": "2026-10-30T00:32:30.718311+00:00",
+      "wall_seconds": 12.460724185999425
+    },
+    {
+      "label": "published_standalone",
+      "command": [
+        "/workspace/final_verification/hash-clean-venv/bin/python",
+        "tools/build_standalone.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at": "2026-10-30T00:32:43.180990+00:00",
+      "wall_seconds": 0.06450033399960375
+    },
+    {
+      "label": "published_distribution",
+      "command": [
+        "/workspace/final_verification/hash-clean-venv/bin/python",
+        "verification/distribution_check.py",
+        "/workspace/final_verification/hash-clean-venv/bin/python"
+      ],
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at": "2026-10-30T00:32:43.245544+00:00",
+      "wall_seconds": 1.6688302820002718
+    },
+    {
+      "label": "published_gate",
+      "command": [
+        "/workspace/final_verification/hash-clean-venv/bin/python",
+        "-m",
+        "assurance.gate"
+      ],
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "started_at": "2026-10-30T00:32:44.918982+00:00",
+      "wall_seconds": 0.16546483800084388
+    }
+  ]
+}

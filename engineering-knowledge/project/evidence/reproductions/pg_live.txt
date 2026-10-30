@@ -1,0 +1,22 @@
+.......F.                                                                [100%]
+=================================== FAILURES ===================================
+_______________________________ test_pg_dispatch _______________________________
+
+pg = <event_validator.postgres.PostgreSQLRepository object at 0x7f8b6e37bf80>
+cfg = ConfigSnapshot(version='demo-v1', fingerprint='9f7a3547fcc7aa3db7e914a07448944628beb29bc595b1bd0bd3aa28dd3476da', spec..._tokens=32, max_batch=10000, aliases=mappingproxy({'event': 'event_type', 'tenant': 'tenant_id', 'order': 'order_id'}))
+valid = ['event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | ...005 | tenant=TEN-ACME | order=ORD-1002 | source=ERP | occurred_at=2026-10-29T15:00:00-05:00 | reason=CUSTOMER_REQUEST']
+
+    def test_pg_dispatch(pg,cfg,valid):
+        a=validate(valid[1],'a',cfg); pg.persist(a,a.record.tenant_id,a.record.event_id)
+        sink=LocalStubSink()
+        assert dispatch_once(pg,None)=='DISABLED'
+>       assert dispatch_once(pg,sink)=='DONE'
+E       AssertionError: assert 'RETRY' == 'DONE'
+E         
+E         - DONE
+E         + RETRY
+
+tests/integration/test_postgres_independent.py:99: AssertionError
+=========================== short test summary info ============================
+FAILED tests/integration/test_postgres_independent.py::test_pg_dispatch - Ass...
+1 failed, 8 passed in 0.48s

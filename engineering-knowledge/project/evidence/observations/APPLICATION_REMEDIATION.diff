@@ -1,0 +1,363 @@
+--- baseline/src/event_validator/cli.py
++++ corrected/src/event_validator/cli.py
+@@ -1,11 +1,12 @@
+ """CLI: JSONL raw input or plain text; output JSONL with deterministic outcomes."""
+ from __future__ import annotations
+ import argparse,json,sys,sqlite3
++from typing import Iterator, Any
+ from pathlib import Path
+ from .matrix import load_matrix,ConfigError
+ from .core import validate_many
+ 
+-def main(argv=None):
++def main(argv: list[str] | None = None) -> int:
+     p=argparse.ArgumentParser(description='Strict versioned event validator, synthetic demo only')
+     p.add_argument('--matrix',required=True)
+     p.add_argument('--input',default='-',help='JSONL objects with raw key; - for stdin')
+@@ -15,7 +16,7 @@
+     try:cfg=load_matrix(args.matrix)
+     except ConfigError as ex:
+         print(json.dumps({'status':'CONFIG_ERROR','reason':str(ex)}),file=sys.stderr);return 2
+-    def stream():
++    def stream() -> Iterator[Any]:
+         fh=sys.stdin if args.input=='-' else open(args.input,encoding='utf-8')
+         try:
+             for line in fh:
+--- baseline/src/event_validator/core.py
++++ corrected/src/event_validator/core.py
+@@ -3,10 +3,10 @@
+ from datetime import datetime
+ from decimal import Decimal, InvalidOperation
+ import hashlib, json, re
+-from typing import Iterable
++from typing import Iterable, Iterator, Any
+ from pydantic import ValidationError
+ from .models import ValidationResult, ErrorItem, Failure, Transform, MODEL_REGISTRY
+-from .matrix import ConfigSnapshot
++from .models import ConfigSnapshot
+ from .parser import tokenize, ParseFault
+ 
+ MONEY=re.compile(r'^[0-9]+(?:\.[0-9]{1,2})?$')
+@@ -19,14 +19,14 @@
+     # The ingestion boundary rejects lone surrogates before parsing or persistence.
+     return hashlib.sha256(value.encode('utf-8', errors='surrogatepass')).hexdigest()
+ 
+-def _unique_json(pairs):
++def _unique_json(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+     out={}
+     for key,v in pairs:
+         if key in out:raise ValueError('duplicate_nested_key')
+         out[key]=v
+     return out
+ 
+-def _decode(field:str,kind:str,value:str):
++def _decode(field:str,kind:str,value:str) -> Any:
+     if kind=='str':return value
+     if kind=='money':
+         if not MONEY.fullmatch(value): raise ValueError('money_lexeme')
+@@ -40,14 +40,15 @@
+         if v.utcoffset() is None:raise ValueError('missing_timezone')
+         return v
+     if kind=='lines_json':
+-        x=json.loads(value,parse_float=Decimal,parse_int=int,parse_constant=lambda _: (_ for _ in ()).throw(ValueError('invalid_numeric_constant')), object_pairs_hook=_unique_json)
++        x=json.loads(value,parse_float=lambda literal: _decode('unit_price','money',literal),parse_int=int,parse_constant=lambda _: (_ for _ in ()).throw(ValueError('invalid_numeric_constant')), object_pairs_hook=_unique_json)
+         if not isinstance(x,list) or len(x)>100 or any(not isinstance(y,dict) or set(y)!={'sku_code','quantity','unit_price'} for y in x):raise ValueError('invalid_lines_shape')
+         from .models import LineItem
+         out=[]
+         for line in x:
+-            if type(line['quantity']) is not int or not isinstance(line['unit_price'],(str,Decimal)):raise ValueError('invalid_lines_types')
++            if type(line['quantity']) is not int or (not isinstance(line['unit_price'],(str,Decimal)) and type(line['unit_price']) is not int):raise ValueError('invalid_lines_types')
+             rawprice=line['unit_price']
+             if isinstance(rawprice,str): rawprice=_decode('unit_price','money',rawprice)
++            elif type(rawprice) is int: rawprice=Decimal(rawprice)
+             out.append(LineItem.model_validate({**line,'unit_price':rawprice},strict=True))
+         return tuple(out)
+     raise ValueError('unsupported_kind')
+@@ -62,8 +63,11 @@
+         raise ValueError('invalid_input_ref') from exc
+     sha=digest(raw if isinstance(raw,str) else repr(type(raw)))
+     trace=['input_hash','config:'+config_snapshot.fingerprint[:16]]
+-    event_type=None;schema_id=None;schema_version=None;transforms=[]
+-    def reject(cat:Failure,code:str,path:str='',rule:str='lexer'):
++    event_type: str | None = None
++    schema_id: str | None = None
++    schema_version: str | None = None
++    transforms: list[Transform] = []
++    def reject(cat:Failure,code:str,path:str='',rule:str='lexer') -> ValidationResult:
+         return ValidationResult(input_ref=input_ref,index=index,config_fingerprint=config_snapshot.fingerprint,event_type=event_type,schema_id=schema_id,schema_version=schema_version,status='REJECTED',failure_category=cat,errors=(ErrorItem(path=path,rule_id=rule,code=code,message='Input rejected by '+rule+' rule '+code),),trace=tuple(trace+['rejected:'+cat.value]),transforms=tuple(transforms),input_sha256=sha)
+     if not isinstance(raw,str):return reject(Failure.INPUT_LIMIT,'not_string',rule='ingestion')
+     try:
+@@ -99,7 +103,7 @@
+     decoded={}
+     for key,value in pairs.items():
+         try: decoded[key]=_decode(key,spec['field_types'][key],value)
+-        except (ValueError,OverflowError,InvalidOperation,ValidationError,TypeError):
++        except (ValueError,OverflowError,InvalidOperation,ValidationError,TypeError,RecursionError):
+             return reject(Failure.SCHEMA_VIOLATION,'lexical_type_error',key,'declared_type')
+     trace.append('typed_lexical_decode')
+     try:record=MODEL_REGISTRY[spec['registry_key']].model_validate(decoded,strict=True)
+@@ -110,7 +114,7 @@
+     return ValidationResult(input_ref=input_ref,index=index,config_fingerprint=config_snapshot.fingerprint,event_type=event_type,schema_id=schema_id,schema_version=schema_version,status='ACCEPTED',failure_category=None,record=record,transforms=tuple(transforms),trace=tuple(trace),input_sha256=sha)
+ 
+ 
+-def validate_many(raw_events:Iterable[object],batch_ref:str,config_snapshot:ConfigSnapshot):
++def validate_many(raw_events:Iterable[object],batch_ref:str,config_snapshot:ConfigSnapshot) -> Iterator[ValidationResult]:
+     for index,event in enumerate(raw_events):
+         if index>=config_snapshot.max_batch:raise ValueError('batch_limit')
+         yield validate(event,f'{batch_ref}/{index:08d}',config_snapshot,index)
+--- baseline/src/event_validator/matrix.py
++++ corrected/src/event_validator/matrix.py
+@@ -1,11 +1,10 @@
+ """Strict data-only matrix loader: no plugins, eval, free-form regex or dynamic import."""
+ from __future__ import annotations
+ import hashlib, json
+-from dataclasses import dataclass
+ from pathlib import Path
+-from typing import Any, Mapping
++from typing import Any, Mapping, get_args
+ from types import MappingProxyType
+-from .models import MODEL_REGISTRY
++from .models import MODEL_REGISTRY, ConfigSnapshot
+ 
+ ALLOWED_KINDS={'str','money','integer','timestamp','lines_json'}
+ ALLOWED_MATCH_FIELDS={'event'}
+@@ -36,31 +35,23 @@
+ def canonical_bytes(value:Any)->bytes:
+     return json.dumps(value,sort_keys=True,separators=(',',':'),ensure_ascii=True,allow_nan=False).encode()
+ 
+-@dataclass(frozen=True)
+-class ConfigSnapshot:
+-    version:str
+-    fingerprint:str
+-    specs:tuple[Mapping[str,Any],...]
+-    max_event_bytes:int
+-    max_tokens:int
+-    max_batch:int
+-    aliases:Mapping[str,str]
+ 
+ 
+-def _freeze(obj):
++def _freeze(obj: Any) -> Any:
+     if isinstance(obj,dict):return MappingProxyType({k:_freeze(v) for k,v in obj.items()})
+     if isinstance(obj,list):return tuple(_freeze(v) for v in obj)
+     return obj
+ 
+ def load_matrix(path:str|Path)->ConfigSnapshot:
+-    def duplicates(items):
++    def duplicates(items: list[tuple[str, Any]]) -> dict[str, Any]:
+         out={}
+         for k,v in items:
+             if k in out: raise ConfigError('duplicate_config_key')
+             out[k]=v
+         return out
+     try:
+-        raw=Path(path).read_bytes()
++        with Path(path).open('rb') as stream:
++            raw=stream.read(262145)
+         if len(raw)>262144: raise ConfigError('config_size_limit')
+         obj=json.loads(raw,object_pairs_hook=duplicates)
+         if not isinstance(obj,dict) or set(obj)!={'version','limits','aliases','events'}:raise ConfigError('config_top_level')
+@@ -92,13 +83,13 @@
+             if set(e['field_types'])!=set(MODEL_REGISTRY[e['registry_key']].model_fields):raise ConfigError('registry_fields_mismatch')
+             if 'event_type' not in e['required'] or e['event_type'] != m['equals']:raise ConfigError('event_matcher_mismatch')
+             model = MODEL_REGISTRY[e['registry_key']]
+-            if e['event_type'] != model.model_fields['event_type'].annotation.__args__[0]:
++            if e['event_type'] != get_args(model.model_fields['event_type'].annotation)[0]:
+                 raise ConfigError('event_registry_mismatch')
+             if set(e['required']) != {name for name,field in model.model_fields.items() if field.is_required()}:
+                 raise ConfigError('required_fields_mismatch')
+             if any(kind != _expected_kind(name) for name,kind in e['field_types'].items()):
+                 raise ConfigError('field_kind_mismatch')
+         return ConfigSnapshot(obj['version'],hashlib.sha256(canonical_bytes(obj)).hexdigest(),tuple(_freeze(e) for e in events),limits['max_event_bytes'],limits['max_tokens'],limits['max_batch'],MappingProxyType(dict(aliases)))
+-    except (OSError,UnicodeError,ValueError,TypeError,KeyError) as exc:
++    except (OSError,UnicodeError,ValueError,TypeError,KeyError,RecursionError) as exc:
+         if isinstance(exc,ConfigError): raise
+         raise ConfigError('matrix_not_valid') from exc
+--- baseline/src/event_validator/models.py
++++ corrected/src/event_validator/models.py
+@@ -1,10 +1,23 @@
+ """Frozen Pydantic v2 domain records for the illustrative order-fulfillment matrix."""
+ from __future__ import annotations
+ from datetime import datetime
++from dataclasses import dataclass
+ from decimal import Decimal
+ from enum import Enum
+-from typing import Literal, Annotated, Union
++from typing import Literal, Annotated, Union, Self, Mapping, Any
+ from pydantic import BaseModel, ConfigDict, Field, SerializeAsAny, field_validator, model_validator
++
++
++@dataclass(frozen=True)
++class ConfigSnapshot:
++    version:str
++    fingerprint:str
++    specs:tuple[Mapping[str,Any],...]
++    max_event_bytes:int
++    max_tokens:int
++    max_batch:int
++    aliases:Mapping[str,str]
++
+ 
+ Id = Annotated[str, Field(min_length=1,max_length=64, pattern=r'^[A-Za-z0-9][A-Za-z0-9_-]*$')]
+ Amount = Annotated[Decimal, Field(gt=Decimal('0'), decimal_places=2, max_digits=15)]
+@@ -41,10 +54,17 @@
+     lines_json: tuple[LineItem,...] | None = None
+ 
+     @model_validator(mode='after')
+-    def total_matches(self):
++    def total_matches(self) -> Self:
+         if self.lines_json is not None:
+-            total=sum((line.quantity*line.unit_price for line in self.lines_json), Decimal('0'))
+-            if total!=self.gross_amount:
++            # Price validation guarantees exact cent values. Integer arithmetic
++            # avoids rounding/traps inherited from a caller's Decimal context.
++            total_cents = 0
++            for line in self.lines_json:
++                numerator, denominator = line.unit_price.as_integer_ratio()
++                cents = numerator * 100 // denominator
++                total_cents += line.quantity * cents
++            gross_numerator, gross_denominator = self.gross_amount.as_integer_ratio()
++            if total_cents * gross_denominator != gross_numerator * 100:
+                 raise ValueError('line_total_mismatch')
+         return self
+ 
+--- baseline/src/event_validator/postgres.py
++++ corrected/src/event_validator/postgres.py
+@@ -1,27 +1,31 @@
+ """Optional PostgreSQL repository port; requires psycopg and managed migrations.
+ 
+-Not integration-tested against a running PostgreSQL server in this release.
++Integration-verified against a disposable PostgreSQL 17 instance; production
++deployment and migration governance remain outside the local demo scope.
+ Use migrations/001_postgresql.sql under the organization's migration process.
+ """
+ from __future__ import annotations
+ import json
+ from datetime import datetime,timezone,timedelta
+-from typing import TYPE_CHECKING
++from typing import Any
+ from .models import ValidationResult
+ from .storage import uid,IdempotencyConflict
+ 
+ try:
+-    import psycopg
+-    from psycopg.types.json import Jsonb
++    import psycopg as _psycopg
++    from psycopg.types.json import Jsonb as _Jsonb
+ except ImportError:  # optional dependency
+-    psycopg=None
+-    Jsonb=None
++    psycopg: Any = None
++    Jsonb: Any = None
++else:
++    psycopg = _psycopg
++    Jsonb = _Jsonb
+ 
+ class PostgreSQLRepository:
+-    def __init__(self,dsn:str):
+-        if psycopg is None:raise RuntimeError('Install event-validator[postgres] for PostgreSQL')
++    def __init__(self,dsn:str) -> None:
++        if psycopg is None:raise RuntimeError('Install structured-event-schema-validator[postgres] for PostgreSQL')
+         self.conn=psycopg.connect(dsn,autocommit=True)
+-    def close(self):self.conn.close()
++    def close(self) -> None:self.conn.close()
+     def persist(self,result:ValidationResult,tenant_id:str,event_ref:str)->str:
+         if result.status == 'ACCEPTED' and (
+             result.record is None or tenant_id != result.record.tenant_id or event_ref != result.record.event_id
+@@ -61,7 +65,7 @@
+                 c.execute('INSERT INTO workflow_outbox VALUES(%s,%s,%s,%s,%s,%s,%s,%s)',(
+                     uid(result_id,kind),result_id,kind,payload,'PENDING' if kind=='ACCEPTED_EVENT' else 'QUARANTINED',0,now,now))
+                 return 'CREATED'
+-    def claim(self):
++    def claim(self) -> tuple[str, int, dict[str, Any]] | None:
+         with self.conn.transaction():
+             with self.conn.cursor() as c:
+                 c.execute('''WITH chosen AS (
+--- baseline/src/event_validator/storage.py
++++ corrected/src/event_validator/storage.py
+@@ -3,25 +3,26 @@
+ from datetime import datetime, timezone, timedelta
+ import hashlib,json,sqlite3
+ from pathlib import Path
++from typing import Any
+ from .models import ValidationResult
+ 
+ DDL_SQL = 'PRAGMA foreign_keys=ON;\nCREATE TABLE IF NOT EXISTS matrix_version(\n id TEXT PRIMARY KEY, hash TEXT NOT NULL UNIQUE, created_at TEXT NOT NULL);\nCREATE TABLE IF NOT EXISTS event_ingestion(\n ingestion_id TEXT PRIMARY KEY, tenant_id TEXT NOT NULL, event_ref TEXT NOT NULL,\n input_hash TEXT NOT NULL, ingested_at TEXT NOT NULL, matrix_version_id TEXT NOT NULL REFERENCES matrix_version(id),\n UNIQUE(tenant_id,event_ref,matrix_version_id));\nCREATE INDEX IF NOT EXISTS idx_ingest_tenant_time ON event_ingestion(tenant_id,ingested_at);\nCREATE TABLE IF NOT EXISTS validation_result(\n id TEXT PRIMARY KEY, ingestion_id TEXT NOT NULL UNIQUE REFERENCES event_ingestion(ingestion_id),\n event_type TEXT, schema_id TEXT, schema_version TEXT, status TEXT NOT NULL,\n error_category TEXT, canonical_payload TEXT NOT NULL, validated_at TEXT NOT NULL);\nCREATE INDEX IF NOT EXISTS idx_result_status_time ON validation_result(status,validated_at);\nCREATE TABLE IF NOT EXISTS validation_error(\n id TEXT PRIMARY KEY, result_id TEXT NOT NULL REFERENCES validation_result(id),\n field_path TEXT NOT NULL, rule_code TEXT NOT NULL, sanitized_message TEXT NOT NULL);\nCREATE TABLE IF NOT EXISTS normalization_audit(\n id TEXT PRIMARY KEY, result_id TEXT NOT NULL REFERENCES validation_result(id),\n field_path TEXT NOT NULL, rule_id TEXT NOT NULL, before_digest TEXT NOT NULL, after_digest TEXT NOT NULL);\nCREATE TABLE IF NOT EXISTS workflow_outbox(\n id TEXT PRIMARY KEY, result_id TEXT NOT NULL REFERENCES validation_result(id),\n kind TEXT NOT NULL, payload TEXT NOT NULL, state TEXT NOT NULL,\n attempts INTEGER NOT NULL DEFAULT 0, next_attempt_at TEXT NOT NULL, created_at TEXT NOT NULL,\n UNIQUE(result_id,kind));\nCREATE INDEX IF NOT EXISTS idx_outbox_state_time ON workflow_outbox(state,next_attempt_at);\n'
+ 
+-def utcnow():return datetime.now(timezone.utc).isoformat()
+-def uid(*items):return hashlib.sha256('|'.join(map(str,items)).encode()).hexdigest()
++def utcnow() -> str:return datetime.now(timezone.utc).isoformat()
++def uid(*items: object) -> str:return hashlib.sha256('|'.join(map(str,items)).encode()).hexdigest()
+ 
+ class IdempotencyConflict(ValueError): pass
+ 
+ class SQLiteRepository:
+-    def __init__(self,path:str|Path):
++    def __init__(self,path:str|Path) -> None:
+         self.connection=sqlite3.connect(str(path),timeout=10,isolation_level=None)
+         self.connection.execute('PRAGMA foreign_keys=ON')
+         self.connection.execute('PRAGMA busy_timeout=10000')
+-    def migrate(self):
++    def migrate(self) -> None:
+         # executescript manages its own transaction: only run under controlled setup
+         self.connection.executescript(DDL_SQL)
+-    def close(self):self.connection.close()
+-    def persist(self,result:ValidationResult,tenant_id:str,event_ref:str):
++    def close(self) -> None:self.connection.close()
++    def persist(self,result:ValidationResult,tenant_id:str,event_ref:str) -> str:
+         c=self.connection
+         if result.status == 'ACCEPTED' and (
+             result.record is None or tenant_id != result.record.tenant_id or event_ref != result.record.event_id
+@@ -56,10 +57,10 @@
+             c.execute('COMMIT');return 'CREATED'
+         except Exception:
+             c.execute('ROLLBACK');raise
+-    def counts(self):
++    def counts(self) -> dict[str, int]:
+         return {name:self.connection.execute('SELECT count(*) FROM '+name).fetchone()[0] for name in
+                 ('event_ingestion','validation_result','validation_error','normalization_audit','workflow_outbox')}
+-    def claim(self,now:str|None=None):
++    def claim(self,now:str|None=None) -> tuple[str, int, str] | None:
+         c=self.connection
+         c.execute('BEGIN IMMEDIATE')
+         try:
+@@ -68,7 +69,7 @@
+             if row:c.execute("UPDATE workflow_outbox SET state='LEASED',attempts=attempts+1 WHERE id=?",(row[0],))
+             c.execute('COMMIT');return row
+         except Exception:c.execute('ROLLBACK');raise
+-    def finish(self,work_id:str,success:bool,max_attempts:int=3):
++    def finish(self,work_id:str,success:bool,max_attempts:int=3) -> str:
+         c=self.connection;c.execute('BEGIN IMMEDIATE')
+         try:
+             row=c.execute('SELECT state,attempts FROM workflow_outbox WHERE id=?',(work_id,)).fetchone()
+--- baseline/src/event_validator/workflow.py
++++ corrected/src/event_validator/workflow.py
+@@ -1,17 +1,21 @@
+ """Deliberately local stub only; no outbound connector is implemented or enabled."""
+ from __future__ import annotations
+-from typing import Protocol
+-from .storage import SQLiteRepository
++from typing import Protocol, cast
++
++class WorkflowRepository(Protocol):
++    def claim(self) -> tuple[str, int, str | dict[str, object]] | None: ...
++    def finish(self, work_id: str, success: bool, max_attempts: int = 3) -> str: ...
+ 
+ class Sink(Protocol):
+-    def deliver(self,message:dict)->bool:...
++    def deliver(self,message:dict[str, object])->bool:...
+ 
+ class LocalStubSink:
+-    def __init__(self):self.delivered=[]
+-    def deliver(self,message:dict)->bool:
+-        self.delivered.append(message['result_id']);return True
++    def __init__(self) -> None:
++        self.delivered: list[str] = []
++    def deliver(self,message:dict[str, object])->bool:
++        self.delivered.append(cast(str, message['result_id']));return True
+ 
+-def dispatch_once(repo:SQLiteRepository,sink:Sink|None=None)->str:
++def dispatch_once(repo:WorkflowRepository,sink:Sink|None=None)->str:
+     # None deliberately prevents external work. Only explicit passed sink executes.
+     if sink is None:return 'DISABLED'
+     claim=repo.claim()

@@ -1,0 +1,16 @@
+{
+  "checked_theorems": 5,
+  "traces": 51,
+  "compared_operations": 2005,
+  "disagreements": 0,
+  "proof_source_sha256": "b85784600343877f1a1edd99c0018ab40dfd235c09444094070af52cc8dd4dd8",
+  "seed": 20261029,
+  "passed": true,
+  "formal_scope": "opaque identity/hash equality model; equal replay and conflict preserve store, creation preserves other keys",
+  "empirical_scope": "actual SQLite accepted-event persistence, full logical-key/hash state and atomic result/outbox counts after every operation",
+  "assumptions": [
+    "identity embedding is injective over generated keys",
+    "cryptographic collision resistance is not proved"
+  ],
+  "python_formal_equivalence": "NOT ESTABLISHED; finite correspondence only"
+}
