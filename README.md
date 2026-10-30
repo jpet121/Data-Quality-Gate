@@ -56,7 +56,7 @@ The demonstration recognizes five types of event: **ORDER_CREATED**, **PAYMENT_A
 
 ## Why this project exists
 
-My goal is to transition into **AI engineering**. I built this project to demonstrate a practice that matters when using AI to write software: **generating code is not the same as proving it behaves as required**.
+I built this project to demonstrate a practice that matters when using AI to write software: **generating code is not the same as proving it behaves as required**.
 
 I directed an engineering process involving specification and architecture contracts, AI-assisted implementation through Codex, independent verification, defect remediation, repeated testing, and preserved evidence. I supplied the objectives, source materials, quality requirements, and human approval boundaries. AI tools helped produce and revise implementation and verification artifacts.
 
@@ -93,7 +93,7 @@ These are results **recorded in the verified release evidence**. They are finite
 
 ### Defects were found and repaired
 
-Verification was not a ceremonial pass. The work identified and addressed issues including PostgreSQL JSON handling, concurrent uniqueness conflicts, nested money parsing, Decimal arithmetic under altered contexts, and oversized/deep configuration inputs. The retained evidence distinguishes original failures, subsequent fixes, and regression tests.
+The work identified and addressed issues including PostgreSQL JSON handling, concurrent uniqueness conflicts, nested money parsing, Decimal arithmetic under altered contexts, and oversized/deep configuration inputs. The retained evidence distinguishes original failures, subsequent fixes, and regression tests.
 
 See the [verification report](https://github.com/jpet121/Structured_Event_Schema_Validator/blob/verified-v1.0.2-delivery/delivery/VERIFIED_RELEASE_REPORT.md) and [engineering case study](https://github.com/jpet121/Structured_Event_Schema_Validator/blob/verified-v1.0.2-delivery/engineering-knowledge/project/CASE_STUDY.md) for the detailed record.
 
