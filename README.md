@@ -1,12 +1,19 @@
-# Structured Event Schema Validator
+# Data Quality Gate
+### Structured Event Schema Validator
 
-**A Python engineering portfolio project focused on reliable data validation, AI-assisted software development, and evidence-based verification.**
+**AI-Assisted Python Engineering & Software Verification Portfolio Project**
 
-**Stack:** Python 3.12+ · Pydantic v2 · pytest · Hypothesis · SQLite · PostgreSQL · Lean 4
+> **What it does:** Checks business-event messages for missing, malformed, or invalid information. Valid records are accepted; bad records are rejected with a clear reason. The program never invents missing data.
 
-> **In plain English:** This program checks incoming business-event messages for required information, correct data types, and configured business rules. It accepts valid records and rejects invalid ones with an explicit reason. It never invents missing information.
+**Why I built it:** To demonstrate requirements-driven Python engineering, human-directed Codex development, defect discovery, and rigorous verification—skills relevant to building dependable AI-enabled systems.
 
-**Current status:** Version 1.0.2 was **technically verified for a local, synthetic demonstration**. Final human release approval remains **pending**. This is not a deployed enterprise service.
+**Under the hood:** Python 3.12+ · Pydantic v2 · pytest · Hypothesis · SQLite · PostgreSQL · Lean 4
+
+**Status:** v1.0.2 is **technically verified for the local synthetic demonstration**; **final human release approval is pending**. This is not a deployed enterprise service.
+
+**Names and compatibility:** **Data Quality Gate** is the portfolio-friendly project title. **Structured Event Schema Validator** remains the application's technical name. The executable, module names, APIs, contract references, branch names, ZIP filenames, and verification evidence are unchanged.
+
+[See the demonstration](#data-quality-gate-in-action-three-sample-business-events) · [Read about verification](#how-the-engineering-was-tested) · [Run it on Windows](#try-it-yourself-windows-powershell) · [Review the evidence](#evidence-and-release-materials)
 
 ## At a glance
 
@@ -18,7 +25,7 @@
 | **Can someone run it?** | Yes. A complete downloadable application archive and sample inputs are provided below. |
 | **Is it an AI model or agent?** | No. It demonstrates software-engineering foundations and disciplined use of AI coding tools—not LLM training, RAG, or a deployed agent. |
 
-## See it work: three sample business events
+## Data Quality Gate in action: three sample business events
 
 The included demonstration processes three synthetic transactions:
 
@@ -54,7 +61,7 @@ Strict Pydantic v2 validation
 
 The demonstration recognizes five types of event: **ORDER_CREATED**, **PAYMENT_AUTHORIZED**, **INVENTORY_RESERVED**, **SHIPMENT_DISPATCHED**, and **ORDER_CANCELLED**. These are **synthetic examples**, not live customer or enterprise integrations.
 
-## Why this project exists
+## Why I built Data Quality Gate
 
 I built this project to demonstrate a practice that matters when using AI to write software: **generating code is not the same as proving it behaves as required**.
 
@@ -135,7 +142,7 @@ The complete technical suite uses additional declared dependencies and supportin
 | [Engineering retrospective](https://github.com/jpet121/Structured_Event_Schema_Validator/blob/verified-v1.0.2-delivery/engineering-knowledge/project/CASE_STUDY.md) | How the engineering decisions, defect corrections, and verification evolved. |
 | [Release readiness decision](https://github.com/jpet121/Structured_Event_Schema_Validator/blob/verified-v1.0.2-delivery/delivery/RELEASE_READINESS.json) | Technical readiness and outstanding human-release approval. |
 
-**Repository note:** The default `main` branch is the portfolio landing page. The verified application and evidence are preserved on `verified-v1.0.2-delivery`; the full application source is included inside its downloadable ZIP.
+**Repository note:** The default `main` branch is the portfolio landing page for **Data Quality Gate**. The repository URL intentionally retains the original technical name to avoid breaking links and traceability. The verified application and evidence are preserved on `verified-v1.0.2-delivery`; the full application source is included inside its downloadable ZIP.
 
 ## Limitations and release status
 
