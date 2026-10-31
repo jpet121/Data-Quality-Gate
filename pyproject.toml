@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "structured-event-schema-validator"
+version = "1.0.2"
+description = "Strict declarative structured event validation and durable outbox demonstration"
+requires-python = ">=3.12"
+dependencies = ["pydantic>=2.10,<3"]
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "hypothesis>=6.100,<7"]
+postgres = ["psycopg[binary]>=3.2,<4"]
+[project.scripts]
+event-validate = "event_validator.cli:main"
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
