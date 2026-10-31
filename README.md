@@ -1,7 +1,7 @@
 # Data Quality Gate
 ### Structured Event Schema Validator
 
-**AI-Assisted Python Engineering & Software Verification Portfolio Project**
+**AI-Assisted Python Engineering & Software Verification Project**
 
 > **What it does:** Checks business-event messages for missing, malformed, or invalid information. Valid records are accepted; bad records are rejected with a clear reason. The program never invents missing data.
 
