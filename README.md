@@ -154,4 +154,4 @@ The complete technical suite uses additional declared dependencies and supportin
 
 ---
 
-**Portfolio focus:** Engineering reliable systems with clear requirements, testable behavior, observable failures, reproducible evidence, and accountable human decisions—even when AI contributes the implementation.
+**Focus:** Engineering reliable systems with clear requirements, testable behavior, observable failures, reproducible evidence, and accountable human decisions—even when AI contributes the implementation.
