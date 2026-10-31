@@ -1,0 +1,38 @@
+{
+  "profile": "A",
+  "scope": "selected automated checks only; acceptance separately evaluated",
+  "results": [
+    {
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "tools/build_standalone.py",
+        "--check"
+      ],
+      "started_at": "2026-10-30T00:08:28.725242+00:00",
+      "completed_at": "2026-10-30T00:08:28.790904+00:00",
+      "wall_seconds": 0.06567229500069516,
+      "exit_code": 0,
+      "state": "EXECUTED",
+      "log": "final_evidence/profile_A_standalone.txt"
+    },
+    {
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_suite.py",
+        "tests",
+        "--hypothesis-seed=20261029",
+        "--junitxml=final_evidence/profile_A.xml",
+        "--ignore=tests/integration/test_postgres_independent.py"
+      ],
+      "started_at": "2026-10-30T00:08:28.791161+00:00",
+      "completed_at": "2026-10-30T00:08:39.140704+00:00",
+      "wall_seconds": 10.34956720000082,
+      "exit_code": 0,
+      "state": "EXECUTED",
+      "log": "final_evidence/profile_A_tests.txt"
+    }
+  ]
+}

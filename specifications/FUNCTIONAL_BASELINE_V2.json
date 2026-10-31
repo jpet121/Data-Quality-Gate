@@ -1,0 +1,19 @@
+{
+  "version": "2",
+  "decision_record": "specifications/OWNER_ACCEPTANCE_DECISIONS.json",
+  "prior_baseline": "specifications/authorized_functional_baseline",
+  "files": {
+    "README.md": {
+      "path": "specifications/authorized_functional_baseline_v2/README.md",
+      "sha256": "26e11fc2605a3702f27bacb1a4522d38161a0df6498491372cd12b12979fa8e6"
+    },
+    "docs/ACCEPTANCE.md": {
+      "path": "specifications/authorized_functional_baseline_v2/docs/ACCEPTANCE.md",
+      "sha256": "c4756a8f781a09aff191aa11664c8dc13b2ba0fafddceedd83411c8082e78ec3"
+    },
+    "examples/matrix_v1.json": {
+      "path": "specifications/authorized_functional_baseline_v2/examples/matrix_v1.json",
+      "sha256": "efb3dfb293b2e4e8f5675bcfff5aa12f9c39656d386f8e3c06ade29514d52f22"
+    }
+  }
+}

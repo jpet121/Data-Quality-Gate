@@ -1,0 +1,3 @@
+{"raw": "event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | source=ERP | customer_ref=CUST-FAKE-11 | gross_amount=25.00 | currency=USD | lines_json=\"[{\\\"sku_code\\\":\\\"SKU-A\\\",\\\"quantity\\\":2,\\\"unit_price\\\":\\\"12.50\\\"}]\""}
+{"raw": "event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | source=ERP | customer_ref=CUST-FAKE-11 | currency=USD"}
+{"raw": "event=PAYMENT_AUTHORIZED | event_id=EVT-002 | tenant=TEN-ACME | order=ORD-1001 | source=PAYMENT | occurred_at=2026-10-29T14:50:00-05:00 | payment_ref=PAY-FAKE-55 | authorized_amount=25.00 | currency=USD"}

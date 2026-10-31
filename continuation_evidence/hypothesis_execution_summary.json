@@ -1,0 +1,136 @@
+{
+  "scope": "Actual Hypothesis phase examples, distinct from pytest test-case counts and not deduplicated semantic coverage",
+  "seed": 20261029,
+  "properties_and_state_machines": [
+    {
+      "test_nodeid": "test_suite.py::test_hypothesis_unicode_never_crashes",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 200,
+          "failing_examples": 0,
+          "invalid_draws": 0
+        }
+      ]
+    },
+    {
+      "test_nodeid": "test_suite.py::test_hypothesis_differential_lexing_in_valid_domain",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 200,
+          "failing_examples": 0,
+          "invalid_draws": 11
+        }
+      ]
+    },
+    {
+      "test_nodeid": "test_suite.py::test_hypothesis_duplicate_keys_never_accepted",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 150,
+          "failing_examples": 0,
+          "invalid_draws": 26
+        }
+      ]
+    },
+    {
+      "test_nodeid": "test_suite.py::test_hypothesis_valid_inventory_quantity",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 150,
+          "failing_examples": 0,
+          "invalid_draws": 0
+        }
+      ]
+    },
+    {
+      "test_nodeid": "test_suite.py::TestLexerStateMachine::runTest",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 35,
+          "failing_examples": 0,
+          "invalid_draws": 0
+        }
+      ]
+    },
+    {
+      "test_nodeid": "test_suite.py::TestRepositoryStateMachine::runTest",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 20,
+          "failing_examples": 0,
+          "invalid_draws": 1
+        }
+      ]
+    },
+    {
+      "test_nodeid": "tests/assurance/test_gate_properties.py::test_gate_matches_declared_all_obligations_reference",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 150,
+          "failing_examples": 0,
+          "invalid_draws": 17
+        }
+      ]
+    },
+    {
+      "test_nodeid": "tests/assurance/test_reference_model.py::test_reference_quoted_grammar_has_independent_roundtrip",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 200,
+          "failing_examples": 0,
+          "invalid_draws": 95
+        }
+      ]
+    },
+    {
+      "test_nodeid": "tests/assurance/test_reference_model.py::test_all_event_models_agree_with_independent_reference",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 300,
+          "failing_examples": 0,
+          "invalid_draws": 0
+        }
+      ]
+    },
+    {
+      "test_nodeid": "tests/property/test_properties.py::test_duplicate_keys_never_accepted",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 150,
+          "failing_examples": 0,
+          "invalid_draws": 19
+        }
+      ]
+    },
+    {
+      "test_nodeid": "tests/property/test_properties.py::test_random_unicode_cannot_raise",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 250,
+          "failing_examples": 0,
+          "invalid_draws": 0
+        }
+      ]
+    },
+    {
+      "test_nodeid": "tests/property/test_properties.py::test_lexer_stable_order",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 15,
+          "failing_examples": 0,
+          "invalid_draws": 0
+        }
+      ]
+    },
+    {
+      "test_nodeid": "tests/property/test_properties.py::TestLexerMachine::runTest",
+      "hypothesis_phases": [
+        {
+          "passing_examples": 100,
+          "failing_examples": 0,
+          "invalid_draws": 0
+        }
+      ]
+    }
+  ]
+}

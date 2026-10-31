@@ -1,0 +1,186 @@
+{
+  "version": "demo-v1",
+  "limits": {
+    "max_event_bytes": 4096,
+    "max_tokens": 32,
+    "max_batch": 10000
+  },
+  "aliases": {
+    "event": "event_type",
+    "tenant": "tenant_id",
+    "order": "order_id"
+  },
+  "events": [
+    {
+      "event_type": "ORDER_CREATED",
+      "schema_id": "ORDER_CREATED",
+      "schema_version": "1",
+      "registry_key": "order_created.v1",
+      "matcher": {
+        "field": "event",
+        "equals": "ORDER_CREATED",
+        "priority": 10
+      },
+      "required": [
+        "event_type",
+        "event_id",
+        "tenant_id",
+        "order_id",
+        "occurred_at",
+        "source",
+        "customer_ref",
+        "gross_amount",
+        "currency"
+      ],
+      "optional": [
+        "lines_json"
+      ],
+      "field_types": {
+        "event_type": "str",
+        "event_id": "str",
+        "tenant_id": "str",
+        "order_id": "str",
+        "occurred_at": "timestamp",
+        "source": "str",
+        "customer_ref": "str",
+        "gross_amount": "money",
+        "currency": "str",
+        "lines_json": "lines_json"
+      }
+    },
+    {
+      "event_type": "PAYMENT_AUTHORIZED",
+      "schema_id": "PAYMENT_AUTHORIZED",
+      "schema_version": "1",
+      "registry_key": "payment_authorized.v1",
+      "matcher": {
+        "field": "event",
+        "equals": "PAYMENT_AUTHORIZED",
+        "priority": 10
+      },
+      "required": [
+        "event_type",
+        "event_id",
+        "tenant_id",
+        "order_id",
+        "occurred_at",
+        "source",
+        "payment_ref",
+        "authorized_amount",
+        "currency"
+      ],
+      "optional": [],
+      "field_types": {
+        "event_type": "str",
+        "event_id": "str",
+        "tenant_id": "str",
+        "order_id": "str",
+        "occurred_at": "timestamp",
+        "source": "str",
+        "payment_ref": "str",
+        "authorized_amount": "money",
+        "currency": "str"
+      }
+    },
+    {
+      "event_type": "INVENTORY_RESERVED",
+      "schema_id": "INVENTORY_RESERVED",
+      "schema_version": "1",
+      "registry_key": "inventory_reserved.v1",
+      "matcher": {
+        "field": "event",
+        "equals": "INVENTORY_RESERVED",
+        "priority": 10
+      },
+      "required": [
+        "event_type",
+        "event_id",
+        "tenant_id",
+        "order_id",
+        "occurred_at",
+        "source",
+        "warehouse_ref",
+        "sku_code",
+        "quantity"
+      ],
+      "optional": [],
+      "field_types": {
+        "event_type": "str",
+        "event_id": "str",
+        "tenant_id": "str",
+        "order_id": "str",
+        "occurred_at": "timestamp",
+        "source": "str",
+        "warehouse_ref": "str",
+        "sku_code": "str",
+        "quantity": "integer"
+      }
+    },
+    {
+      "event_type": "SHIPMENT_DISPATCHED",
+      "schema_id": "SHIPMENT_DISPATCHED",
+      "schema_version": "1",
+      "registry_key": "shipment_dispatched.v1",
+      "matcher": {
+        "field": "event",
+        "equals": "SHIPMENT_DISPATCHED",
+        "priority": 10
+      },
+      "required": [
+        "event_type",
+        "event_id",
+        "tenant_id",
+        "order_id",
+        "occurred_at",
+        "source",
+        "shipment_ref",
+        "carrier_code",
+        "tracking_ref",
+        "quantity"
+      ],
+      "optional": [],
+      "field_types": {
+        "event_type": "str",
+        "event_id": "str",
+        "tenant_id": "str",
+        "order_id": "str",
+        "occurred_at": "timestamp",
+        "source": "str",
+        "shipment_ref": "str",
+        "carrier_code": "str",
+        "tracking_ref": "str",
+        "quantity": "integer"
+      }
+    },
+    {
+      "event_type": "ORDER_CANCELLED",
+      "schema_id": "ORDER_CANCELLED",
+      "schema_version": "1",
+      "registry_key": "order_cancelled.v1",
+      "matcher": {
+        "field": "event",
+        "equals": "ORDER_CANCELLED",
+        "priority": 10
+      },
+      "required": [
+        "event_type",
+        "event_id",
+        "tenant_id",
+        "order_id",
+        "occurred_at",
+        "source",
+        "reason"
+      ],
+      "optional": [],
+      "field_types": {
+        "event_type": "str",
+        "event_id": "str",
+        "tenant_id": "str",
+        "order_id": "str",
+        "occurred_at": "timestamp",
+        "source": "str",
+        "reason": "str"
+      }
+    }
+  ]
+}

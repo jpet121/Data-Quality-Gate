@@ -1,0 +1,28 @@
+Wrote JSON report to continuation_evidence/final_coverage.json
+{
+  "command": [
+    "/workspace/verification/venv/bin/python",
+    "-m",
+    "coverage",
+    "run",
+    "--branch",
+    "--source=src/event_validator,assurance",
+    "-m",
+    "pytest",
+    "-q",
+    "test_suite.py",
+    "tests",
+    "--hypothesis-seed=20261029",
+    "--hypothesis-show-statistics",
+    "--junitxml=continuation_evidence/final_suite.xml"
+  ],
+  "started_at": "2026-10-30T00:07:57.769207+00:00",
+  "completed_at": "2026-10-30T00:08:16.126700+00:00",
+  "wall_seconds": 18.357496950000495,
+  "exit_code": 0,
+  "source_unchanged": true,
+  "collected": 410,
+  "source_snapshot_sha256": "3f224e332120874fe227f2b5028a2d0414b25aa4889753c694fd14552ac77d93",
+  "collection_sha256": "f615736cb15b9f4ae055f686c6afa3d473a9dda518b57991bf695478f5dd66f7",
+  "junit_sha256": "c14aab505f9c5746a2418f1b1a34903ec11771b49fe8b66b32b4dbbbdc788d7d"
+}

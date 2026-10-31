@@ -1,0 +1,28 @@
+{
+  "decision_source": "explicit user reply in this conversation",
+  "verbatim": "Use the application\u2019s README.md, docs/ACCEPTANCE.md and examples/matrix_v1.json as the authoritative functional requirements, alongside the two XML contracts.",
+  "roles": {
+    "functional": [
+      "README.md",
+      "docs/ACCEPTANCE.md",
+      "examples/matrix_v1.json"
+    ],
+    "architecture": "Development & Software Architecture.xml plus five original architecture references",
+    "verification": "COMPILE_V4_Independent_Verification_Contract.xml plus verification reference files"
+  },
+  "files": {
+    "README.md": {
+      "frozen_copy": "specifications/authorized_functional_baseline/README.md",
+      "sha256": "7342c203b4a9b4cd4a5d29d8b1835b0fce4633f12301944f56968ec59c3c4c56"
+    },
+    "docs/ACCEPTANCE.md": {
+      "frozen_copy": "specifications/authorized_functional_baseline/docs/ACCEPTANCE.md",
+      "sha256": "e0c8ff5cf46deac1e98635929d4db721833820302f18c3c3f50652f0005a2309"
+    },
+    "examples/matrix_v1.json": {
+      "frozen_copy": "specifications/authorized_functional_baseline/examples/matrix_v1.json",
+      "sha256": "efb3dfb293b2e4e8f5675bcfff5aa12f9c39656d386f8e3c06ade29514d52f22"
+    }
+  },
+  "rule": "Functional scope comes from this owner designation; implementation and legacy test expectations are evidence, not authorities."
+}

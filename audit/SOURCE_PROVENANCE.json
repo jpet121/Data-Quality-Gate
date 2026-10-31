@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-29",
+  "reconciled_test_suite_sha256": "7e4e28a4a85d00ca328b9f95fbe77605089d05e4510f99a2b149c34777c3c5d7",
+  "source_application_zip": {
+    "name": "1_Structured_Event_Schema_Validator_REPAIRED_RELEASE.zip",
+    "sha256": "98bfc01e6b28d0520b61ea767a24c17ebcdf41953a7d64674040237778f3bd9d"
+  },
+  "source_authority_note": "Original app-specific functional XML specification not available. Verification relative to shipped README, schema, acceptance docs and independent tests only.",
+  "source_independent_tests_zip": {
+    "name": "2_Structured_Event_Validator_CORRECTED_TEST_SUITE_PACKAGE.zip",
+    "sha256": "913da87c7add442c3330549b3fc92492c615eef8fd70fb0c9ee618e7ac0b6264"
+  },
+  "test_suite_reconciliation_reason": "Restore accepted-event identity binding to validated record.event_id in one deterministic and one unexecuted stateful test; retain original; do not change unrelated test assertions.",
+  "upstream_test_suite_sha256": "425c951f61be0fb95ccd855fc8e2038f769300b7ccf57a348e780ca544e5c808"
+}

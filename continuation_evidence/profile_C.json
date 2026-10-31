@@ -1,0 +1,24 @@
+{
+  "profile": "C",
+  "authorization": "user requested independent high-assurance verification and additional bounded testing of this supplied application; no external targets",
+  "results": [
+    {
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "-m",
+        "assurance.campaign",
+        "--cases",
+        "100000",
+        "--seed",
+        "20261029",
+        "--authorized-local-target"
+      ],
+      "started_at": "2026-10-30T00:13:10.097363+00:00",
+      "completed_at": "2026-10-30T00:13:18.942666+00:00",
+      "wall_seconds": 8.845318544999827,
+      "exit_code": 0,
+      "state": "EXECUTED",
+      "log": "final_evidence/profile_C_differential.txt"
+    }
+  ]
+}

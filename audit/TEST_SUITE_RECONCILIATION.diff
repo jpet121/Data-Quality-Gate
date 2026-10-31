@@ -1,0 +1,31 @@
+--- upstream_test_suite.original.py
++++ test_suite.py
+@@ -390,11 +390,16 @@
+ 
+ def test_persistence_rejects_duplicate_result_with_new_content(repo,cfg,valid_cases):
+     r1 = validate(valid_cases[1]['raw'], 'i1', cfg)
+     r2 = validate(valid_cases[1]['raw'].replace('PAY-FAKE-55','PAY-FAKE-56'),'i2',cfg)
+-    assert repo.persist(r1,'TEN-ACME','same-ref') == 'CREATED'
++    # Accepted events must be stored under the identity in their validated
++    # record. The original suite's arbitrary 'same-ref' conflicts with the
++    # separately verified cross-tenant/event identity security requirement.
++    verified_event_ref = r1.record.event_id
++    assert r2.record.event_id == verified_event_ref
++    assert repo.persist(r1,'TEN-ACME',verified_event_ref) == 'CREATED'
+     with pytest.raises(IdempotencyConflict):
+-        repo.persist(r2,'TEN-ACME','same-ref')
++        repo.persist(r2,'TEN-ACME',verified_event_ref)
+     assert repo.counts()['event_ingestion'] == 1
+ 
+ 
+ def test_cli_complete_e2e(tmp_path):
+@@ -532,8 +537,9 @@
+         @rule(key=st.integers(min_value=0,max_value=5), cents=st.integers(min_value=1,max_value=9999))
+         def insert(self, key, cents):
+             event_ref = f'key-{key}'
+             raw = raw_field_replace(self.base, 'authorized_amount', f'{cents//100}.{cents%100:02d}')
++            raw = raw_field_replace(raw, 'event_id', event_ref)
+             result = validate(raw, 'stateful', self.cfg)
+             assert result.status == 'ACCEPTED'
+             old = self.model.get(event_ref)
+             if old is None:

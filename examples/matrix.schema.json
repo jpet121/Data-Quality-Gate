@@ -1,0 +1,11 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "title":"Validator matrix configuration (data only)","type":"object","additionalProperties":false,
+ "required":["version","limits","aliases","events"],
+ "properties":{
+  "version":{"type":"string","minLength":1},
+  "limits":{"type":"object","additionalProperties":false,"required":["max_event_bytes","max_tokens","max_batch"],"properties":{"max_event_bytes":{"type":"integer","minimum":1,"maximum":65536},"max_tokens":{"type":"integer","minimum":1,"maximum":256},"max_batch":{"type":"integer","minimum":1,"maximum":100000}}},
+  "aliases":{"type":"object","propertyNames":{"enum":["event","tenant","order"]},"additionalProperties":{"enum":["event_type","tenant_id","order_id"]}},
+  "events":{"type":"array","minItems":1,"maxItems":64,"items":{"type":"object","additionalProperties":false,"required":["event_type","schema_id","schema_version","registry_key","matcher","required","optional","field_types"],"properties":{"event_type":{"type":"string","minLength":1},"schema_id":{"type":"string","minLength":1},"schema_version":{"type":"string","minLength":1},"registry_key":{"type":"string"},"matcher":{"type":"object","additionalProperties":false,"required":["field","equals","priority"],"properties":{"field":{"const":"event"},"equals":{"type":"string"},"priority":{"type":"integer","minimum":0,"maximum":100}}},"required":{"type":"array","items":{"type":"string"},"uniqueItems":true},"optional":{"type":"array","items":{"type":"string"},"uniqueItems":true},"field_types":{"type":"object","additionalProperties":{"enum":["str","money","integer","timestamp","lines_json"]}}}}}
+ }
+}

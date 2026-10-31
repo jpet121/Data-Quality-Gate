@@ -1,0 +1,78 @@
+{
+  "profile": "B",
+  "scope": "selected automated checks only; acceptance separately evaluated",
+  "results": [
+    {
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "tools/build_standalone.py",
+        "--check"
+      ],
+      "started_at": "2026-10-30T00:08:39.182869+00:00",
+      "completed_at": "2026-10-30T00:08:39.248027+00:00",
+      "wall_seconds": 0.0652278670004307,
+      "exit_code": 0,
+      "state": "EXECUTED",
+      "log": "final_evidence/profile_B_standalone.txt"
+    },
+    {
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "test_suite.py",
+        "tests",
+        "--hypothesis-seed=20261029",
+        "--junitxml=final_evidence/profile_B.xml"
+      ],
+      "started_at": "2026-10-30T00:08:39.248432+00:00",
+      "completed_at": "2026-10-30T00:08:50.725689+00:00",
+      "wall_seconds": 11.477281154000593,
+      "exit_code": 0,
+      "state": "EXECUTED",
+      "log": "final_evidence/profile_B_tests.txt"
+    },
+    {
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "-m",
+        "assurance.calibration"
+      ],
+      "started_at": "2026-10-30T00:08:50.726228+00:00",
+      "completed_at": "2026-10-30T00:08:51.192712+00:00",
+      "wall_seconds": 0.4665076420005789,
+      "exit_code": 0,
+      "state": "EXECUTED",
+      "log": "final_evidence/profile_B_calibration.txt"
+    },
+    {
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "verification/mutation_check.py"
+      ],
+      "started_at": "2026-10-30T00:08:51.193046+00:00",
+      "completed_at": "2026-10-30T00:12:08.542294+00:00",
+      "wall_seconds": 197.34927165699992,
+      "exit_code": 0,
+      "state": "EXECUTED",
+      "log": "final_evidence/profile_B_mutations.txt"
+    },
+    {
+      "command": [
+        "/workspace/verification/venv/bin/python",
+        "verification/seeded_boundary_sweep.py",
+        "--cases",
+        "50000",
+        "--seed",
+        "20261029"
+      ],
+      "started_at": "2026-10-30T00:12:08.542605+00:00",
+      "completed_at": "2026-10-30T00:12:13.873681+00:00",
+      "wall_seconds": 5.331261250999887,
+      "exit_code": 0,
+      "state": "EXECUTED",
+      "log": "final_evidence/profile_B_boundaries.txt"
+    }
+  ]
+}

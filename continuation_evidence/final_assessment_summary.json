@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-10-30T00:13:19.179089+00:00",
+  "status": "APPROVAL PENDING",
+  "technical_status": "TECHNICALLY VERIFIED",
+  "tests": {
+    "total": 410,
+    "passed": 410,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "mandatory_development_verified": 51,
+  "mandatory_functional_verified": 167,
+  "mandatory_verification_technical_verified": 504,
+  "reserved_human_governance_rows": [
+    "V:D_UD_RELEASE_T_STAGE9",
+    "V:P_SEC17_018",
+    "V:UD_RELEASE"
+  ],
+  "scope_exclusions": 48,
+  "confirmed_unresolved_defects": 0,
+  "universal_zero_defect_claim": false,
+  "human_release_approval": false
+}

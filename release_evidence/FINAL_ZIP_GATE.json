@@ -1,0 +1,27 @@
+{
+  "status": "APPROVAL PENDING",
+  "human_approval_granted_by_evaluator": false,
+  "blocking_obligations": [
+    {
+      "id": "V:P_SEC17_018",
+      "state": "BLOCKED",
+      "reason": "Final human release authorization is reserved to the user and has not yet been granted; the tested candidate must remain approval pending."
+    },
+    {
+      "id": "V:D_UD_RELEASE_T_STAGE9",
+      "state": "BLOCKED",
+      "reason": "Final human release authorization is reserved to the user and has not yet been granted; the tested candidate must remain approval pending."
+    },
+    {
+      "id": "V:UD_RELEASE",
+      "state": "BLOCKED",
+      "reason": "Final human release authorization is reserved to the user and has not yet been granted; the tested candidate must remain approval pending."
+    },
+    {
+      "id": "human_release",
+      "state": "BLOCKED",
+      "reason": "required owner decision not recorded"
+    }
+  ],
+  "technical_status": "TECHNICALLY VERIFIED"
+}

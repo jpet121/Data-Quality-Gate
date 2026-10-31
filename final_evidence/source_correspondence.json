@@ -1,0 +1,6 @@
+{
+  "checked_files": 49,
+  "all_match": true,
+  "scope": "application, tests, verification code, manifests, entry points and fixtures frozen before archive replay",
+  "snapshot": "final_evidence/tested_source_snapshot.json"
+}

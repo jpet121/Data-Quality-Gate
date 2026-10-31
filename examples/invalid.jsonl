@@ -1,0 +1,9 @@
+{"raw": "event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | source=ERP | customer_ref=CUST-FAKE-11 | currency=USD", "case_id": "invalid_01"}
+{"raw": "event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | source=ERP | customer_ref=CUST-FAKE-11 | gross_amount=25.00 | currency=USD | event=ORDER_CREATED", "case_id": "invalid_02"}
+{"raw": "event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | source=ERP | customer_ref=CUST-FAKE-11 | gross_amount=25.00 | currency=EUR", "case_id": "invalid_03"}
+{"raw": "event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00 | source=ERP | customer_ref=CUST-FAKE-11 | gross_amount=25.00 | currency=USD", "case_id": "invalid_04"}
+{"raw": "event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | source=ERP | customer_ref=CUST-FAKE-11 | gross_amount=25.123 | currency=USD", "case_id": "invalid_05"}
+{"raw": "event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | source=ERP | customer_ref=CUST-FAKE-11 | gross_amount=25.00 | currency=USD | lines_json=\"[{\\\"sku_code\\\":\\\"SKU-A\\\",\\\"quantity\\\":2,\\\"unit_price\\\":\\\"11.00\\\"}]\"", "case_id": "invalid_06"}
+{"raw": "event=NO_SUCH_EVENT | event_id=EVT-007", "case_id": "invalid_07"}
+{"raw": "not free-form inferable text", "case_id": "invalid_08"}
+{"raw": "event=ORDER_CREATED | event_id=EVT-001 | tenant=TEN-ACME | order=ORD-1001 | occurred_at=2026-10-29T14:49:00-05:00 | source=ERP | customer_ref=\"CUST-FAKE-11\" | gross_amount=25.00 | currency=USD | tenant_id=TEN-OTHER", "case_id": "invalid_09"}

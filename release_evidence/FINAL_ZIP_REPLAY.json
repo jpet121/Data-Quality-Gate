@@ -1,0 +1,37 @@
+{
+  "archive": "Structured_Event_Schema_Validator_v1_0_2_VERIFIED_CANDIDATE.zip",
+  "archive_sha256": "f06ab83d0c56872460b30a402ce48662a06bb7cfdd3d73c10aebcc4919c02243",
+  "command": [
+    "/workspace/final_verification/hash-clean-venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "test_suite.py",
+    "tests",
+    "--hypothesis-seed=20261029",
+    "--hypothesis-show-statistics",
+    "--junitxml=/workspace/final_verification/final_deliverables_2026_10_30/FINAL_ZIP_REPLAY.xml"
+  ],
+  "started_at": "2026-10-30T00:15:42.488222+00:00",
+  "completed_at": "2026-10-30T00:15:56.485837+00:00",
+  "wall_seconds": 13.997616181999547,
+  "exit_code": 0,
+  "counts": {
+    "total": 410,
+    "passed": 410,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "complete_inventory_matches": true,
+  "frozen_source_unchanged": true,
+  "zip_unchanged": true,
+  "pre_replay_manifest_exit_code": 0,
+  "gate_exit_code": 2,
+  "technical_status": "TECHNICALLY VERIFIED",
+  "release_status": "APPROVAL PENDING",
+  "passed": true,
+  "junit_sha256": "f77debb60693801688b7e3eb574e298944269fc5aee27543c18370fe1af18535",
+  "log_sha256": "36212c1d27c52eea10e3d335ca7dafc6323a8953026e886cd7b9674826bc7436",
+  "note": "Executed from a fresh extraction of the exact immutable ZIP; replay evidence is external to avoid rewriting that ZIP."
+}

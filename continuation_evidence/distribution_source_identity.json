@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "application_modules": 9,
+  "wheel_sha256": "9d87388bea1c3b7f034291b7e74255b5c3a01b113219eea4f81dec3f0e88ffbf",
+  "sdist_sha256": "6962c72b92e6ac507d6f70d1dc8244e7f6c6d838fd0e6250a49a8ef965ec54e9",
+  "source_hashes": {
+    "event_validator/cli.py": "aa51d0726d3d9c3280c59550e8fa5abe40fbc2570cfc082f2ebb5fe14ff57a00",
+    "event_validator/workflow.py": "d214187755c8e071189f3f04bc2560fe26d4d0589ecadfc58c2ea8ca320be613",
+    "event_validator/postgres.py": "8d092b5233c58873f5b197d55f0163fb5b9699110e31a0e885f1c041e26472db",
+    "event_validator/__init__.py": "ca649d20e75c98089584bee8c0906f7a8ee648a6012ce1706a5a1659bd20b954",
+    "event_validator/parser.py": "6f9ea689254db392a2d1798509131f0988edced163152a5fef246cfb9ee91f68",
+    "event_validator/models.py": "2502c01293f8631f9093c89bebece8b5a64b21055a3bcae08a51d501409593ed",
+    "event_validator/matrix.py": "459af5f598c9a081773e115e4776faedbe7569e55cb63558551e6e0c412ed1e8",
+    "event_validator/storage.py": "4090b4d46bbe8fb80bc8e7a493da5d8ba4998354ad8890c162943e95bfd828f2",
+    "event_validator/core.py": "47054c33aaee5cba23406c1ccae4fa8d4a75e438c595a8428cc06fdb828af256"
+  },
+  "sdist_readme_matches_current": true
+}

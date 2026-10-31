@@ -1,0 +1,24 @@
+{
+  "development": {
+    "inventoried_rows": 62,
+    "mandatory_rows": 51,
+    "mandatory_states": {
+      "BLOCKED": 35,
+      "INCONCLUSIVE": 1,
+      "PASS": 14,
+      "FAIL": 1
+    },
+    "explicit_scope_exclusions": 11
+  },
+  "verification": {
+    "inventoried_rows": 544,
+    "mandatory_rows": 511,
+    "mandatory_states": {
+      "INCONCLUSIVE": 311,
+      "PASS": 132,
+      "UNPROVEN": 16,
+      "BLOCKED": 52
+    },
+    "explicit_scope_exclusions": 33
+  }
+}
